@@ -1,0 +1,61 @@
+.header-menu a{
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    letter-spacing: 1.2px;
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+.header-container{
+    display: flex;
+    justify-content:space-between;
+    padding-top: 25px;
+}
+.category-text{
+    font-size: 18px;
+}
+.rent-btn a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bolder;
+}
+.rent-btn{
+    height: 33px;
+    border: 1px solid #fff;
+    padding: 3px 14px 3px 14px;
+    background-color: #ffffff;
+}
+
+.chat-img{
+    width:20px;
+    height:20px;
+    margin-right: 20px;
+}
+
+.notif-img{
+    width:20px;
+    height:20px;
+    margin-right: 20px;
+}
+
+.profile-img{
+    width:20px;
+    height:20px;
+    margin-right: 20px;
+}
+.contact-section{
+    display: flex;
+    margin-right: 20px;
+}
+.contact-icons{
+    margin-right: 30px;
+}
+.rentDaap-Img{
+    width: 50px;
+    transition: .5s;
+}
+
+.header-menu{
+  margin-left: 15%;
+}

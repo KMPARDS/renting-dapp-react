@@ -19,31 +19,20 @@ class Header extends Component {
 
     render() {
         return (
-            <div className='header-container'>
-                <div className='header-logo'> <img className='rentDaap-Img'  src={Images.path.rentingdapp} /></div>
-                <nav className='header-menu'>
-                    <a className='category-text' href='#'>Home</a>
-                    <a className='category-text' onClick={this.toggleMenu}>All Categories</a>
-                    {
-                        this.state.showMenu
-                            ? (
-                                <NavMenu/>
-                            )
-                            : (
-                                null
-                            )
-                    }
+            <nav>
+                 <div className='rentDaap-header-logo'> 
+                 <img className='rentDaap-Img'  src={Images.path.rentingdapp} />
+                 </div>
+                 <ul>
+                     <li><a href=''>Home</a></li>
+                     <li><a href=''>All Categories</a></li>
+                     <li><a href=''><img className='chat-img'  src={Images.path.Chatwhite} /></a></li>
+                     <li><a href=''> <img className='notif-img'  src={Images.path.Nortificationwhite} /></a></li>
+                     <li><a href=''> <img className='profile-img'  src={Images.path.profilewhite} /></a></li>
+                     <li><a href=''> <img className='profile-img'  src={Images.path.Cart} /></a></li>
+                     <li><a href=''>Rent</a></li>
+                     </ul>
                 </nav>
-                <div className='contact-section'>
-                    <div className='contact-icons'>
-                    <img className='chat-img'  src={Images.path.Chatwhite} />
-                    <img className='notif-img'  src={Images.path.Nortificationwhite} />
-                    <img className='profile-img'  src={Images.path.profilewhite} />
-                    <img className='profile-img'  src={Images.path.Cart} />
-                    </div>
-                <div className='rent-btn'><a href='#'>Rent</a></div>
-                </div>
-            </div>
         );
     }
 }

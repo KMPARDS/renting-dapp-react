@@ -3,6 +3,8 @@ import './HomeCategory.scss';
 import { Col, Button, Container, Row } from 'react-bootstrap';
 import Images from '../../containers/Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
+import { Link } from 'react-router-dom';
+
 
 class HomeCategory extends Component {
     constructor(props) {
@@ -26,9 +28,9 @@ class HomeCategory extends Component {
                                 <div className='category-one-box'>
                                 <div className='hover-category'> Real Estate</div>
                                     <img className='box-Img-one' src={Images.path.realEstate} />
-                                    <div className='rentCategory-text'>
+                                  <Link to='/allCategory'>  <div className='rentCategory-text'>
                                         Real Estate
-                                    </div>
+                                    </div> </Link>
                                 </div></Col>
                             <Col sm={4}>
                                 <div className='category-two-box'>

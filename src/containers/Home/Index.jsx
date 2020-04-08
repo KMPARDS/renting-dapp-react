@@ -6,18 +6,29 @@ import Images from '../../containers/Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
 import HomeCategory from '../../components/HomeCategory/Index';
 import Footer from '../../components/Footer/Index';
+import { Link } from 'react-router-dom';
 import CarouselPage  from '../../components/Carousel/Index';
-
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            country: '',
+            region: ''
         };
     }
     
+    selectCountry (val) {
+        this.setState({ country: val });
+      }
+     
+      selectRegion (val) {
+        this.setState({ region: val });
+      }
+
+
     render() {
         return (
             <div>
@@ -26,6 +37,17 @@ class Home extends Component {
                         <Header />
                         <div className='buy-main-container'><h4 className='hero-txt-style'>BUY, SELL&JUST ABOUT ANYTHING</h4>
                             <div className='main-rent-search'>
+                            <div className='location-dropdown'>
+                            <CountryDropdown
+                                   className='country-style'
+                                        value={this.state.country}
+                                        onChange={(val) => this.selectCountry(val)} />
+                                    {/* <RegionDropdown
+                                       className='region-style'
+                                        country={this.state.country}
+                                        value={this.state.region}
+                                        onChange={(val) => this.selectRegion(val)} /> */}
+                                        </div>
                                 <form>
                                     <input
                                         placeholder='Search for anything here'
@@ -35,7 +57,7 @@ class Home extends Component {
                                 </form>
                                 <div className='search-btn-container'>
                                     <button className='search-rent-btn'>
-                                        Search Now
+                                       Search Now 
                                     </button>
                                 </div>
                             </div>

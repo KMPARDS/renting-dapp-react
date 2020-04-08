@@ -21,16 +21,40 @@
     margin-left: 20px;
 }
 
+.buy-main-container{
+    padding-top: 15%;
+}
+
 .search-field{
 border-radius: 5px;
-width: 450px;
+width: 340px;
 height: 50px;
+padding-left: 10px;
 }
 .main-rent-search{
     display: flex;
     justify-content: center;
 }
+.location-dropdown{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 
+.country-style{
+    width: 190px;
+    height: 50px;
+    border-radius: 5px;
+    color:#A7A7A7;
+    font-weight: 600;
+}
+.region-style{
+    width: 190px;
+    height: 50px;
+    border-radius: 5px;
+    color:#A7A7A7;
+    font-weight: 600;
+}
 .search-rent-btn{
     border-radius: 5px;
     color: #ffffff;

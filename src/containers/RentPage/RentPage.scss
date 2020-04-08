@@ -1,0 +1,26 @@
+.RentPage-wrapper-container{
+ width: 80%;
+ margin: 0 auto;
+ margin-bottom: 30%;
+ background-image: url('../../assets/Images/insideBgd.jpg');
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 50vh;
+}
+
+.table-category{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.table-catg-details{
+    position: absolute;
+    top:280px;
+}
+
+.RentPage-wrapper-container td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+    background-color: #ffffff;
+  }

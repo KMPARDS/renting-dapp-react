@@ -5,7 +5,10 @@ import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import SideBar from '../../components/SideBar/Index';
 import Footer from '../../components/Footer/Index';
+import Calendar from 'react-calendar';
 import Carousel from "react-multi-carousel";
+import Modal from 'react-bootstrap/Modal';
+import {Row,Col,Container,Button} from 'react-bootstrap';
 import "react-multi-carousel/lib/styles.css";
 import { Link } from 'react-router-dom';
 
@@ -14,33 +17,38 @@ class CategoryDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            showModal: false
         };
 
     }
-
+   
+    handleClose = () => {
+        this.setState({
+            showModal: false,
+        })
+    }
 
     render() {
 
         const responsive = {
             superLargeDesktop: {
-              // the naming can be any, depends on you.
-              breakpoint: { max: 4000, min: 3000 },
-              items: 5,
+                // the naming can be any, depends on you.
+                breakpoint: { max: 4000, min: 3000 },
+                items: 5,
             },
             desktop: {
-              breakpoint: { max: 3000, min: 1024 },
-              items: 3,
+                breakpoint: { max: 3000, min: 1024 },
+                items: 3,
             },
             tablet: {
-              breakpoint: { max: 1024, min: 464 },
-              items: 2,
+                breakpoint: { max: 1024, min: 464 },
+                items: 2,
             },
             mobile: {
-              breakpoint: { max: 464, min: 0 },
-              items: 1,
+                breakpoint: { max: 464, min: 0 },
+                items: 1,
             },
-          };
+        };
 
         return (
             <div>
@@ -56,30 +64,30 @@ class CategoryDetail extends Component {
                             <div className='catg-detail-pics'>
                                 <img className='catg-big-img' src={Images.path.rlOne} />
                                 <div className='catg-slider-detail'>
-                                
+
                                     <img className='catg-detail-img1' src={Images.path.rlTwo} />
                                     <img className='catg-detail-img1' src={Images.path.rlFour} />
                                     <img className='catg-detail-img1' src={Images.path.rlThree} />
-                    
+
                                 </div>
                             </div>
                             <div className='check-catg-detail'>
                                 <div className='category-heading-style'>
-                                <h5 className='heading-txt'>Entire cottage hosted by rui & Rosali</h5>
-                                <p className='heading-txt'>4 beds. 5guests</p>
+                                    <h5 className='heading-txt'>Entire cottage hosted by rui & Rosali</h5>
+                                    <p className='heading-txt'>4 beds. 5guests</p>
                                 </div>
                                 <div className='check-container'>
                                     <div className='catg-amount'>ES 300/day </div>
-                                    <button className='check-button-style'>Check Availability </button>
+                                    <button  onClick={() => this.setState({showModal: true})} className='check-button-style'>Check Availability </button>
                                 </div>
                             </div>
                             <div className='catg-owner'>
                                 <div className='owner-profile'>
                                     <img className='owner-img-style' src={Images.path.imgprf2} />
                                     <div className='chat-owner-holder'>
-                                    <h5>Owned By Jessica</h5>
-                                    <div className='chat-btn-owner'>
-                                    Chat with owner</div></div>
+                                        <h5>Owned By Jessica</h5>
+                                        <Link to='/myChat'>  <div className='chat-btn-owner' >
+                                            Chat with owner</div></Link></div>
                                 </div>
                             </div>
                             <h5 className='catg-desc-txt'>Description</h5>
@@ -89,14 +97,14 @@ class CategoryDetail extends Component {
                             <div className='catg-review-container'>
                                 <div className='review-rate-style'><img className='rate-imgs' src={Images.path.orangeStar} />4.8<h5 className='review-heading-style'>50(reviews)</h5></div>
 
-                               
+
                                 <div className='r-col-d-6'>
                                     <div className='user-review'>
                                         <div className='user-detail-container'>
                                             <img className='user-img-style' src={Images.path.imgprf2} />
                                             <div>
-                                            <h5>Jessica Does</h5>
-                                            <p>March 2020</p>
+                                                <h5>Jessica Does</h5>
+                                                <p>March 2020</p>
                                             </div>
                                         </div>
                                         <p>Thank you ,We loved our stay,stunning place </p>
@@ -107,8 +115,8 @@ class CategoryDetail extends Component {
                                         <div className='user-detail-container'>
                                             <img className='user-img-style' src={Images.path.imgprf2} />
                                             <div>
-                                            <h5>Jessica Does</h5>
-                                            <p>March 2020</p>
+                                                <h5>Jessica Does</h5>
+                                                <p>March 2020</p>
                                             </div>
                                         </div>
                                         <p>Thank you ,We loved our stay,stunning place </p>
@@ -120,8 +128,8 @@ class CategoryDetail extends Component {
                                         <div className='user-detail-container'>
                                             <img className='user-img-style' src={Images.path.imgprf2} />
                                             <div>
-                                            <h5>Jessica Does</h5>
-                                            <p>March 2020</p>
+                                                <h5>Jessica Does</h5>
+                                                <p>March 2020</p>
                                             </div>
                                         </div>
                                         <p>Thank you ,We loved our stay,stunning place </p>
@@ -133,14 +141,14 @@ class CategoryDetail extends Component {
                                         <div className='user-detail-container'>
                                             <img className='user-img-style' src={Images.path.imgprf2} />
                                             <div>
-                                            <h5>Jessica Does</h5>
-                                            <p>March 2020</p>
+                                                <h5>Jessica Does</h5>
+                                                <p>March 2020</p>
                                             </div>
                                         </div>
                                         <p>Thank you ,We loved our stay,stunning place </p>
                                     </div>
                                 </div>
-                                   <h5>Show All Reviews</h5>
+                                <h5>Show All Reviews</h5>
                             </div>
                         </div>
                     </div>
@@ -152,6 +160,35 @@ class CategoryDetail extends Component {
                         <Footer />
                     </div>
                 </div>
+                {/* Bootstrap Modal */}
+                        <Modal  size="lg" show={this.state.showModal} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body>
+                <Container>
+                        <Row className="show-grid">
+                        <Col sm={8}> <Calendar
+                        onChange={this.onChange}
+                        value={this.state.date}
+                        />
+                        <Calendar
+                        onChange={this.onChange}
+                        value={this.state.date}
+                        />
+                        </Col>
+                        <Col sm={4}>sm=4</Col>
+                        </Row>
+               </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={() => this.setState({showModal: false})}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={() => this.setState({showModal: false})}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+                </Modal>
             </div>
         );
     }

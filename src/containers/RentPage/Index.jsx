@@ -61,7 +61,7 @@ class RentPage extends Component {
                     <div className='r-col-d-12'>
                     <table>
                         <tr>
-                            <th>Select Category</th>
+                        <Link to='/form'><th>Select Category</th> </Link>
                             <th></th>
                         </tr>
                         <tr>

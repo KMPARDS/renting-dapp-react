@@ -4,6 +4,8 @@ import Images from '../Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
+import Modal from 'react-bootstrap/Modal';
+import {  Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -12,9 +14,15 @@ class MyListing extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            showModal: false
         };
 
+    }
+
+    handleClose = () => {
+        this.setState({
+            showModal: false,
+        })
     }
 
 
@@ -41,7 +49,7 @@ class MyListing extends Component {
                             <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
                             <div className='two-btn-container'>
                                 <button className='listing-edit'>Edit</button>
-                                <button className='listing-delete'>Delete</button>
+                                <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
                             </div>
                         </div>
                         </div>
@@ -53,6 +61,28 @@ class MyListing extends Component {
                         <Footer />
                     </div>
                 </div>
+                 {/* Bootstrap Modal */}
+                 <Modal 
+                 show={this.state.showModal}
+                 onHide={this.handleClose}
+                 aria-labelledby="contained-modal-title-vcenter"
+                 centered
+                 >
+                <Modal.Header closeButton>
+                <Modal.Title> <div className='rentDaap-header-logo'> 
+                 <img className='rentDaap-Img-modal'  src={Images.path.logocolor} />
+                 </div></Modal.Title>
+                </Modal.Header>
+                <Modal.Body> <div className='listing-txt-modal'>Do You want to Delete this listing</div></Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={() => this.setState({showModal: false})}>
+                  Yes
+                </Button>
+                <Button variant="primary" onClick={() => this.setState({showModal: false})}>
+                   Cancel
+                </Button>
+                </Modal.Footer>
+                </Modal>
             </div>
         );
     }

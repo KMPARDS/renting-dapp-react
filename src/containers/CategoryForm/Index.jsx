@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './CategoryForm.scss';
 import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import { Formik } from 'formik';
 
-
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 
 class CategoryForm extends Component {
@@ -19,50 +19,151 @@ class CategoryForm extends Component {
         };
     }
 
-
-
     render() {
+        const SignupSchema = Yup.object().shape({
+            firstName: Yup.string()
+                .min(2, 'Too Short!')
+                .max(50, 'Too Long!')
+                .required('Required'),
+            lastName: Yup.string()
+                .min(2, 'Too Short!')
+                .max(50, 'Too Long!')
+                .required('Required'),
+            email: Yup.string()
+                .email('Invalid email')
+                .required('Required'),
+        });
         return (
             <div>
                 <NavBar />
                 <div className='RentPage-wrapper-container'>
                     <div className='table-category'>
                         <div className='table-catg-details'>
-                            <h4>Start Earning Lorem ipsum ipsum</h4>
                             <div className='r-col-d-12'>
+                                <h5>Select Category</h5>
+                                <h5 className='category-select-txt'>Electronic and Appliances</h5>
                                 <Formik
-                                    initialValues={{ name: 'jared' }}
-                                    onSubmit={(values, actions) => {
+                                    initialValues={{ email: '', password: '', firstname: '' }}
+                                    validate={values => {
+                                        let errors = {};
+                                        if (!values.email) {
+                                            errors.email = 'Required';
+                                        } else if (
+                                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                                        ) {
+                                            errors.email = 'Invalid email address';
+                                        }
+
+                                        if (!values.password) {
+                                            errors.password = 'Required';
+                                        } else if (
+                                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.password)
+                                        ) {
+                                            errors.email = 'Invalid password ';
+                                        }
+                                        return errors;
+                                    }}
+                                    onSubmit={(values, { setSubmitting }) => {
                                         setTimeout(() => {
                                             alert(JSON.stringify(values, null, 2));
-                                            actions.setSubmitting(false);
-                                        }, 1000);
+                                            setSubmitting(false);
+                                        }, 400);
                                     }}
                                 >
-                                    {props => (
-                                        <form onSubmit={props.handleSubmit}>
-                                            <input
-                                                type="text"
-                                                onChange={props.handleChange}
-                                                onBlur={props.handleBlur}
-                                                value={props.values.name}
-                                                name="name"
-                                            />
-                                            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-                                            <button type="submit">Submit</button>
-                                        </form>
-                                    )}
+                                    {({
+                                        values,
+                                        errors,
+                                        touched,
+                                        handleChange,
+                                        handleBlur,
+                                        handleSubmit,
+                                        isSubmitting,
+                                        /* and other goodies */
+                                    }) => (
+                                            <form onSubmit={handleSubmit}>
+                                                <div>
+                                                    <label className='control-label'>Title *</label>
+                                                    <input
+                                                        class="form-control form-control-lg"
+                                                        type="email"
+                                                        name="email"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.email}
+                                                    />
+                                                    {errors.email && touched.email && errors.email}                               
+                                                            <label className='control-label'>
+                                                            Description*
+                                                            </label>
+                                                            <textarea
+                                                            className='form-control'
+                                                            placeholder=''
+                                                            name='Description'
+                                                            value={values.firstname}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            rows={3}
+                                                            data-error='Write your message'
+                                                            required
+                                                            />
+                                                      <label className='control-label'>Price*</label>
+                                                      <div class="input-group">
+                                                        <input 
+                                                         class="form-control"
+                                                          type="text"
+                                                            name="firstname"
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values.firstname}/>
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-light" type="button">ES</button>
+                                                            </div>
+                                                            </div>
+                                                        {/* <input
+                                                            type="text"
+                                                            name="firstname"
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values.firstname}
+                                                        />
+                                                        {errors.firstname && touched.firstname && errors.firstname} */}
+
+                                                        <div> Confirm Your Location</div><span> <FontAwesomeIcon icon={faLocationArrow} color='#A7A7A7'/>Use Your Location</span>
+                                                        <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+                                                </div>
+                                                <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" id="inputKey" placeholder="City"/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" id="inputValue" placeholder="District"/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" id="inputValue" placeholder="Pincode"/>
+                                                </div>
+                                                      <button className='submit-form-btn' type="submit" disabled={isSubmitting}>
+                                                            Submit
+                                                 </button>
+                                                    </div>
+                                            </form>
+                                        )}
                                 </Formik>
+
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='footer-bgd'>
-                    <div className='wrapper-container'>
-                        <Footer />
+                    <div className='form-footer-style'>
+                    <div className='footer-bgd'>
+                        <div className='wrapper-container'>
+                            <Footer />
+                        </div>
+                    </div>
                     </div>
                 </div>
-            </div>
         );
     }
 }

@@ -55,7 +55,7 @@ class Header extends Component {
                          (<div className='profile-dropdown'>
                                  
                                  <Link to='/MyListing'> <div className='drp-txt-profile'>My Listing</div></Link>
-                                 <Link to='/form'> <div className='drp-txt-profile'>Logout</div></Link>
+                           <div className='drp-txt-profile'>Logout</div>
                                  
                          </div>) :''
                      }

@@ -99,7 +99,7 @@ class CategoryDetail extends Component {
                                     <img className='owner-img-style' src={Images.path.imgprf2} />
                                     <div className='chat-owner-holder'>
                                         <h5>Owned By Jessica</h5>
-                                        <Link to='/myChat'>  <div className='chat-btn-owner' >
+                                        <Link to='/ComingSoon'>  <div className='chat-btn-owner' >
                                             Chat with owner</div></Link></div>
                                 </div>
                             </div>

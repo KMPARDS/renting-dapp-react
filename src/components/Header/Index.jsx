@@ -47,7 +47,7 @@ class Header extends Component {
                                 null
                             )
                     }
-                     <li><Link to='/myChat'><img className='chat-img'  src={Images.path.Chatwhite} /></Link></li>
+                     <li><Link to='/ComingSoon'><img className='chat-img'  src={Images.path.Chatwhite} /></Link></li>
                      <li><Link to=''> <img className='notif-img'  src={Images.path.Nortificationwhite} /></Link></li>
                      <li><Link to='' onClick={this.toggleProfile}> <img className='profile-img'  src={Images.path.profilewhite} /></Link></li>
                      {
@@ -59,8 +59,8 @@ class Header extends Component {
                                  
                          </div>) :''
                      }
-                     <li><Link to='/myCart'> <img className='profile-img'  src={Images.path.Cart} /></Link></li>
-                     <li><Link to='/RentList'>Rent</Link></li>
+                     <li><Link to='/ComingSoon'> <img className='profile-img'  src={Images.path.Cart} /></Link></li>
+                     <li><Link to='/ComingSoon'>Rent</Link></li>
                      </ul>
                 </nav>
         );

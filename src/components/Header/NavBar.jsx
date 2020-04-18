@@ -40,12 +40,12 @@ class NavBar extends Component {
                         </div>
                         <div className='contact-section'>
                             <div className='contact-icons'>
-                            <Link to='/myChat'> <img className='chat-img' src={Images.path.ChatGrey} /></Link>
-                            <Link to='/myCart'>  <img className='notif-img' src={Images.path.Notifactiongrey} /> </Link>
-                            <Link to='/myCart'>  <img className='profile-img' src={Images.path.Prfilegrey} /></Link>
+                            <Link to='/ComingSoon'> <img className='chat-img' src={Images.path.ChatGrey} /></Link>
+                            <Link to='/ComingSoon'>  <img className='notif-img' src={Images.path.Notifactiongrey} /> </Link>
+                            <Link to='/ComingSoon'>  <img className='profile-img' src={Images.path.Prfilegrey} /></Link>
                                 <Link to='/myCart'> <img className='profile-img' src={Images.path.cartgrey} /></Link>
                             </div>
-                            <div className='rent-btn'><a href='/RentList'>Rent</a></div>
+                            <div className='rent-btn'><a href='/ComingSoon'>Rent</a></div>
                         </div>
                     </div>
                 </div>

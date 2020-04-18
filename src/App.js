@@ -19,6 +19,7 @@ import ChatPage from './containers/ChatPage/Index';
 import RentalPage from './containers/RentPage/Index';
 import MyListing from './containers/MyListing/Index.jsx';
 import CategoryForm from './containers/CategoryForm/Index';
+import ComingSoon from './components/ComingSoon/ComingSoon';
 import {
   categoryArray,
   subCategoryArray,
@@ -38,6 +39,8 @@ function App() {
             <Route exact path="/RentList" component={RentalPage} />
             <Route exact path="/MyListing" component={MyListing} />
             <Route exact path="/form" component={CategoryForm} />
+            <Route exact path="/ComingSoon" component={ComingSoon} />
+
 
             {/* category and subcategory routing */}
             < Route path = "/List/:category"

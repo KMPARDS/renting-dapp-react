@@ -57,9 +57,9 @@ class Home extends Component {
                                     />
                                 </form>
                                 <div className='search-btn-container'>
-                                    <button className='search-rent-btn'>
+                                 <a href='/ComingSoon'>   <button  className='search-rent-btn'>
                                        Search Now 
-                                    </button>
+                                    </button> </a>
                                 </div>
                             </div>
                         </div>

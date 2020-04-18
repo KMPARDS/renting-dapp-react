@@ -16,12 +16,13 @@ class Home extends Component {
         super(props);
         this.state = {
             country: '',
-            region: ''
+            region: '',
+            showCountry: true,
         };
     }
     
     selectCountry (val) {
-        this.setState({ country: val });
+        this.setState({ country: val ,showCountry:false});
       }
      
       selectRegion (val) {
@@ -38,15 +39,15 @@ class Home extends Component {
                         <div className='buy-main-container'><h4 className='hero-txt-style'>BUY, SELL&JUST ABOUT ANYTHING</h4>
                             <div className='main-rent-search'>
                             <div className='location-dropdown'>
-                            <CountryDropdown
+                                {this.state.showCountry ?(<CountryDropdown
                                    className='country-style'
                                         value={this.state.country}
-                                        onChange={(val) => this.selectCountry(val)} />
-                                    {/* <RegionDropdown
+                                        onChange={(val) => this.selectCountry(val)} />)
+                                        : <RegionDropdown
                                        className='region-style'
                                         country={this.state.country}
                                         value={this.state.region}
-                                        onChange={(val) => this.selectRegion(val)} /> */}
+                                        onChange={(val) => this.selectRegion(val)} />}
                                         </div>
                                 <form>
                                     <input

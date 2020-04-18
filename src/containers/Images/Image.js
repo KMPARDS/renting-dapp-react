@@ -24,7 +24,7 @@ const path = {
     rlThree:require("../../assets/Images/rlthree.jpg"),
     rlFour:require("../../assets/Images/rlfour.jpg"),
     EmptyChat:require("../../assets/Images/EmptyChat.png"),
-
+    fileUpload: require("../../assets/Images/fileUpload.png"),
  
 
 
@@ -44,7 +44,7 @@ const path = {
     imgProfile: require("../../assets/Icons/imgProfile.jpg"),
     manOne: require("../../assets/Icons/manOne.jpg"),
     manTwo: require("../../assets/Icons/manTwo.jpg"),
-
+   
 
 };
 export default {

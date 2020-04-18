@@ -29,7 +29,7 @@ class AllCategories extends Component {
                         <SideBar />
                     </div>
                     <div className='r-col-d-7 category-cards'>
-                       <Link to='/categoryDetail'> <ListPage/> </Link>
+                       <Link to='/categoryDetail'><ListPage/> </Link>
                     </div>
                     <div className='r-col-d-2'>
                     </div>

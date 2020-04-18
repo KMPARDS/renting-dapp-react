@@ -4,7 +4,7 @@ import Images from '../../containers/Images/Image';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
+import { faLocationArrow,faImage} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 import { Formik, Form, Field } from 'formik';
@@ -41,7 +41,8 @@ class CategoryForm extends Component {
                         <div className='table-catg-details'>
                             <div className='r-col-d-12'>
                                 <h5>Select Category</h5>
-                                <h5 className='category-select-txt'>Electronic and Appliances</h5>
+                                <p className='category-select-txt'>Electronic and Appliances</p>
+                                <h5>INCLUDE SOME DETAIL</h5>
                                 <Formik
                                     initialValues={{ email: '', password: '', firstname: '' }}
                                     validate={values => {
@@ -91,7 +92,9 @@ class CategoryForm extends Component {
                                                         onBlur={handleBlur}
                                                         value={values.email}
                                                     />
-                                                    {errors.email && touched.email && errors.email}                               
+                                                    {errors.email && touched.email && errors.email} 
+                                                    <p className='field-note-txt'>Mention the key feature of your item(e.g brand,model,age type)</p>   
+                                                                           
                                                             <label className='control-label'>
                                                             Description*
                                                             </label>
@@ -106,8 +109,10 @@ class CategoryForm extends Component {
                                                             data-error='Write your message'
                                                             required
                                                             />
+                                                            <p className='field-note-txt'>Mention condition,features and reason for renting</p>
+                                                            <h5>SET A PRICE</h5>
                                                       <label className='control-label'>Price*</label>
-                                                      <div class="input-group">
+                                                      <div class="input-group col-md-6">
                                                         <input 
                                                          class="form-control"
                                                           type="text"
@@ -119,6 +124,7 @@ class CategoryForm extends Component {
                                                                 <button class="btn btn-light" type="button">ES</button>
                                                             </div>
                                                             </div>
+
                                                         {/* <input
                                                             type="text"
                                                             name="firstname"
@@ -127,22 +133,57 @@ class CategoryForm extends Component {
                                                             value={values.firstname}
                                                         />
                                                         {errors.firstname && touched.firstname && errors.firstname} */}
-
-                                                        <div> Confirm Your Location</div><span> <FontAwesomeIcon icon={faLocationArrow} color='#A7A7A7'/>Use Your Location</span>
+                                                        <h5>Upload Photos</h5>
+                                                        <p className='field-note-txt'>Minimum 4 photos to be uploaded</p>
+                                                        <div className='upload-img-container'>
+                                                            <div className='row'>
+                                                                <div className='r-col-d-3 img-upload'> 
+                                                               <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                                <div className='r-col-d-3 img-upload'>
+                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                                <div className='r-col-d-3 img-upload'>
+                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                                <div className='r-col-d-3 img-upload'>
+                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                            </div>
+                                                            <div className='row'>
+                                                                <div className='r-col-d-3 img-upload'> 
+                                                                <input type='file' onchange="readURL(this);"/>
+                                                               <img id="blah" src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                                <div className='r-col-d-3 img-upload'>
+                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                                <div className='r-col-d-3 img-upload'>
+                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                                <div className='r-col-d-3 img-upload'>
+                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='location-flex'><div className="location-txt"> Confirm Your Location</div><span className='location-span'>
+                                                             <FontAwesomeIcon icon={faLocationArrow} color='#FF5D22'/>Use Your Location</span></div>
                                                         <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+                                                <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Country/Region"/>
                                                 </div>
                                                 <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+                                                <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="street address"/>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control" id="inputKey" placeholder="City"/>
+                                                <div className="address-flex-style">
+                                                <div class="input-group input-group-sm col-md-4">
+                                                    <input type="text" class="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputKey" placeholder="City"/>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control" id="inputValue" placeholder="District"/>
+                                                <div class="input-group input-group-sm col-md-4">
+                                                    <input type="text" class="form-control bottom-field" aria-label="Small"  aria-describedby="inputGroup-sizing-sm" id="inputValue" placeholder="District"/>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control" id="inputValue" placeholder="Pincode"/>
+                                                </div>
+                                                <div class="col-md-6 pinStyle">
+                                                    <input type="text" class="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm"  id="inputValue" placeholder="Pincode"/>
                                                 </div>
                                                       <button className='submit-form-btn' type="submit" disabled={isSubmitting}>
                                                             Submit

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './NavMenu.scss';
 import { Link } from 'react-router-dom';
+import { categoryArray,subCategoryArray } from '../../env';
+import { withRouter } from 'react-router-dom';
 
 
 class NavMenu extends Component {
@@ -11,7 +13,9 @@ class NavMenu extends Component {
         };
     }
 
-    render() {
+    render(){
+        console.log('categoryArray',this.state.categoryArray);
+        
         return (
             <div className='dropdown-category'>
             <div className='allcategory-section'>
@@ -33,7 +37,7 @@ class NavMenu extends Component {
            </div>
            <div className='allcategory-section'>
            <div>
-               <p className='main-category'>Electronics & Appliances</p>
+           <Link to ='/allCategory'>  <p className='main-category'>Electronics & Appliances</p> </Link>
                <p className='categ-linHt'>TV-Video-Audio</p>
                <p className='categ-linHt'>Kitchen & Other Appliances</p>
                <p className='categ-linHt'>Computers & Laptops</p>
@@ -46,7 +50,7 @@ class NavMenu extends Component {
                 <p className='categ-linHt'>Hard Disks,Printers & Monitors</p>
            </div>
            <div>
-           <p className='main-category'>Mobiles</p>
+           <Link to ='/allCategory'>      <p className='main-category'>Mobiles</p> </Link>
                 <p className='categ-linHt'>Mobile Phones</p>
                 <p className='categ-linHt'>Accessories</p>
                 <p className='categ-linHt'>Tablets</p>
@@ -54,7 +58,7 @@ class NavMenu extends Component {
            </div>
            <div className='allcategory-section'>
            <div>
-               <p className='main-category'>Furniture</p>
+           <Link to ='/allCategory'>    <p className='main-category'>Furniture</p>  </Link> 
                 <p className='categ-linHt'>Sofa & Dining</p>
                 <p className='categ-linHt'>Beds & Wardrobe</p>
                 <p className='categ-linHt'>Home Decor & Garden</p>
@@ -62,7 +66,7 @@ class NavMenu extends Component {
                 <p className='categ-linHt'>Other Household items</p>
            </div>
            <div>
-              <p className='main-category'>Bikes</p>
+           <Link to ='/allCategory'>     <p className='main-category'>Bikes</p> </Link>
                 <p className='categ-linHt'>Motorcycles</p>
                 <p className='categ-linHt'>Scooter</p>
                 <p className='categ-linHt'>Spare  Parts</p>
@@ -76,3 +80,56 @@ class NavMenu extends Component {
 
 
 export default NavMenu;
+
+// const NavMenu = props => {
+//     const listOfCategories = [];
+//     const listOfSubCategories = [];
+
+//     for(const categoryId in categoryArray) {
+//       const listOfSubCategories = [];
+  
+//       for(const subCategoryId in subCategoryArray[categoryId]) {
+//         const url = `/List/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}/${subCategoryArray[categoryId][subCategoryId].toLowerCase().split(' ').join('-')}`;
+  
+//         listOfSubCategories.push(
+//           <li key={url} onClick={() => props.history.push(url)}>{subCategoryArray[categoryId][subCategoryId]}</li>
+//         );
+//       }
+//       console.log('listOfSubCategories', listOfSubCategories);
+//       listOfCategories.push(
+//         <>
+//         <li>
+//           <a
+//             onClick={() => props.history.push(`/List/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}`)}
+//             className={props.match.params.category === categoryArray[categoryId].toLowerCase()
+//               ? 'menu-lef-act' : null}>
+//             {categoryArray[categoryId]}
+//           </a>
+//         </li>
+  
+//         </>
+//       );
+//     }
+//     console.log('listOfCategories', listOfCategories);
+//     console.log('subcategories', listOfSubCategories);
+
+//     return (
+//       <>
+//             <div className='dropdown-category'>
+//             <div className='allcategory-section'>
+//             <div>
+//             {listOfCategories.map((mainCategory, i)=>{
+//              return <Link to ='/allCategory'><p className='main-category'>{mainCategory}</p></Link>
+//              {listOfSubCategories[i].map((name,j)=>{
+//             return <p className='categ-linHt'>{name}</p>
+//               })}
+//             })}
+//           </div>
+//             </div>
+//             </div>
+         
+//       </>
+//     );
+//   }
+  
+//   export default withRouter(NavMenu);

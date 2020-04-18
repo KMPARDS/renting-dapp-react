@@ -19,6 +19,10 @@ import ChatPage from './containers/ChatPage/Index';
 import RentalPage from './containers/RentPage/Index';
 import MyListing from './containers/MyListing/Index.jsx';
 import CategoryForm from './containers/CategoryForm/Index';
+import {
+  categoryArray,
+  subCategoryArray,
+} from './env.js';
 
 function App() {
   return (
@@ -35,6 +39,48 @@ function App() {
             <Route exact path="/MyListing" component={MyListing} />
             <Route exact path="/form" component={CategoryForm} />
 
+            {/* category and subcategory routing */}
+            < Route path = "/List/:category"
+    exact render = {
+      props => {
+        let categoryWordArray = [];
+        for (const categoryWord of props.match.params.category.split('-')) {
+          categoryWordArray.push(categoryWord.charAt(0).toUpperCase() + categoryWord.slice(1));
+        }
+        console.log(categoryWordArray, categoryArray);
+        const categoryId = categoryArray.indexOf(categoryWordArray.join(' '));
+
+        return <AllCategories categoryId = {
+          categoryId
+        }
+        />;
+      }
+    }
+    />
+    < Route path = "/List/:category/:subCategory"
+    exact render = {
+      props => {
+        let categoryWordArray = [];
+        for (const categoryWord of props.match.params.category.split('-')) {
+          categoryWordArray.push(categoryWord.charAt(0).toUpperCase() + categoryWord.slice(1));
+        }
+        const categoryId = categoryArray.indexOf(categoryWordArray.join(' '));
+
+        let subCategoryWordArray = [];
+        for (const subCategoryWord of props.match.params.subCategory.split('-')) {
+          subCategoryWordArray.push(subCategoryWord.charAt(0).toUpperCase() + subCategoryWord.slice(1))
+        }
+        const subCategoryId = subCategoryArray[categoryId].indexOf(subCategoryWordArray.join(' '));
+        return <AllCategories categoryId = {
+          categoryId
+        }
+        subCategoryId = {
+          subCategoryId
+        }
+        />;
+      }
+    }
+    />
          </Switch>
      </Router>
     </div>

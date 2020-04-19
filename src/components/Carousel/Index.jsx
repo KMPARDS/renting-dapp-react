@@ -29,24 +29,30 @@ class CarouselPage extends Component {
             },
             tablet: {
               breakpoint: { max: 1024, min: 464 },
-              items: 2,
-            },
-            mobile: {
-              breakpoint: { max: 464, min: 0 },
               items: 1,
             },
+            mobile: {
+              breakpoint: { max: 768, min: 0 },
+              items: 1,
+              slidesToSlide: 1 // optional, default to 1.
+            }
           };
 
         return (
             <div className='slider-item-main'>
                 <Container>
-                <Carousel responsive={responsive}>
+                <Carousel
+                 responsive={responsive}
+                 infiniteLoop
+                 deviceType={this.props.deviceType}
+                 useKeyboardArrows
+                >  
                 <div className='card text-center'>
                                 <div className='overflow'>
                                      <img className='car-slider-img' src={Images.path.itemOne}/>
                                     </div>
                                  <div className='card-body text-dark'>
-                                 <h5 className='card-title'>Kitchen Modular gfgdgdgdg gdfgd</h5>
+                                 <h5 className='card-title'>Kitchen Modular</h5>
                                <h6 className='card-rent-text'>Rent</h6>
                                  <p>ES 599/month</p>
                                 <a href='#' className='btn btn-outline'> View</a>

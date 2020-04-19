@@ -103,3 +103,30 @@
 .top-categ-head{
     color: #FF5D22;
 }
+@media (max-width: 768px) {
+  .box-Img-one{
+    width: 300px;
+    height: 200px;
+  }
+  .box-Img-two {
+    width: 300px;
+    height: 200px;
+  }
+  .box-Img-three{
+    width: 300px;
+    height: 200px;
+  }
+  .category-three-box{
+    margin-top: 20px;
+  }
+  .category-one-box{
+    margin-top: 20px;
+  }
+  .category-two-box{
+    margin-top: 20px;
+  }
+  .rentCategory-text {
+    height: 78px;
+    padding: 5px;
+  }
+}

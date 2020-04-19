@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Footer.scss';
 import Images from '../../containers/Images/Image';
 import { Col, Button, Container, Row } from 'react-bootstrap';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt ,faFacebookSquare} from '@fortawesome/free-solid-svg-icons'
 
 
 class Footer extends Component {
@@ -33,8 +33,11 @@ class Footer extends Component {
                                         <li>User Guide on how to Post</li>
                                         <li>About Eraswap Life</li>
                                         <li>Code of Conduct</li>
-                                        <li>Time Swappers FAQ</li>
-                                        <li>Swappers Wall FAQ</li>
+                                        <h5 className='other-footer-txt'>Other Links</h5>
+                                        <li>Whitepaper</li>
+                                        <li>Contact Us</li>
+                                        <li>Terms & Condition</li>
+                                        <li>Privacy policy</li>
                                     </ul>
                                     </div>
                         </Col>

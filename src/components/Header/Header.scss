@@ -104,3 +104,21 @@ nav ul{
  nav.black ul li a{
      color: #000000;
  }
+.collapse.navbar-collapse{
+  margin-left: 45% !important;
+}
+ @media (max-width: 768px) {
+    nav{
+        padding: 10px 32px;
+    }
+    .navbar-toggler{
+        margin-left: 56%;
+    }
+    .header-listItem{
+    background: #000000;
+    z-index: 9;
+    position: relative;
+    left: -70px;
+    display: block;
+    }
+ }

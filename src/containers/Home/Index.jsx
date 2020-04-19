@@ -38,7 +38,7 @@ class Home extends Component {
                         <Header />
                         <div className='buy-main-container'><h4 className='hero-txt-style'>BUY, SELL&JUST ABOUT ANYTHING</h4>
                             <div className='main-rent-search'>
-                            <div className='location-dropdown'>
+                            {/* <div className='location-dropdown'>
                                 {this.state.showCountry ?(<CountryDropdown
                                    className='country-style'
                                         value={this.state.country}
@@ -48,7 +48,7 @@ class Home extends Component {
                                         country={this.state.country}
                                         value={this.state.region}
                                         onChange={(val) => this.selectRegion(val)} />}
-                                        </div>
+                                        </div> */}
                                 <form>
                                     <input
                                         placeholder='Search for anything here'
@@ -57,7 +57,7 @@ class Home extends Component {
                                     />
                                 </form>
                                 <div className='search-btn-container'>
-                                 <a href='/ComingSoon'>   <button  className='search-rent-btn'>
+                                 <a href=''><button  className='search-rent-btn'>
                                        Search Now 
                                     </button> </a>
                                 </div>
@@ -81,7 +81,7 @@ class Home extends Component {
                     <div className='rent-desc-container'>
                         <div className='desc-text'>
                             <h4 className='better-txt-style'>A better Value, A better Result</h4>
-                            <h5 className='sub-better-txt'>We provide you full service at every step ,and get better results for Lower fees</h5>
+                            <h5 className='sub-better-txt'>We provide you full service at every step,and get better results for Lower fees</h5>
                         </div>
                     </div>
                     <div className='rent-main-container'>
@@ -107,7 +107,7 @@ class Home extends Component {
                                     </div>
                                     <div className='box-utility'>
                                         <h5 className='utility-title'>No central Authority</h5>
-                                        <p className='util-content'>With the implementation of blockchain Rental DAap offers Decentralised.That means no central authority has control over your  data, nor you will be chargedadditional middlemen charges on your transaction.</p>
+                                        <p className='util-content'>With the implementation of blockchain,Rental DAap offers Decentralised which means no central authority has control over your  data, nor you will be chargedadditional middlemen charges on your transaction.</p>
                                     </div>
                                 </div>
                             </div>

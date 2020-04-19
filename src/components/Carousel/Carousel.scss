@@ -29,3 +29,18 @@
     color:#FF5D22;
     border: 1px solid #FF5D22;
 }
+@media (max-width: 768px) {
+    .react-multi-carousel-list{
+        overflow: visible;
+    }
+    .card.text-center{
+        width: 50%;
+    }
+    .react-multi-carousel-item.react-multi-carousel-item--active{
+        margin-right: 10px;
+        width: 587px !important;
+    }
+    .car-slider-img{
+       width: 204px;
+    }
+}

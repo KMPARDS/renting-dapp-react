@@ -77,6 +77,7 @@ class Home extends Component {
                         <CarouselPage />
                     </div>
                 </div>
+                <div className='desc-bgd-color'>
                 <div className='wrapper-container'>
                     <div className='rent-desc-container'>
                         <div className='desc-text'>
@@ -127,6 +128,7 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 <div className='homeCateg-bgd'>
                     <div className='wrapper-container'>

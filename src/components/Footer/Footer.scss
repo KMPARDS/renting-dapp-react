@@ -2,11 +2,14 @@
 .subscribe-container{
  float: right;
 }
-
+.rentDaap-help{
+    display: flex;
+    justify-content: space-between;
+}
 .rentDaap-help ul li{
     color: #ffffff;
     list-style: none;
-    font-size: 18px;
+    font-size: 15px;
 }
 .rentDaap-help ul li:hover{
     color: #FF5D22;
@@ -54,19 +57,24 @@
 .other-footer-txt{
     color: #ffffff;
 }
+.social-links{
+ display: flex;
+}
+.social-Img{
+    width: 22px;
+    height: 22px;
+    margin: 20px 5px 10px 5px;
+}
 @media (max-width: 768px) {
     .rentDaap-Img{
       margin-left: 0px !important;
       width: 28px !important;
     }
-    .footer-bgd{
-        height: 63vh !important;
-    }
     .rentDaap-help ul li{
         font-size: 12px !important;
     }
     .subscribe-container{
-        float: none;
+        display: none;
     }
     .subscribe-detail{
         font-size: 14px !important;

@@ -29,6 +29,10 @@
     color:#FF5D22;
     border: 1px solid #FF5D22;
 }
+.img-responsive{
+    width: '100%';
+    height: 150px;
+}
 @media (max-width: 768px) {
     .react-multi-carousel-list{
         overflow: visible;

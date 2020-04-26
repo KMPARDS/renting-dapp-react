@@ -46,6 +46,10 @@ const path = {
     imgProfile: require("../../assets/Icons/imgProfile.jpg"),
     manOne: require("../../assets/Icons/manOne.jpg"),
     manTwo: require("../../assets/Icons/manTwo.jpg"),
+    facebook: require("../../assets/Icons/facebook.png"),
+    instagram: require("../../assets/Icons/instagram.png"),
+    twitter: require("../../assets/Icons/twitter.png"),
+    youtube: require("../../assets/Icons/youtube.png"),
    
 
 };

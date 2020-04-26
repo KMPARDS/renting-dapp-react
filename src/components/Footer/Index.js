@@ -19,29 +19,35 @@ class Footer extends Component {
     render() {
         return (
             <div className='Footer-container'>
-                <Container>
+                <Container> 
                     <Row>
-                        <Col  sm={3}>
-                        <img className='rentDaap-Img'  src={Images.path.rentingdapp} />
+                        <Col  sm={4}>
+                        <img className='rentDaap-Img'  src={Images.path.rentingdapp} alt='rent' />
+                        <div className='social-links'>
+                             <img className='social-Img'  src={Images.path.facebook} alt='fb' />
+                             <img className='social-Img'  src={Images.path.instagram} alt='inst' />
+                             <img className='social-Img'  src={Images.path.twitter} alt='twitter' />
+                             <img className='social-Img'  src={Images.path.youtube} alt='yt' />
+                        </div>
                         </Col>
                         <Col  sm={3}>
-                            <div className='footer-link'>
-                               Link
-                                </div>
                                 <div className='rentDaap-help'>
-                                    <ul>
+                                       <ul>
+                                       <h5  className='footer-link'> Link</h5>
                                         <li>User Guide on how to Post</li>
                                         <li>About Eraswap Life</li>
                                         <li>Code of Conduct</li>
+                                        </ul>
+                                        <ul>
                                         <h5 className='other-footer-txt'>Other Links</h5>
                                         <li>Whitepaper</li>
                                         <li>Contact Us</li>
                                         <li>Terms & Condition</li>
                                         <li>Privacy policy</li>
-                                    </ul>
+                                        </ul>
                                     </div>
                         </Col>
-                        <Col  sm={6}>
+                        <Col  sm={5}>
                             <div className='subscribe-container'>
                                 <div className='subscribe-detail'>Subscribe to Our News Letter</div>
                                 <form>

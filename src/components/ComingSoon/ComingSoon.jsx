@@ -32,7 +32,7 @@ class ComingSoon extends Component {
                 <div className='footer-bgd'>
                     <div className='wrapper-container'>
                         <Footer />
-                    </div>
+                  </div>
                 </div>
             </div>
         );

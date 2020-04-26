@@ -60,6 +60,7 @@ nav .rentDaap-header-logo{
 }
 
 nav ul{
+   font-family: 'Open Sans';
    margin: 0;
    padding: 0;
    float: right;
@@ -102,8 +103,9 @@ nav ul{
  }
  
  nav.black ul li a{
-     color: #000000;
+     color: #000000 !important;
  }
+
 .collapse.navbar-collapse{
   margin-left: 45% !important;
 }
@@ -112,7 +114,7 @@ nav ul{
         padding: 10px 32px;
     }
     .navbar-toggler{
-        margin-left: 56%;
+        margin-left: 20%;
     }
     .header-listItem{
     background: #000000;

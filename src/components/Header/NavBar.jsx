@@ -65,8 +65,8 @@ class NavBar extends Component {
                                     )
                             }
           
-            <NavItem>
-            <Link to='/ComingSoon'> <img className='chat-img' src={Images.path.ChatGrey} /></Link>
+            <NavItem className='small-nav-margin'>
+            <Link to='/ComingSoon' > <img className='chat-img' src={Images.path.ChatGrey} /></Link>
                             <Link to='/ComingSoon'>  <img className='notif-img' src={Images.path.Notifactiongrey} /> </Link>
                             <Link to='/ComingSoon'>  <img className='profile-img' src={Images.path.Prfilegrey} /></Link>
                                 <Link to='/myCart'> <img className='profile-img' src={Images.path.cartgrey} /></Link>

@@ -26,6 +26,9 @@ box-shadow: 0px 1px 10px #999;
     transition: .5s;
    
 }
+.small-nav-margin{
+    margin-top: 25px;
+}
 .category-text{
     font-size: 18px;
 }
@@ -111,4 +114,9 @@ box-shadow: 0px 1px 10px #999;
   
   .nav-link-ltr:hover::before {
     width: 100%;
+  }
+  .navbarborder-style{
+      .collapse.navbar-collapse{
+        margin-left: 35%;
+      }
   }

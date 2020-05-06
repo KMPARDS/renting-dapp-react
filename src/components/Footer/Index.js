@@ -4,6 +4,7 @@ import Images from '../../containers/Images/Image';
 import { Col, Button, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt ,faFacebookSquare} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 
 class Footer extends Component {
@@ -34,16 +35,17 @@ class Footer extends Component {
                                 <div className='rentDaap-help'>
                                        <ul>
                                        <h5  className='footer-link'> Link</h5>
-                                        <li>User Guide on how to Post</li>
-                                        <li>About Eraswap Life</li>
-                                        <li>Code of Conduct</li>
+                                        <li><a href="/pdf/ListingPolicyRentingDAp.pdf"  target='_blank' >Listing Policy of <br/>renting Dapp</a></li>
+                                        <li><a href="">About Eraswap Life</a></li>
+                                        <li><a href="">Code of Conduct</a></li>
                                         </ul>
                                         <ul>
                                         <h5 className='other-footer-txt'>Other Links</h5>
-                                        <li>Whitepaper</li>
-                                        <li>Contact Us</li>
-                                        <li>Terms & Condition</li>
-                                        <li>Privacy policy</li>
+                                        <li><a href="">Whitepaper</a></li>
+                                        <li><a href="">Contact Us</a></li>
+                                        <li><a href="/pdf/Renting Dapp Terms & Service.pdf">Terms & Condition</a></li>
+                                        <li><a href='/pdf/Renting Dapp Privacy.pdf'
+                                             target='_blank' >Privacy policy</a></li>
                                         </ul>
                                     </div>
                         </Col>

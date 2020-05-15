@@ -73,19 +73,19 @@ class Header extends Component {
                             )
                     }
                      <li><Link to='/ComingSoon'><img className='chat-img'  src={Images.path.Chatwhite} /></Link></li>
-                     <li><Link to=''> <img className='notif-img'  src={Images.path.Nortificationwhite} /></Link></li>
+                     <li><Link to=''><img className='notif-img'  src={Images.path.Nortificationwhite} /></Link></li>
                      <li><Link to='' onClick={this.toggleProfile}> <img className='profile-img'  src={Images.path.profilewhite} /></Link></li>
-                     {
+                     {/* {
                          this.state.profileMenu ?
                          (<div className='profile-dropdown'>
                                  
-                                 <Link to='/MyListing'> <div className='drp-txt-profile'>My Listing</div></Link>
+                           <Link to='/MyListing'> <div className='drp-txt-profile'>My Listing</div></Link>
                            <div className='drp-txt-profile'>Logout</div>
                                  
                          </div>) :''
-                     }
+                     } */}
                      <li><Link to='/ComingSoon'> <img className='profile-img'  src={Images.path.Cart} /></Link></li>
-                     <li><Link to='/ComingSoon'>Rent</Link></li>
+                     <li><a href ='https://eraswap.life/' target='_blank' >Connect To Wallet</a></li>
                      </ul>
                      </Collapse>
                 </nav>

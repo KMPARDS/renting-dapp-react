@@ -1,4 +1,6 @@
-   
+   p{
+    font-family: 'open-sans';
+   }
 .footer-bgd{
     background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../../assets/Images/pebble.jpg');
     background-repeat: no-repeat;
@@ -14,7 +16,7 @@
 
     margin-bottom: 10%;
     .catg-detail-pics{
-        border: 1px solid #000000;
+        border: 1px solid #a7a7a7;
         padding: 20px;
     }
     .catg-detail-pics{
@@ -77,6 +79,7 @@
           margin-right: 25px;
         }
     }
+
     .category-heading-style{
         border-bottom: 1px solid #a7a7a7;
         margin-bottom: 20px;
@@ -84,13 +87,14 @@
             margin: 5px;
         }
     }
+
     .chat-btn-owner{
         border: 1px solid;
         text-align: center;
     }
     .catg-review-container{
         .review-heading-style{
-            color: 	#727272;
+            color: #727272;
             font-weight: 600;
             margin-left: 20px;
         }
@@ -168,9 +172,11 @@
     border: none;
     border-radius: 3px;
 }
+
 .date-input-container{
     margin-bottom: 20px;
 }
+
 .form-control.start-input{
  margin-bottom: 20px;
 }

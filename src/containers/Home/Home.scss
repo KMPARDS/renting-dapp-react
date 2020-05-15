@@ -15,7 +15,7 @@
     color: #ffffff;
     font-size: 24px;
     margin-bottom: 20px;
-    margin-right: 20%;
+    margin-right: 10%;
 }
 .search-btn-container{
     margin-left: 20px;
@@ -98,7 +98,7 @@ padding-left: 10px;
     color: #A7A7A7;
 }
 .better-container{
-    border:1px solid #0000001a;
+    border:1px solid #0000002e;
     border-radius: 20px;
     padding: 10px;
     .Img-container{
@@ -153,6 +153,9 @@ padding-left: 10px;
  width:100%;
  height: 50vh;
  background-size: cover;
+}
+.desc-bgd-color{
+    background-color: #ffffff;
 }
 
 @media (max-width: 768px){

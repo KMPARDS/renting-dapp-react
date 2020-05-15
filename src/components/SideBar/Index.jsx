@@ -60,12 +60,16 @@ const Sidebar = props => {
 
     for (const subCategoryId in subCategoryArray[categoryId]) {
       const url = `/List/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}/${subCategoryArray[categoryId][subCategoryId].toLowerCase().split(' ').join('-')}`;
-
-      listOfSubCategories.push(
-        <li key={url} onClick={() => props.history.push(url)}>{subCategoryArray[categoryId][subCategoryId]}</li>
-      );
+    
+      if(props.parentProps?.categoryId == categoryId)  {
+        listOfSubCategories.push(
+          <li key={url} onClick={() => props.history.push(url)}>{subCategoryArray[categoryId][subCategoryId]}</li>
+        );
+      }
     }
 
+
+    if(props.parentProps?.categoryId == categoryId)  {
     listOfCategories.push(
       <>
         <li>
@@ -80,6 +84,7 @@ const Sidebar = props => {
     );
     listofListOfSubCategories.push(listOfSubCategories)
   }
+}
   let str = props.location.patname
   console.log('listOfCategories', listofListOfSubCategories);
   console.log('props location', props.location.pathname);
@@ -100,8 +105,8 @@ const Sidebar = props => {
             <li>
               <a
                 onClick={() => props.history.push(`/allCategory`)}
-                className={props.location.pathname === '/allCategory' ? 'menu-lef-act' : null}>
-                <img src="/img/icon/all.png" alt="" /> All Category</a>
+                className="allCategory-txt">
+                 All Category</a>
             </li>
             {listOfCategories}
           </ul>
@@ -110,9 +115,9 @@ const Sidebar = props => {
             <li>
               <a
                 onClick={() => props.history.push(`/allCategory`)}
-                className={props.location.pathname === '/allCategory' ? 'menu-lef-act' : null}> All</a>
-            </li>
+                className="sub-category"></a>
             {listofListOfSubCategories}
+            </li>
           </ul>
         </div>
       </section>

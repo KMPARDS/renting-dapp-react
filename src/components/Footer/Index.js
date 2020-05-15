@@ -25,10 +25,10 @@ class Footer extends Component {
                         <Col  sm={4}>
                         <img className='rentDaap-Img'  src={Images.path.rentingdapp} alt='rent' />
                         <div className='social-links'>
-                             <img className='social-Img'  src={Images.path.facebook} alt='fb' />
-                             <img className='social-Img'  src={Images.path.instagram} alt='inst' />
-                             <img className='social-Img'  src={Images.path.twitter} alt='twitter' />
-                             <img className='social-Img'  src={Images.path.youtube} alt='yt' />
+                        <a target="_blank" href="https://www.facebook.com/eraswap"> <img className='social-Img'  src={Images.path.facebook} alt='fb' /></a>
+                        <a target="_blank" href="https://www.instagram.com/eraswap/?hl=en"><img className='social-Img'  src={Images.path.instagram} alt='inst' /></a>
+                        <a target="_blank" href=""><img className='social-Img'  src={Images.path.twitter} alt='twitter' /></a>
+                        <a target="_blank" href="https://www.youtube.com/channel/UCGCP4f5DF1W6sbCjS6y3T1g?view_as=subscriber"><img className='social-Img'  src={Images.path.youtube} alt='yt' /></a>
                         </div>
                         </Col>
                         <Col  sm={3}>

@@ -15,6 +15,8 @@
     width:20px;
     height:20px;
     margin-right: 20px;
+    position: relative;
+    display: inline-block;
 }
 .contact-section{
     display: flex;
@@ -88,7 +90,6 @@ nav ul{
  .catgry-texttwo{
     color: #ffffff;
     cursor: pointer;
-    margin-right: 150px;
  }
 
  .catgry-text.black{

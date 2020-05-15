@@ -26,7 +26,7 @@ class AllCategories extends Component {
                 <NavBar />
                 <div className='row'>
                     <div className='r-col-d-3'>
-                        <SideBar />
+                        <SideBar parentProps={this.props} />
                     </div>
                     <div className='r-col-d-7 category-cards'>
                        <Link to='/categoryDetail'><ListPage/> </Link>

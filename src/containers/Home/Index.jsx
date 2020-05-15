@@ -36,7 +36,7 @@ class Home extends Component {
                 <div className='rental-hero-bgd'>
                     <div className='wrapper-container'>
                         <Header />
-                        <div className='buy-main-container'><h4 className='hero-txt-style'>BUY, SELL&JUST ABOUT ANYTHING</h4>
+                        <div className='buy-main-container'><h4 className='hero-txt-style'>Rent & Lease anything Peer to Peer </h4>
                             <div className='main-rent-search'>
                             {/* <div className='location-dropdown'>
                                 {this.state.showCountry ?(<CountryDropdown

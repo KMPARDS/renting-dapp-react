@@ -27,7 +27,7 @@ class Footer extends Component {
                         <div className='social-links'>
                         <a target="_blank" href="https://www.facebook.com/eraswap"> <img className='social-Img'  src={Images.path.facebook} alt='fb' /></a>
                         <a target="_blank" href="https://www.instagram.com/eraswap/?hl=en"><img className='social-Img'  src={Images.path.instagram} alt='inst' /></a>
-                        <a target="_blank" href=""><img className='social-Img'  src={Images.path.twitter} alt='twitter' /></a>
+                        <a target="_blank" href="https://twitter.com/EraSwapTech?s=09"><img className='social-Img'  src={Images.path.twitter} alt='twitter' /></a>
                         <a target="_blank" href="https://www.youtube.com/channel/UCGCP4f5DF1W6sbCjS6y3T1g?view_as=subscriber"><img className='social-Img'  src={Images.path.youtube} alt='yt' /></a>
                         </div>
                         </Col>
@@ -41,7 +41,6 @@ class Footer extends Component {
                                         </ul>
                                         <ul>
                                         <h5 className='other-footer-txt'>Other Links</h5>
-                                        <li><a href="">Whitepaper</a></li>
                                         <li><a href="">Contact Us</a></li>
                                         <li><a href="/pdf/Renting Dapp Terms & Service.pdf">Terms & Condition</a></li>
                                         <li><a href='/pdf/Renting Dapp Privacy.pdf'

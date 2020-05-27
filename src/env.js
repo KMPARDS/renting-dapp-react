@@ -14,6 +14,7 @@ const network =
       'Mobiles',
       'Furniture',
       'Bikes',
+      'Personal Accessories',
     ],
     subCategoryArray: [
       ['For Sale:Houses & Appartments', 'For Rent:Houses & Appartments', 'Lands & Plots', 'Shops & Offices', 'PG & Guest Houses'],
@@ -23,5 +24,6 @@ const network =
       ['Mobile Phones', 'Accessories', 'Tablets'],
       ['Sofa & Dining','Beds & Wardrobe','Home Decor & Garden','Kids Furniture','Other Household items'],
       ['Motorcycles', 'Scooter', 'Spare  Parts','Bicycles'],
+      ['Clothes','Watches','Shoes','Eyewear','Footwear','Jewellery','Gadgets','Backpacks','Fashion Accessories']
     ],
 }

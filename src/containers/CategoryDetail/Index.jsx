@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './CategoryDetail.scss';
 import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import SideBar from '../../components/SideBar/Index';
 import Footer from '../../components/Footer/Index';

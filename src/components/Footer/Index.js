@@ -42,7 +42,8 @@ class Footer extends Component {
                                         <ul>
                                         <h5 className='other-footer-txt'>Other Links</h5>
                                         <li><a href="">Contact Us</a></li>
-                                        <li><a href="/pdf/Renting Dapp Terms & Service.pdf">Terms & Condition</a></li>
+                                        <li><a href="https://eraswaptoken.io/pdf/eraswap-terms-conditions.pdf" target="_blank">Era Swap Terms & Conditions</a></li>
+                                        <li><a href="/pdf/renting-terms-conditions.pdf" target="_blank">Terms & Condition</a></li>
                                         <li><a href='/pdf/Renting Dapp Privacy.pdf'
                                              target='_blank' >Privacy policy</a></li>
                                         </ul>

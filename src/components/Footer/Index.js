@@ -46,6 +46,8 @@ class Footer extends Component {
                                         <li><a href="/pdf/renting-terms-conditions.pdf" target="_blank">Terms & Condition</a></li>
                                         <li><a href='/pdf/Renting Dapp Privacy.pdf'
                                              target='_blank' >Privacy policy</a></li>
+                                        <li><a href="http://eraswaptoken.io/pdf/era-swap-howey-test-letter-august7-2018.pdf" target="_blank">Howey Test</a></li>
+                                        <li><a href="http://eraswaptoken.io/pdf/eraswap_whitepaper.pdf" target="_blank">ES White Paper </a></li>
                                         </ul>
                                     </div>
                         </Col>

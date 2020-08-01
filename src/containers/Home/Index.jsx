@@ -67,7 +67,7 @@ class Home extends Component {
                 </div>
                 <div className='recommn-bgd'>
                     <div className='wrapper-container'>
-                        <div className='recommn-txt-style'>
+                        <div className='recommn-txt-style container'>
                             Recommendations For You.
                    </div>
                     </div>
@@ -81,7 +81,7 @@ class Home extends Component {
                 <div className='wrapper-container'>
                     <div className='rent-desc-container'>
                         <div className='desc-text'>
-                            <h4 className='better-txt-style'>A better Value, A better Result</h4>
+                            <h4 className='better-txt-style'>Rent & Lease Hassle-free</h4>
                             <h5 className='sub-better-txt'>We provide you full service at every step,and get better results for Lower fees</h5>
                         </div>
                     </div>

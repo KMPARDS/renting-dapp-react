@@ -11,6 +11,9 @@ import { Link,Route } from 'react-router-dom';
 
 
 class AllCategories extends Component {
+	public state: any;
+	public props: any;
+
     constructor(props) {
         super(props);
         this.state = {

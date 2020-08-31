@@ -13,9 +13,10 @@
 .hero-txt-style{
     text-align: center;
     color: #ffffff;
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 20px;
-    margin-right: 10%;
+    font-weight: 600;
+
 }
 .search-btn-container{
     margin-left: 20px;
@@ -171,14 +172,14 @@ padding-left: 10px;
     }
     .hero-txt-style{
         font-size: 16px !important;
-        margin: 0px !important;
+        margin-bottom: 15px;
     }
     .country-style{
         width: 124px !important;
         height: 44px !important;
     }
     .rental-hero-bgd{
-        height: 65vh;
+        // height: 65vh;
     }
     .search-rent-btn{
         width: 100px;
@@ -197,4 +198,40 @@ padding-left: 10px;
     .homeCateg-bgd{
         background-color: #ffffff;
     }
+    .rental-hero-bgd {
+        height: 70vh;
+    }
+    .buy-main-container {
+        padding-top: 35%;
+    }
+    .custom-menu .navbar-collapse {
+        background: #eee;
+    }
+    .custom-menu .navbar-nav .nav-link {
+        color: #000 !important;
+        padding: 0 15px;
+        line-height: 45px;
+        border-bottom: 1px solid #000;
+        width: 96%;
+    }
+    .navbar-dark .navbar-toggler {
+        color: #000;
+        background: #ff5d22;
+    }
+    .conn-wallet-btn {
+        top: 0 !important;
+    }
+    .conn-wallet-btn .navbar-nav {
+        width: 100%!important;
+    }
+    .navbar-nav {
+        width: 100% !important;
+    }
+}
+.conn-wallet-btn{
+    position: relative;
+    top: 27px;
+}
+li.react-multi-carousel-item .card.text-center {
+    width: 68% !important;
 }

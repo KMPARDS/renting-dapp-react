@@ -3,8 +3,12 @@
  float: right;
 }
 .rentDaap-help{
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    margin-top: 15px;
+}
+.rentDaap-help ul li {
+    list-style: none;
 }
 .rentDaap-help ul li a{
     color: #ffffff !important;
@@ -58,8 +62,15 @@
     color: #ffffff;
 }
 .social-links{
- display: flex;
- margin-left: -12px;
+//  display: flex;
+//  margin-left: -12px;
+}
+.footer-bgd {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/static/media/pebble.704970fc.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto !important;
+    background-size: cover;
 }
 .social-Img{
     width: 22px;
@@ -88,4 +99,9 @@
         width: 190px !important;
         height: 39px !important;
     }
+}
+.copyright{
+    border-top:1px solid #eeeeee5c;
+    padding: 15px 0;
+    color: #fff;;
 }

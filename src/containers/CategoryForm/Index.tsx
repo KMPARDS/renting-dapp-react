@@ -12,6 +12,8 @@ import * as Yup from 'yup';
 
 
 class CategoryForm extends Component {
+	public state: any;
+
     constructor(props) {
         super(props);
         this.state = {

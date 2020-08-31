@@ -14,6 +14,9 @@ import Modal from 'react-bootstrap/Modal';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 class CartPage extends Component {
+	public state: any;
+	public setState: any;
+
     constructor(props) {
         super(props);
         this.state = {

@@ -17,13 +17,14 @@ import CartPage from './containers/CartPage/Index';
 import ListPage from './containers/ListPage/Index';
 import ChatPage from './containers/ChatPage/Index';
 import RentalPage from './containers/RentPage/Index';
-import MyListing from './containers/MyListing/Index.jsx';
+import MyListing from './containers/MyListing/Index';
 import CategoryForm from './containers/CategoryForm/Index';
 import ComingSoon from './components/ComingSoon/ComingSoon';
-import {
-  categoryArray,
-  subCategoryArray,
-} from './env.js';
+// import {
+//   categoryArray,
+//   subCategoryArray,
+// } from './env.js';
+import RentPage from './containers/RentPage/Index';
 
 function App() {
   return (
@@ -40,10 +41,12 @@ function App() {
             <Route exact path="/MyListing" component={MyListing} />
             <Route exact path="/form" component={CategoryForm} />
             <Route exact path="/ComingSoon" component={ComingSoon} />
+            <Route exact path="/RentPage" component={RentPage} />
+            
 
 
             {/* category and subcategory routing */}
-            < Route path = "/List/:category"
+            {/* < Route path = "/List/:category"
     exact render = {
       props => {
         let categoryWordArray = [];
@@ -56,8 +59,8 @@ function App() {
         return <AllCategories categoryId = {
           categoryId
         }
-        />;
-      }
+        />; */}
+      {/* }
     }
     />
     < Route path = "/List/:category/:subCategory"
@@ -83,7 +86,7 @@ function App() {
         />;
       }
     }
-    />
+    /> */}
          </Switch>
      </Router>
     </div>

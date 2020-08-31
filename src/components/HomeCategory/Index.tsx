@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 
 
 class HomeCategory extends Component {
+	public state: any;
+
     constructor(props) {
         super(props);
         this.state = {

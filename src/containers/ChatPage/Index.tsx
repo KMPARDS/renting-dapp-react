@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 class ChatPage extends Component {
+	public state: any;
+	public handleInputChange: any;
+
     constructor(props) {
         super(props);
         this.state = {

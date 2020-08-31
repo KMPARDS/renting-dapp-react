@@ -9,6 +9,9 @@ import "react-multi-carousel/lib/styles.css";
 
 
 class CarouselPage extends Component {
+	public state: any;
+	public props: any;
+
     constructor(props) {
         super(props);
         this.state = {

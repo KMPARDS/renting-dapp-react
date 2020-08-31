@@ -23,6 +23,9 @@ import {
 } from "reactstrap";
 
 class Header extends Component {
+	public state: any;
+	public setState: any;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +64,7 @@ class Header extends Component {
                   </button>
                   <div className="collapse navbar-collapse" id="main_nav">
 
-             <ul className="navbar-nav">
+                <ul className="navbar-nav">
                     {/* <li className="nav-item dropdown has-megamenu">
                     <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"> ALL CATEGORIES  </a>
                       <div className="dropdown-menu megamenu" role="menu">
@@ -125,18 +128,16 @@ class Header extends Component {
 
 
                 <ul className="navbar-nav ml-auto">
-
                     <li className="nav-item active"> <a className="nav-link" href="#">Home </a> </li>
                     <li className="nav-item "> <a className="nav-link catgry-texttwo" onClick={this.toggleMenu}>All Categories </a> </li>
+                    <li className="nav-item "> <a className="nav-link catgry-texttwo" href="/List"> Product list </a> </li>
                     <li className="nav-item"><a className="nav-link" href="#"> <i className="fa fa-comment-o" aria-hidden="true"></i> </a></li>
                     <li className="nav-item"><a className="nav-link" href="#">  <i className="fa fa-bell-o" aria-hidden="true"></i> </a></li>
                     <li className="nav-item"><a className="nav-link" href="#">  <i className="fa fa-user-o" aria-hidden="true"></i> </a></li>
                     <li className="nav-item"><a className="nav-link" href="#"> <i className="fa fa-shopping-cart" aria-hidden="true"></i> </a></li>
+                    <li className="nav-item"><a className="nav-link btn btn-outline-warning conn-wallet-btn" href="/RentPage"> Rent </a></li>
                     <li className="nav-item"><a className="nav-link btn btn-outline-warning conn-wallet-btn" href="https://eraswap.life/" target="_blank"> CONNECT TO WALLET </a></li>
-
-
-
-                </ul>
+               </ul>
 
                   </div> 
 

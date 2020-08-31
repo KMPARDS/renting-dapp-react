@@ -12,6 +12,10 @@ import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-countr
 
 
 class Home extends Component {
+	public state: any;
+	public setState: any;
+	public handleInputChange: any;
+
     constructor(props) {
         super(props);
         this.state = {

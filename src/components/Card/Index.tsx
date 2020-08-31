@@ -7,6 +7,8 @@ import Responsive from '../../Responsive/Responsive.css';
 
 
 class Cards extends Component {
+	public state: any;
+
     constructor(props) {
         super(props);
         this.state = {

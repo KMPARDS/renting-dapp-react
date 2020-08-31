@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './ListPage.scss';
+import NavBar from '../../components/Header/NavBar';
+import Footer from '../../components/Footer/Index';
 import Images from '../../containers/Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
 import { Col, Container, Row } from 'react-bootstrap';
 
 
 class ListPage extends Component {
+	public state: any;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +22,8 @@ class ListPage extends Component {
     render() {
         return (
             <div>
+                 <NavBar />
+                 <div className='myListing-wrapper-container'>
                         <div className='r-col-d-4'>
                             <div className='card-category-container'>
                                 <div className='overflow'>
@@ -91,6 +97,10 @@ class ListPage extends Component {
                             </div>
                         </div>
                     </div>
+                    </div>
+                    
+
+                    
         );
     }
 }

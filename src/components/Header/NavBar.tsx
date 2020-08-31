@@ -23,6 +23,9 @@ import {
 } from "reactstrap";
 
 class NavBar extends Component {
+	public state: any;
+	public setState: any;
+
   constructor(props) {
     super(props);
     this.state = {

@@ -9,6 +9,8 @@ import { Link,Route } from 'react-router-dom';
 
 
 class ComingSoon extends Component {
+	public state: any;
+
     constructor(props) {
         super(props);
         this.state = {

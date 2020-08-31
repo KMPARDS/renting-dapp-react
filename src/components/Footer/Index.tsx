@@ -9,6 +9,8 @@ faFacebookSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 class Footer extends Component {
+	public state: any;
+
 constructor(props) {
 super(props);
 this.state = {};

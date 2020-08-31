@@ -11,6 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 class MyListing extends Component {
+	public state: any;
+	public setState: any;
+
     constructor(props) {
         super(props);
         this.state = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './RentPage.scss';
 import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
+//import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 class RentPage extends Component {
 	public state: any;
 
-    constructor(props) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
             categoryArr :[
@@ -59,40 +59,37 @@ class RentPage extends Component {
                 <div className='RentPage-wrapper-container'>
                     <div className='table-category'>
                         <div className='table-catg-details'>
-                    <h4>Start Earning Lorem ipsum ipsum</h4>
-                    <div className='r-col-d-12'>
-                    <table>
-                        <tr>
-                        <Link to='/form'><th>Select Category</th> </Link>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>Real Estate</td>
-                            <td>For Sale Houses & Appartments</td>
-                        </tr>
-                        <tr>
-                            <td>Vehicle</td>
-                            <td>For Rent Houses & Appartments</td>
-                        </tr>
-                        <tr>
-                            <td>Electronics & Appliances</td>
-                            <td>Lands & Plots</td>
-                        </tr>
-                        <tr>
-                            <td>Mobiles</td>
-                            <td>Shops & Offices</td>
-                        </tr>
-                        <tr>
-                            <td>Furnitures</td>
-                            <td>PG 7 Guests</td>
-                        </tr>
-                        <tr>
-                            <td>Bikes</td>
-                            <td>For Sale Houses & Appartments</td>
-                        </tr>
-                    </table>
-                    </div>
-                    </div>
+                            <h4>Start Earning Lorem ipsum ipsum</h4>
+                            <div className='r-col-d-12'>
+                                <p style={{color: '#E3583C', fontSize: 24}}><b>Select Category</b></p>
+                                <table>
+                                    <tr>
+                                        <td><Link to='/form'>Real Estate</Link></td>
+                                        <td>For Sale Houses & Appartments</td>
+                                    </tr>
+                                    <tr>    
+                                        <td><Link to='/form'>Vehicle</Link></td>
+                                        <td>For Rent Houses & Appartments</td>
+                                    </tr>
+                                    <tr>
+                                        <td><Link to='/form'>Electronics & Appliances</Link></td>
+                                        <td>Lands & Plots</td>
+                                    </tr>
+                                    <tr>
+                                        <td><Link to='/form'>Mobiles</Link></td>
+                                        <td>Shops & Offices</td>
+                                    </tr>
+                                    <tr>
+                                        <td><Link to='/form'>Furnitures</Link></td>
+                                        <td>PG 7 Guests</td>
+                                    </tr>
+                                    <tr>
+                                        <td><Link to='/form'>Bikes</Link></td>
+                                        <td>For Sale Houses & Appartments</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='footer-bgd'>

@@ -6,6 +6,9 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
+import './ethereum/instances';
+import { CustomWallet } from './ethereum/custom-wallet';
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -18,3 +21,24 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// era swap life login hook
+window.onload = function () {
+  !window.opener || window.opener.postMessage('loaded', '*');
+};
+
+// load wallet from era swap life
+window.addEventListener(
+  'message',
+  (e) => {
+    setTimeout(() => {
+      const message = e.data;
+      if (message.substring) {
+        if (message.substring(0, 2) == '0x') {
+          window.wallet = new CustomWallet(message).connect(window.provider);
+        }
+      }
+    }, 0);
+  },
+  false
+);

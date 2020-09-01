@@ -42,9 +42,9 @@ class CategoryForm extends Component {
                     <div className='table-category'>
                         <div className='table-catg-details'>
                             <div className='r-col-d-12'>
-                                <h5>Select Category</h5>
+                                <h5>Category</h5>
                                 <p className='category-select-txt'>Electronic and Appliances</p>
-                                <h5>INCLUDE SOME DETAIL</h5>
+                                <h5>Please fill in details of your product</h5>
                                 <Formik
                                     initialValues={{ email: '', password: '', firstname: '' }}
                                     validate={values => {
@@ -112,7 +112,7 @@ class CategoryForm extends Component {
                                                             required
                                                             />
                                                             <p className='field-note-txt'>Mention condition,features and reason for renting</p>
-                                                            <h5>SET A PRICE</h5>
+                                                            <h5>Set a maximum rent</h5>
                                                       <label className='control-label'>Price*</label>
                                                       <div class="input-group col-md-6">
                                                         <input 
@@ -125,7 +125,7 @@ class CategoryForm extends Component {
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-light" type="button">ES</button>
                                                             </div>
-                                                            </div>
+                                                        </div>
 
                                                         {/* <input
                                                             type="text"
@@ -168,13 +168,13 @@ class CategoryForm extends Component {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className='location-flex'><div className="location-txt"> Confirm Your Location</div><span className='location-span'>
+                                                        <div className='location-flex'><div className="location-txt"> <h5>Confirm Your Location</h5>    </div><span className='location-span'>
                                                              <FontAwesomeIcon icon={faLocationArrow} color='#FF5D22'/>Use Your Location</span></div>
                                                         <div class="input-group input-group-sm">
                                                 <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Country/Region"/>
                                                 </div>
                                                 <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="street address"/>
+                                                <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Street address"/>
                                                 </div>
                                                 <div className="address-flex-style">
                                                 <div class="input-group input-group-sm col-md-4">
@@ -187,10 +187,10 @@ class CategoryForm extends Component {
                                                 <div class="col-md-6 pinStyle">
                                                     <input type="text" class="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm"  id="inputValue" placeholder="Pincode"/>
                                                 </div>
-                                                      <button className='submit-form-btn' type="submit" disabled={isSubmitting}>
-                                                            Submit
-                                                 </button>
-                                                    </div>
+                                                    <button className='submit-form-btn' type="submit" disabled={isSubmitting}>
+                                                        Submit
+                                                    </button>
+                                                </div>
                                             </form>
                                         )}
                                 </Formik>

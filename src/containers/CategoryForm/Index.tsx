@@ -5,16 +5,18 @@ import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationArrow,faImage} from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+
+const queryString = require('query-string');
 
 
 class CategoryForm extends Component {
 	public state: any;
 
-    constructor(props) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
 
@@ -22,6 +24,10 @@ class CategoryForm extends Component {
     }
 
     render() {
+        console.log(window.location.search);
+        const parsed = queryString.parse(window.location.search);
+        console.log(parsed);
+
         const SignupSchema = Yup.object().shape({
             firstName: Yup.string()
                 .min(2, 'Too Short!')
@@ -43,7 +49,7 @@ class CategoryForm extends Component {
                         <div className='table-catg-details'>
                             <div className='r-col-d-12'>
                                 <h5>Category</h5>
-                                <p className='category-select-txt'>Electronic and Appliances</p>
+                                <p className='category-select-txt'>{new URLSearchParams(this.props.location.search).get("category")} - {new URLSearchParams(this.props.location.search).get("sub")}</p>
                                 <h5>Please fill in details of your product</h5>
                                 <Formik
                                     initialValues={{ email: '', password: '', firstname: '' }}
@@ -112,8 +118,36 @@ class CategoryForm extends Component {
                                                             required
                                                             />
                                                             <p className='field-note-txt'>Mention condition,features and reason for renting</p>
-                                                            <h5>Set a maximum rent</h5>
-                                                      <label className='control-label'>Price*</label>
+                                                            <h5>Set payment details</h5>
+                                                      <label className='control-label'>Maximum rent*</label>
+                                                      <div class="input-group col-md-6">
+                                                        <input 
+                                                         class="form-control"
+                                                          type="text"
+                                                            name="firstname"
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values.firstname}/>
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-light" type="button">ES</button>
+                                                            </div>
+                                                        </div>
+
+                                                      <label className='control-label'>Security fee*</label>
+                                                      <div class="input-group col-md-6">
+                                                        <input 
+                                                         class="form-control"
+                                                          type="text"
+                                                            name="firstname"
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values.firstname}/>
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-light" type="button">ES</button>
+                                                            </div>
+                                                        </div>
+
+                                                      <label className='control-label'>Cancellation fee*</label>
                                                       <div class="input-group col-md-6">
                                                         <input 
                                                          class="form-control"

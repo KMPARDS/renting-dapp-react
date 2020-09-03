@@ -18,9 +18,7 @@ class CategoryForm extends Component {
 
     constructor(props: Readonly<{}>) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
@@ -28,7 +26,7 @@ class CategoryForm extends Component {
         const parsed = queryString.parse(window.location.search);
         console.log(parsed);
 
-        const SignupSchema = Yup.object().shape({
+        {/*const SignupSchema = Yup.object().shape({
             firstName: Yup.string()
                 .min(2, 'Too Short!')
                 .max(50, 'Too Long!')
@@ -40,7 +38,8 @@ class CategoryForm extends Component {
             email: Yup.string()
                 .email('Invalid email')
                 .required('Required'),
-        });
+        });*/}
+        
         return (
             <div>
                 <NavBar />
@@ -50,6 +49,7 @@ class CategoryForm extends Component {
                             <div className='r-col-d-12'>
                                 <h5>Category</h5>
                                 <p className='category-select-txt'>{new URLSearchParams(this.props.location.search).get("category")} - {new URLSearchParams(this.props.location.search).get("sub")}</p>
+
                                 <h5>Please fill in details of your product</h5>
                                 <Formik
                                     initialValues={{ title: '', description: '', maxrent: 0, security: 0, cancellation: 0 }}
@@ -75,7 +75,7 @@ class CategoryForm extends Component {
                                                 <div>
                                                     <label className='control-label'>Title *</label>
                                                     <input
-                                                        class="form-control form-control-lg"
+                                                        className="form-control form-control-lg"
                                                         type="text"
                                                         name="title"
                                                         onChange={handleChange}
@@ -102,47 +102,47 @@ class CategoryForm extends Component {
                                                     <h5>Set payment details</h5>
 
                                                     <label className='control-label'>Maximum rent*</label>
-                                                    <div class="input-group col-md-6">
+                                                    <div className="input-group col-md-6">
                                                         <input 
-                                                            class="form-control"
+                                                            className="form-control"
                                                             type="number"
                                                             name="maxrent"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.maxrent}
                                                         />
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-light" type="button">ES</button>
+                                                        <div className="input-group-append">
+                                                            <button className="btn btn-light" type="button">ES</button>
                                                         </div>
                                                     </div>
 
                                                     <label className='control-label'>Security fee*</label>
-                                                    <div class="input-group col-md-6">
+                                                    <div className="input-group col-md-6">
                                                         <input 
-                                                            class="form-control"
+                                                            className="form-control"
                                                             type="number"
                                                             name="security"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.security}
                                                         />
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-light" type="button">ES</button>
+                                                        <div className="input-group-append">
+                                                            <button className="btn btn-light" type="button">ES</button>
                                                         </div>
                                                     </div>
 
                                                     <label className='control-label'>Cancellation fee*</label>
-                                                    <div class="input-group col-md-6">
+                                                    <div className="input-group col-md-6">
                                                         <input 
-                                                            class="form-control"
+                                                            className="form-control"
                                                             type="number"
                                                             name="cancellation"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.cancellation}
                                                         />
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-light" type="button">ES</button>
+                                                        <div className="input-group-append">
+                                                            <button className="btn btn-light" type="button">ES</button>
                                                         </div>
                                                     </div>
 
@@ -188,22 +188,22 @@ class CategoryForm extends Component {
                                                             <FontAwesomeIcon icon={faLocationArrow} color='#FF5D22'/>Use Your Location
                                                         </span>
                                                     </div>
-                                                    <div class="input-group input-group-sm">
-                                                        <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Country/Region"/>
+                                                    <div className="input-group input-group-sm">
+                                                        <input type="text" className="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Country/Region"/>
                                                     </div>
-                                                    <div class="input-group input-group-sm">
-                                                        <input type="text" class="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Street address"/>
+                                                    <div className="input-group input-group-sm">
+                                                        <input type="text" className="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Street address"/>
                                                     </div>
                                                     <div className="address-flex-style">
-                                                        <div class="input-group input-group-sm col-md-4">
-                                                            <input type="text" class="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputKey" placeholder="City"/>
+                                                        <div className="input-group input-group-sm col-md-4">
+                                                            <input type="text" className="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputKey" placeholder="City"/>
                                                         </div>
-                                                        <div class="input-group input-group-sm col-md-4">
-                                                            <input type="text" class="form-control bottom-field" aria-label="Small"  aria-describedby="inputGroup-sizing-sm" id="inputValue" placeholder="District"/>
+                                                        <div className="input-group input-group-sm col-md-4">
+                                                            <input type="text" className="form-control bottom-field" aria-label="Small"  aria-describedby="inputGroup-sizing-sm" id="inputValue" placeholder="District"/>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 pinStyle">
-                                                        <input type="text" class="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm"  id="inputValue" placeholder="Pincode"/>
+                                                    <div className="col-md-6 pinStyle">
+                                                        <input type="text" className="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm"  id="inputValue" placeholder="Pincode"/>
                                                     </div>
                                                     <button className='submit-form-btn' type="submit" disabled={isSubmitting}>
                                                         Submit
@@ -229,8 +229,5 @@ class CategoryForm extends Component {
         );
     }
 }
-
-
-
 
 export default CategoryForm;

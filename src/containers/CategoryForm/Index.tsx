@@ -54,27 +54,6 @@ class CategoryForm extends Component {
                                 <Formik
                                     initialValues={{ title: '', description: '', maxrent: 0, security: 0, cancellation: 0 }}
 
-                                    validate={values => {
-                                        let errors = {};
-                                        if (!values.email) {
-                                            errors.email = 'Required';
-                                        } else if (
-                                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                                        ) {
-                                            errors.email = 'Invalid email address';
-                                        }
-
-                                        if (!values.password) {
-                                            errors.password = 'Required';
-                                        } else if (
-                                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.password)
-                                        ) {
-                                            errors.email = 'Invalid password ';
-                                        }
-                                        return errors;
-                                    }}
-
-                                
                                     onSubmit={(values, { setSubmitting }) => {
                                         setTimeout(() => {
                                             alert(JSON.stringify(values, null, 2));
@@ -238,7 +217,7 @@ class CategoryForm extends Component {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className='form-footer-style'>
                     <div className='footer-bgd'>
                         <div className='wrapper-container'>

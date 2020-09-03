@@ -100,6 +100,7 @@ class RentPage extends Component {
 
 
                                 <div style={{display: "flex"}}>
+
                                     <div style={{flex: 1}}>
                                         <table style={{width: '100%'}}>
                                             <tr onMouseEnter={()=>{this.setState({currentCategory: 0})}}>
@@ -122,6 +123,7 @@ class RentPage extends Component {
                                             </tr>
                                         </table>
                                     </div>
+
                                     <div style={{flex: 1}}>
                                         
                                         <table style={{width: '100%'}}>
@@ -131,10 +133,9 @@ class RentPage extends Component {
                                             </tr>))}
                                         </table>
                                     </div>
-                                </div>
 
-                                
-                                
+                                </div>
+                               
                             </div>
                         </div>
                     </div>

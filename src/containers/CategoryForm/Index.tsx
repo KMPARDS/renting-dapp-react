@@ -60,13 +60,16 @@ class CategoryForm extends Component {
 
                                                 <h5>Please fill in details of your product</h5>
                                                 <Formik
-                                                    initialValues={{ title: '', description: '', maxrent: 0, security: 0, cancellation: 0 }}
+                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0 }}
 
-                                                    onSubmit={(values, { setSubmitting }) => {
-                                                        setTimeout(() => {
-                                                            alert(JSON.stringify(values, null, 2));
-                                                            setSubmitting(false);
-                                                        }, 400);
+                                                    onSubmit={async (values, { setSubmitting }) => { 
+                                                        alert(JSON.stringify(values, null, 2));
+
+                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, values.maxrent, values.security, values.cancellation, values.description);
+                                                        product.wait();
+                                                        console.log(product);
+                                        
+                                                        setSubmitting(false);                                                       
                                                     }}
                                                 >
                                                     {({
@@ -154,7 +157,7 @@ class CategoryForm extends Component {
                                                                         </div>
                                                                     </div>
                 
-                                                                    <h5>Upload Photos</h5>
+                                                                    {/*<h5>Upload Photos</h5>
                                                                     <p className='field-note-txt'>Minimum 4 photos to be uploaded</p>
                                                                     <div className='upload-img-container'>
                                                                         <div className='row'>
@@ -173,7 +176,7 @@ class CategoryForm extends Component {
                                                                         </div>
                                                                         <div className='row'>
                                                                             <div className='r-col-d-3 img-upload'> 
-                                                                                <input type='file' onchange="readURL(this);"/>
+                                                                                <input type='file' onChange="readURL(this);"/>
                                                                                 <img id="blah" src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
                                                                             <div className='r-col-d-3 img-upload'>
@@ -186,33 +189,28 @@ class CategoryForm extends Component {
                                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div>*/}
                 
                                                                     <div className='location-flex'>
                                                                         <div className="location-txt"> 
-                                                                            <h5>Confirm Your Location</h5>    
+                                                                            <h5>Specify Your Location</h5>    
                                                                         </div>
                                                                         <span className='location-span'>
                                                                             <FontAwesomeIcon icon={faLocationArrow} color='#FF5D22'/>Use Your Location
                                                                         </span>
                                                                     </div>
-                                                                    <div className="input-group input-group-sm">
-                                                                        <input type="text" className="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Country/Region"/>
-                                                                    </div>
-                                                                    <div className="input-group input-group-sm">
-                                                                        <input type="text" className="form-control  col-md-8 bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Street address"/>
-                                                                    </div>
-                                                                    <div className="address-flex-style">
-                                                                        <div className="input-group input-group-sm col-md-4">
-                                                                            <input type="text" className="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputKey" placeholder="City"/>
-                                                                        </div>
-                                                                        <div className="input-group input-group-sm col-md-4">
-                                                                            <input type="text" className="form-control bottom-field" aria-label="Small"  aria-describedby="inputGroup-sizing-sm" id="inputValue" placeholder="District"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-md-6 pinStyle">
-                                                                        <input type="text" className="form-control bottom-field" aria-label="Small" aria-describedby="inputGroup-sizing-sm"  id="inputValue" placeholder="Pincode"/>
-                                                                    </div>
+                                                                    <textarea
+                                                                        className='form-control'
+                                                                        placeholder=''
+                                                                        name='address'
+                                                                        value={values.address}
+                                                                        onChange={handleChange}
+                                                                        onBlur={handleBlur}
+                                                                        rows={3}
+                                                                        data-error='Write your message'
+                                                                        required
+                                                                    />
+                                                                    <p className='field-note-txt'>Enter your complete address.</p>
                                                                     <button className='submit-form-btn' type="submit" disabled={isSubmitting}>
                                                                         Submit
                                                                     </button>

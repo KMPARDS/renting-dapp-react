@@ -56,10 +56,10 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "removeItem", data: BytesLike): Result;
 
   events: {
-    "Details(address,address)": EventFragment;
+    "ProductDetails(address,address,string,string,string,uint256,uint256,uint256)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "Details"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ProductDetails"): EventFragment;
 }
 
 export class RentingDappManager extends Contract {
@@ -271,7 +271,16 @@ export class RentingDappManager extends Contract {
   };
 
   filters: {
-    Details(lessor: null, item: null): EventFilter;
+    ProductDetails(
+      lessor: null,
+      item: null,
+      _name: null,
+      _description: null,
+      _location: null,
+      _maxRent: null,
+      _security: null,
+      _cancellationFee: null
+    ): EventFilter;
   };
 
   estimateGas: {

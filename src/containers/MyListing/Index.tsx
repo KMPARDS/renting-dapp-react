@@ -14,7 +14,7 @@ class MyListing extends Component {
 	public state: any;
 	public setState: any;
 
-    constructor(props) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
             showModal: false
@@ -35,52 +35,52 @@ class MyListing extends Component {
                 <NavBar />
                 <div className='myListing-wrapper-container'>
                 
-                        <div className='row listing-border'>
-                     <div className='r-col-d-4'>
-                        <div className='section1-listing'>
-                            <img className='listing-main-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                        </div>
-                        </div>
-                        <div className='r-col-d-8'>
-                        <div className='section2-listing'>
-                            <h5 className='listing-head'> casa de rio Mountain</h5>
-                            <div className='myList-amount'>200ES/day</div>
-                            <h5 className='desc-head'>Description</h5>
-                            <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
-                            <div className='two-btn-container'>
-                                <button className='listing-edit'>Edit</button>
-                                <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
+                    <div className='row listing-border'>
+                        <div className='r-col-d-4'>
+                            <div className='section1-listing'>
+                                <img className='listing-main-img' src={Images.path.rlTwo} />
+                                <img className='listing-small-img' src={Images.path.rlTwo} />
+                                <img className='listing-small-img' src={Images.path.rlTwo} />
+                                <img className='listing-small-img' src={Images.path.rlTwo} />
                             </div>
                         </div>
-                        </div>
-                        </div>
-
-                        <div className='row listing-border'>
-                     <div className='r-col-d-4'>
-                        <div className='section1-listing'>
-                            <img className='listing-main-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                        </div>
-                        </div>
                         <div className='r-col-d-8'>
-                        <div className='section2-listing'>
-                            <h5 className='listing-head'> casa de rio Mountain</h5>
-                            <div className='myList-amount'>200ES/day</div>
-                            <h5 className='desc-head'>Description</h5>
-                            <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
-                            <div className='two-btn-container'>
-                                <button className='listing-edit'>Edit</button>
-                                <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
-                            </div>
-                        </div>
-                        </div>
+                            <div className='section2-listing'>
+                                <h5 className='listing-head'> casa de rio Mountain</h5>
+                                <div className='myList-amount'>200ES/day</div>
+                                <h5 className='desc-head'>Description</h5>
+                                <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
+                                <div className='two-btn-container'>
+                                    <button className='listing-edit'>Edit</button>
+                                    <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
+                                </div>
+                             </div>
                         </div>
                     </div>
+
+                    <div className='row listing-border'>
+                        <div className='r-col-d-4'>
+                            <div className='section1-listing'>
+                                <img className='listing-main-img' src={Images.path.rlTwo} />
+                                <img className='listing-small-img' src={Images.path.rlTwo} />
+                                <img className='listing-small-img' src={Images.path.rlTwo} />
+                                <img className='listing-small-img' src={Images.path.rlTwo} />
+                            </div>
+                        </div>
+                        <div className='r-col-d-8'>
+                            <div className='section2-listing'>
+                                <h5 className='listing-head'> casa de rio Mountain</h5>
+                                <div className='myList-amount'>200ES/day</div>
+                                <h5 className='desc-head'>Description</h5>
+                                <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
+                                <div className='two-btn-container'>
+                                    <button className='listing-edit'>Edit</button>
+                                    <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                
                 <div className='footer-bgd'>
                     <div className='wrapper-container'>

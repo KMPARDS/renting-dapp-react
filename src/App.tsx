@@ -20,6 +20,7 @@ import RentalPage from './containers/RentPage/Index';
 import MyListing from './containers/MyListing/Index';
 import CategoryForm from './containers/CategoryForm/Index';
 import ComingSoon from './components/ComingSoon/ComingSoon';
+import Product from './containers/Product/Index';
 // import {
 //   categoryArray,
 //   subCategoryArray,
@@ -42,6 +43,8 @@ function App() {
             <Route exact path="/form" component={CategoryForm} />
             <Route exact path="/ComingSoon" component={ComingSoon} />
             <Route exact path="/RentPage" component={RentPage} />
+            <Route path="/Product/:address" exact component={Product} />
+
             
 
 

@@ -12,14 +12,28 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 class MyListing extends Component {
 	public state: any;
-	public setState: any;
+	//public setState: any;
 
-    constructor(props) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
-            showModal: false
+            showModal: false,
+            allProduct: [],
         };
+    }
 
+    getProduct = async () => {
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null);
+        const logs = await window.rentingDappInstance.queryFilter(filter);
+        const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
+        const productAll = parseLogs.map(ele => ele.args);
+        console.log("All :",productAll)
+        this.setState({...this.state , allProduct : productAll})
+        return productAll;
+    }
+
+    async componentDidMount() {
+        this.getProduct();
     }
 
     handleClose = () => {
@@ -33,60 +47,51 @@ class MyListing extends Component {
         return (
             <div>
                 <NavBar />
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <div className='myListing-wrapper-container'>
-                
-                        <div className='row listing-border'>
-                     <div className='r-col-d-4'>
-                        <div className='section1-listing'>
-                            <img className='listing-main-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                        </div>
-                        </div>
-                        <div className='r-col-d-8'>
-                        <div className='section2-listing'>
-                            <h5 className='listing-head'> casa de rio Mountain</h5>
-                            <div className='myList-amount'>200ES/day</div>
-                            <h5 className='desc-head'>Description</h5>
-                            <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
-                            <div className='two-btn-container'>
-                                <button className='listing-edit'>Edit</button>
-                                <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
+                    {
+                        this.state.allProduct.map((ele: React.ReactNode[]) => {
+                            return <div className='row listing-border'>
+                                <div className='r-col-d-4'>
+                                    <div className='section1-listing'>
+                                        <img className='listing-main-img' src={Images.path.rlTwo} />
+                                        <img className='listing-small-img' src={Images.path.rlTwo} />
+                                        <img className='listing-small-img' src={Images.path.rlTwo} />
+                                        <img className='listing-small-img' src={Images.path.rlTwo} />
+                                    </div>
+                                </div>
+                                <div className='r-col-d-8'>
+                                    <div className='section2-listing'>
+                                        <h5 className='listing-head'>{ele[2]}</h5>
+                                        <div className='desc-para'>Rent: {ele[5]?.toLocaleString()} ES</div>
+                                        <div className='desc-para'>Security Fee: {ele[6]?.toLocaleString()} ES</div>
+                                        <div className='desc-para'>Cancellation Fee: {ele[7]?.toLocaleString()} ES</div><br/>
+                                        <h5 className='desc-head'>Description</h5>
+                                        <p className='desc-para'>{ele[3]}</p>
+                                        <h5 className='desc-head'>Address</h5>
+                                        <p className='desc-para'>{ele[4]}</p>
+                                        <div className='two-btn-container'>
+                                            <button className='listing-edit'>Edit</button>
+                                            <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        </div>
-                        </div>
-
-                        <div className='row listing-border'>
-                     <div className='r-col-d-4'>
-                        <div className='section1-listing'>
-                            <img className='listing-main-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                            <img className='listing-small-img' src={Images.path.rlTwo} />
-                        </div>
-                        </div>
-                        <div className='r-col-d-8'>
-                        <div className='section2-listing'>
-                            <h5 className='listing-head'> casa de rio Mountain</h5>
-                            <div className='myList-amount'>200ES/day</div>
-                            <h5 className='desc-head'>Description</h5>
-                            <p className='desc-para'>hsuffdsssgsgsfgsfgsgsgsgggg</p>
-                            <div className='two-btn-container'>
-                                <button className='listing-edit'>Edit</button>
-                                <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
-                            </div>
-                        </div>
-                        </div>
-                        </div>
-                    </div>
+                        })
+                    }
+                </div>
                
                 <div className='footer-bgd'>
                     <div className='wrapper-container'>
                         <Footer />
                     </div>
                 </div>
+                
                  {/* Bootstrap Modal */}
                  <Modal 
                  show={this.state.showModal}

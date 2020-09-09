@@ -17,7 +17,7 @@ this.state = {};
 }
 render() {
 return (
-<div className="Footer-container">
+<div className="Footer-container mt40">
    <Container>
       <Row>
          <Col sm={5}>

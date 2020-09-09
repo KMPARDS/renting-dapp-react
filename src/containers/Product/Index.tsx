@@ -59,13 +59,16 @@ export default function Product()
                     </div>
                     <div className="col-md-4">
                         <h3 className="my-3 catg-body-txt">Product Description</h3>
-                        <h6 className="my-3 catg-body-txt text-dark">{state.description}</h6><br/>
+                        <h6 className="my-3 catg-body-txt desc-para">{state.description}</h6>
 
                         <h3 className="my-3 catg-body-txt">Payment Info</h3>
-                        <h6 className="my-3 catg-body-txt text-dark">Rent: {state.maxRent} ES</h6>
-                        <h6 className="my-3 catg-body-txt text-dark">Security Fee: {state.security} ES</h6>
-                        <h6 className="my-3 catg-body-txt text-dark">Cancellation Fee: {state.cancellation} ES</h6>
-                        <h6 className="my-3 catg-body-txt text-dark">Available Discounts: Loading...</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Available Discounts: Loading...</h6>
+
+                        <h3 className="my-3 catg-body-txt">Pick Up Address</h3>
+                        <h6 className="my-3 catg-body-txt desc-para">{state.location}</h6>
                     </div>
                 </div>
                 {/* /.row */}

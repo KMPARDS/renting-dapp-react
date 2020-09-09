@@ -26,7 +26,7 @@ class NavBar extends Component {
 	public state: any;
 	public setState: any;
 
-  constructor(props) {
+  constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       showMenu: false,
@@ -167,7 +167,7 @@ class NavBar extends Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               {" "}
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/#">
                 Home{" "}
               </a>{" "}
             </li>

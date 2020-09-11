@@ -3,29 +3,14 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import NavMenu from "../NavMenu/Index";
 import Images from "../../containers/Images/Image";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavLink,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  ButtonGroup,
-} from "reactstrap";
+
 
 class Header extends Component {
   public state: any;
   public setState: any;
 
+  
+//@ts-ignore
   constructor(props) {
     super(props);
     this.state = {
@@ -143,6 +128,15 @@ class Header extends Component {
                 All Categories{" "}
               </a>{" "}
             </li>
+            {
+                        this.state.showMenu
+                            ? (
+                                <NavMenu/>
+                            )
+                            : (
+                                null
+                            )
+                    }
             <li className="nav-item ">
               {" "}
               <a className="nav-link catgry-texttwo" href="/List">

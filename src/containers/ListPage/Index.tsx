@@ -45,6 +45,7 @@ class ListPage extends Component {
                 <br/>
                 <br/>
                 <div className='myListing-wrapper-container'>
+                    <div className="row">
                     {
                         this.state.allProduct.map((ele: React.ReactNode[]) => {
                         return <div className='r-col-d-4 position-relative'>
@@ -74,8 +75,17 @@ class ListPage extends Component {
                             </div>
                         </div>
                         })
-                    }
+                    }    
+                    </div>                
                 </div>
+                <br/>
+            <br/>
+            <br/>
+            <div className='footer-bgd'>
+                <div className='wrapper-container'>
+                    <Footer />
+                </div>
+            </div>
             </div>
 
         );

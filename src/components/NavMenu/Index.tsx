@@ -3,6 +3,7 @@ import './NavMenu.scss';
 import { Link } from 'react-router-dom';
 import { categoryArray,subCategoryArray } from '../../env';
 import { withRouter } from 'react-router-dom';
+import { string } from 'yup';
 
 
 // class NavMenu extends Component {
@@ -81,9 +82,15 @@ import { withRouter } from 'react-router-dom';
 
 // export default NavMenu;
 
+//@ts-ignore
 const NavMenu = props => {
-    const listOfCategories = [];
-    const listofListOfSubCategories = [];
+  
+    
+    const listOfCategories : string[] = [];
+    const listofListOfSubCategories : string[] = [];
+
+
+    
 
     for(const categoryId in categoryArray) {
       const listOfSubCategories = [];
@@ -97,18 +104,20 @@ const NavMenu = props => {
       }
       console.log('listOfSubCategories', listOfSubCategories);
       listOfCategories.push(
+        //@ts-ignore
         <>
         <li className="main-category">
           <a
             onClick={() => props.history.push(`/List/${categoryArray[categoryId].toLowerCase().split(' ').join('-')}`)}
             className={props.match.params.category === categoryArray[categoryId].toLowerCase()
-              ? 'menu-lef-act' : null}>
+              ? 'menu-lef-act' : ''}>
             {categoryArray[categoryId]}
           </a>
         </li>
   
         </>
       );
+      //@ts-ignore
       listofListOfSubCategories.push(listOfSubCategories)
     }
     console.log('listOfCategories', listOfCategories);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './MyListing.scss';
 import Images from '../Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import Modal from 'react-bootstrap/Modal';

@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import './Home.scss';
 import Header from '../../components/Header/Index';
 import { Card, Button, Container, Row } from 'react-bootstrap';
-import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
+import Images from '../Images/Image';
 import HomeCategory from '../../components/HomeCategory/Index';
 import Footer from '../../components/Footer/Index';
 import { Link } from 'react-router-dom';
 import CarouselPage  from '../../components/Carousel/Index';
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 
 class Home extends Component {
@@ -16,6 +14,8 @@ class Home extends Component {
 	public setState: any;
 	public handleInputChange: any;
 
+
+    //@ts-ignore
     constructor(props) {
         super(props);
         this.state = {
@@ -25,11 +25,11 @@ class Home extends Component {
         };
     }
     
-    selectCountry (val) {
+    selectCountry (val:string) {
         this.setState({ country: val ,showCountry:false});
       }
      
-      selectRegion (val) {
+      selectRegion (val:string) {
         this.setState({ region: val });
       }
 

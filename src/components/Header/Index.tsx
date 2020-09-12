@@ -5,11 +5,8 @@ import NavMenu from "../NavMenu/Index";
 import Images from "../../containers/Images/Image";
 
 
-class Header extends Component {
-  public state: any;
-  public setState: any;
 
-  
+class Header extends Component { 
 //@ts-ignore
   constructor(props) {
     super(props);
@@ -163,7 +160,7 @@ class Header extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/myCart">
                 {" "}
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
               </a>

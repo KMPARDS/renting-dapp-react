@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './CartPage.scss';
 import '../CategoryDetail/CategoryDetail.scss';
 import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import SideBar from '../../components/SideBar/Index';
 import Footer from '../../components/Footer/Index';
@@ -17,6 +16,7 @@ class CartPage extends Component {
 	public state: any;
 	public setState: any;
 
+    //@ts-ignore
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +34,10 @@ class CartPage extends Component {
         })
     }
 
+
+    //@ts-ignore
     onChangeStart = startDate => this.setState({ startDate })
+      //@ts-ignore
     onChangeEnd = endDate => this.setState({ endDate })
 
 

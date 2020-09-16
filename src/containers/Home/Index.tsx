@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.scss';
 import Header from '../../components/Header/Index';
-import { Card, Button, Container, Row } from 'react-bootstrap';
+import { Card, Button, Container, Row, Navbar } from 'react-bootstrap';
 import Images from '../../containers/Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
 import HomeCategory from '../../components/HomeCategory/Index';
@@ -16,7 +16,7 @@ class Home extends Component {
 	public setState: any;
 	public handleInputChange: any;
 
-    constructor(props) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
             country: '',
@@ -25,11 +25,11 @@ class Home extends Component {
         };
     }
     
-    selectCountry (val) {
+    selectCountry (val: any) {
         this.setState({ country: val ,showCountry:false});
       }
      
-      selectRegion (val) {
+      selectRegion (val: any) {
         this.setState({ region: val });
       }
 

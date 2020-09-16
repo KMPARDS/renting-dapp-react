@@ -35,7 +35,7 @@
 .change-style{
     cursor: pointer;
     color:  #FF5D22;
-    margin-top: 23px;
+    margin-top: 29px;
     margin-left: 10px;
 }
 
@@ -89,4 +89,13 @@
 .order-date-style{
     color: #A7A7A7;
     font-size: 14px;
+}
+
+.remove-btn{
+    border: none;
+    background-color: #FF5D22;
+    color: #ffffff;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
 }

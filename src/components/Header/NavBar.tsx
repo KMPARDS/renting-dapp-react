@@ -176,12 +176,19 @@ class NavBar extends Component {
               <a className="nav-link catgry-texttwo" onClick={this.toggleMenu}>
                 All Categories{" "}
               </a>{" "}
-            </li>
+                </li>
             <li className="nav-item ">
               {" "}
               <a className="nav-link catgry-texttwo" href="/List">
                 {" "}
                 Product list{" "}
+              </a>{" "}
+            </li>
+            <li className="nav-item ">
+              {" "}
+              <a className="nav-link catgry-texttwo" href="/MyListing">
+                {" "}
+                My Listings{" "}
               </a>{" "}
             </li>
             <li className="nav-item">
@@ -203,10 +210,10 @@ class NavBar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/myFav">
                 {" "}
-                <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
-              </a>
+                <i className="fa fa-heart" aria-hidden="true"></i>{" "}
+              </Link>
             </li>
             <li className="nav-item">
               <a

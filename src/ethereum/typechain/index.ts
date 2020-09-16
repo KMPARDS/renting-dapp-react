@@ -3,4 +3,3 @@
 export * from "./ProductManagerFactory";
 export * from "./RentalAgreementFactory";
 export * from "./RentingDappManagerFactory";
-export * from "./SimpleStorageFactory";

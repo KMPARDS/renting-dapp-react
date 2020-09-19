@@ -73,9 +73,9 @@ class MyListing extends Component {
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='stretched-link listing-head' to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></h5>
-                                        <div className='desc-para'>Rent: {ele[5]?.toLocaleString()} ES</div>
-                                        <div className='desc-para'>Security Fee: {ele[6]?.toLocaleString()} ES</div>
-                                        <div className='desc-para'>Cancellation Fee: {ele[7]?.toLocaleString()} ES</div><br/>
+                                        <div className='desc-para'>Rent: {ele[5]?.toLocaleString()} wei</div>
+                                        <div className='desc-para'>Security Fee: {ele[6]?.toLocaleString()} wei</div>
+                                        <div className='desc-para'>Cancellation Fee: {ele[7]?.toLocaleString()} wei</div><br/>
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele[3]}</p>
                                         <h5 className='desc-head'>Address</h5>

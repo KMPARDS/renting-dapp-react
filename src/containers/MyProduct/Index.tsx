@@ -12,6 +12,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ethers from 'ethers';
 
 import { ProductManagerFactory } from '../../ethereum/typechain/ProductManagerFactory';
+import { RentalAgreementFactory } from '../../ethereum/typechain/RentalAgreementFactory';
 import { boolean } from 'yup';
 import { render } from '@testing-library/react';
 import { RentalAgreement } from '../../ethereum/typechain/RentalAgreement';
@@ -20,6 +21,8 @@ export default function MyProduct()
 {
     const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: 0, security: 0, cancellation: 0})
     const [discountState, setDiscountState] = useState({added: 0, removed: 0});
+    const [contracts, setContracts] = useState({allContracts: []});
+    const [check, setCheck] = useState({initial: 0, final: 0});
     const {address} = useParams(); 
     //alert(address);
     const productInstance = ProductManagerFactory.connect(
@@ -36,6 +39,19 @@ export default function MyProduct()
         const cancellation = (await productInstance.cancellationFee()).toNumber();
 
         setstate({title, location, description, maxRent, security, cancellation});
+
+        if(window.wallet===undefined)
+        {
+            alert("Wallet not loaded");
+            return;
+        }
+        const filter = productInstance.filters.NewRentalContract(window.wallet.address,null,null,null,null,null,null,null,null,null);
+        const logs = await productInstance.queryFilter(filter);
+        const parseLogs = logs.map((log) => productInstance.interface.parseLog(log));
+        const contractLogs = parseLogs.map(ele => ele.args);
+        console.log("All contracts:",contractLogs)
+        setContracts({allContracts : contractLogs});
+        //return contracts;
     }
 
     useEffect(()=>{(async () =>
@@ -47,7 +63,12 @@ export default function MyProduct()
 
     function handleChange(e:React.ChangeEvent<HTMLInputElement>)
     {
-        setDiscountState({...discountState,[e.target.name] : e.target.value})
+        setDiscountState({...discountState, [e.target.name] : e.target.value})
+    }
+
+    function handleChecks(e:React.ChangeEvent<HTMLInputElement>)
+    {
+        setCheck({...check, [e.target.name] : e.target.value})
     }
 
     async function handleDiscounts()
@@ -90,6 +111,21 @@ export default function MyProduct()
         alert("Listing deleted");
     }
 
+    /*const getProduct = async () => {
+        if(window.wallet===undefined)
+        {
+            alert("Wallet not loaded");
+            return;
+        }
+        const filter = productInstance.filters.NewRentalContract(window.wallet.address,null,null,null,null,null,null,null,null,null);
+        const logs = await productInstance.queryFilter(filter);
+        const parseLogs = logs.map((log) => productInstance.interface.parseLog(log));
+        const contracts = parseLogs.map(ele => ele.args);
+        console.log("All contracts:",contracts)
+        setContracts({allContracts : contracts});
+        //return contracts;
+    }*/
+
     return (
         <div>
             <NavBar />
@@ -111,9 +147,9 @@ export default function MyProduct()
                         <h6 className="my-3 catg-body-txt desc-para">{state.description}</h6>
 
                         <h3 className="my-3 catg-body-txt">Payment Info</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} wei</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} wei</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} wei</h6>
                         <h6 className="my-3 catg-body-txt desc-para">Available Discounts: Loading...</h6>
 
                         <h3 className="my-3 catg-body-txt">Pick Up Address</h3>
@@ -144,9 +180,67 @@ export default function MyProduct()
                             value={discountState.removed}
                         />
                         <button className="listing-remove-discount" onClick={handleRemove}>Remove Discount</button>
-
                     </div>
                 </div>
+                <br/><br/>
+                <div className="row">
+                    <table className='table'>
+                        <tr>
+                            <th style={{textAlign: "center"}}>Contract Address</th>
+                            <th style={{textAlign: "center"}}>Lessee</th>
+                            <th style={{textAlign: "center"}}>Start Date</th>
+                            <th style={{textAlign: "center"}}>End Date</th>
+                            <th style={{textAlign: "center"}}>Buttons</th>
+                        </tr>
+                        {
+                            contracts.allContracts.map(ele => (
+                                <tr>
+                                    <td style={{textAlign: "center"}}>{ele[2]}</td>
+                                    <td style={{textAlign: "center"}}>{ele[1]}</td>
+                                    <td style={{textAlign: "center"}}>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
+                                    <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
+                                    <td style={{textAlign: "center"}}>
+                                        <div>
+                                        <input 
+                                            type="number" 
+                                            placeholder="Enter 1 if OK else 0"
+                                            style={{width: '160px'}}
+                                            name='initial'
+                                            onChange={handleChecks}
+                                            value={check.initial}                                           
+                                        />
+                                        <button onClick={() => {
+                                            const agreementInstance = RentalAgreementFactory.connect(
+                                                ele[2],
+                                                window.wallet ?? window.provider
+                                            );
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+                                            const checkInitial = agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
+                                            alert("Initial check by Lessor done");
+                                        }}>
+                                            InitialLessor
+                                        </button>
+                                        </div>
+                                        <hr/>
+                                        <input 
+                                            type="number" 
+                                            placeholder="Enter 1 if OK else 0"
+                                            style={{width: '160px'}}
+                                        />
+                                        <button>FinalLessor</button>
+                                        <hr/>
+                                        <button>Terminate</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </table>
+                </div>
+
             </div>
             <br/>
             <br/>

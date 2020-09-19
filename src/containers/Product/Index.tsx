@@ -12,6 +12,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ethers from 'ethers';
 
 import { ProductManagerFactory } from '../../ethereum/typechain/ProductManagerFactory';
+import { RentalAgreementFactory } from '../../ethereum/typechain/RentalAgreementFactory';
 import { boolean } from 'yup';
 import { render } from '@testing-library/react';
 import { RentalAgreement } from '../../ethereum/typechain/RentalAgreement';
@@ -24,6 +25,8 @@ export default function Product()
     const [timestate, settimestate] = useState({startTime: '', endTime: ''})
     const [modalstate, setmodalstate] = useState({showModal: false}); 
     const [dateState, setDateState] = useState([['','']]);
+    const [contracts, setContracts] = useState({allContracts: []});
+    const [check, setCheck] = useState({initial: 0, final: 0});
     const [arrState, setarrState] = useState([]);
 
     const {address} = useParams(); 
@@ -42,6 +45,20 @@ export default function Product()
         const cancellation = (await productInstance.cancellationFee()).toNumber();
 
         setstate({title, location, description, maxRent, security, cancellation});
+
+        if(window.wallet===undefined)
+        {
+            alert("Wallet not loaded");
+            return;
+        }
+        const filter = productInstance.filters.NewRentalContract(null,window.wallet.address,null,null,null,null,null,null,null,null);
+        const logs = await productInstance.queryFilter(filter);
+        const parseLogs = logs.map((log) => productInstance.interface.parseLog(log));
+        const contractLogs = parseLogs.map(ele => ele.args);
+        console.log("All contracts:",contractLogs)
+        setContracts({allContracts : contractLogs});
+        //return contracts;
+        console.log(contracts.allContracts);
     }
 
     useEffect(()=>{(async () =>
@@ -58,6 +75,11 @@ export default function Product()
         return (timeStamp/1000);
     }
 
+    function handleChecks(e:React.ChangeEvent<HTMLInputElement>)
+    {
+        setCheck({...check, [e.target.name] : e.target.value})
+    }
+
     const handleRent = async () => {
         if(window.wallet===undefined)
         {
@@ -65,8 +87,11 @@ export default function Product()
             return;
         }
         const agreement = await productInstance.connect(window.wallet).createAgreement(0, renderTimeStamp(timestate.startTime), renderTimeStamp(timestate.endTime));
-        agreement.wait();
-        console.log(agreement);
+        const contract = await agreement.wait();
+        //console.log(agreement);
+
+        const parseLogs = (contract.logs).map((log) => productInstance.interface.parseLog(log));
+        console.log(parseLogs[0].args);
         alert("Rented");
     }
 
@@ -94,7 +119,7 @@ export default function Product()
         console.log(booked);
     }
     
-    const handleCart = () => {
+    const handleFav = () => {
         if(window.wallet===undefined)
         {
             alert("Wallet not loaded");
@@ -163,7 +188,7 @@ export default function Product()
                 {/* Portfolio Item Heading */}
                 <div className="row">
                     <h1 className="my-4 catg-body-txt">{state.title}</h1>
-                    <i className="fa fa-heart" aria-hidden="true" onClick={handleCart} style={{marginTop: '30px', marginLeft: '30px', color: 'red', fontSize: '35px'}}></i>
+                    <i className="fa fa-heart" aria-hidden="true" onClick={handleFav} style={{marginTop: '30px', marginLeft: '30px', color: 'red', fontSize: '35px'}}></i>
                 </div>
                 
                 {/* Portfolio Item Row */}
@@ -176,9 +201,9 @@ export default function Product()
                         <h6 className="my-3 catg-body-txt desc-para">{state.description}</h6>
 
                         <h3 className="my-3 catg-body-txt">Payment Info</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} wei</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} wei</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} wei</h6>
                         <h6 className="my-3 catg-body-txt desc-para">Available Discounts: Loading...</h6>
 
                         <h3 className="my-3 catg-body-txt">Pick Up Address</h3>
@@ -193,6 +218,64 @@ export default function Product()
                         <button className='listing-rent-now' onClick={handleRent}>Rent Now</button>
                         <button onClick={handleDates} className='listing-booked-dates'>Check Booked Dates</button>
                     </div>
+                </div>
+                <br/><br/>
+                
+                <div className="row">
+                    <table className='table'>
+                        <tr>
+                            <th style={{textAlign: "center"}}>Contract Address</th>
+                            <th style={{textAlign: "center"}}>Lessor</th>
+                            <th style={{textAlign: "center"}}>Start Date</th>
+                            <th style={{textAlign: "center"}}>End Date</th>
+                            <th style={{textAlign: "center"}}>Buttons</th>
+                        </tr>
+                        {                           
+                            contracts.allContracts.map(ele => (
+                                <tr>
+                                    <td style={{textAlign: "center"}}>{ele[2]}</td>
+                                    <td style={{textAlign: "center"}}>{JSON.stringify(ele[6])}</td>
+                                    <td style={{textAlign: "center"}}>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
+                                    <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
+                                    <td style={{textAlign: "center"}}>
+                                        <div>
+                                        <input 
+                                            type="number" 
+                                            placeholder="Enter 1 if OK else 0"
+                                            style={{width: '160px'}}
+                                            name='initial'
+                                            onChange={handleChecks}
+                                            value={check.initial}                                           
+                                        />
+                                        <button onClick={async () => {
+                                            const agreementInstance = RentalAgreementFactory.connect(
+                                                ele[2],
+                                                window.wallet ?? window.provider
+                                            );
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+                                            //var wei = utils.bigNumberify(JSON.parse(ele[6]));
+                                            const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessee( check.initial, {value: ele[6]} );
+
+                                            console.log(checkInitial);
+                                            alert("Initial check by Lessee done");
+                                        }}>
+                                            InitialLessee
+                                        </button>
+                                        </div>
+                                        <hr/>
+                                        <input type="text" style={{width: '100px'}}/>
+                                        <button>FinalLessee</button>
+                                        <hr/>
+                                        <button>Terminate</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </table>
                 </div>
                 {/* /.row */}
                 {/*Related Projects Row 

@@ -67,10 +67,10 @@ class ListPage extends Component {
                                 </div>
                                 
                                 <div className='catg-body-txt'>
-                                    <p>Rent: {ele[5]?.toLocaleString()} ES</p>
+                                    <p>Rent: {ele[5]?.toLocaleString()} wei</p>
                                 </div>
-                                <p className='location-catg'>Security Fee: {ele[6]?.toLocaleString()} ES</p>
-                                <p className='location-catg'>Cancellation Fee: {ele[7]?.toLocaleString()} ES</p>
+                                <p className='location-catg'>Security Fee: {ele[6]?.toLocaleString()} wei</p>
+                                <p className='location-catg'>Cancellation Fee: {ele[7]?.toLocaleString()} wei</p>
 
                             </div>
                         </div>

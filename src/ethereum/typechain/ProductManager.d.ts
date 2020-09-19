@@ -219,7 +219,7 @@ interface ProductManagerInterface extends ethers.utils.Interface {
 
   events: {
     "EndRentalContract(address,address)": EventFragment;
-    "NewRentalContract(address,address,uint256,uint256,uint256,uint256,uint256,uint256,string)": EventFragment;
+    "NewRentalContract(address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,string)": EventFragment;
     "NewRenting(address,address,address,string)": EventFragment;
   };
 
@@ -963,7 +963,8 @@ export class ProductManager extends Contract {
     ): EventFilter;
 
     NewRentalContract(
-      _deployer: string | null,
+      _lessor: string | null,
+      _lessee: string | null,
       _contractAddress: null,
       _start: null,
       _end: null,

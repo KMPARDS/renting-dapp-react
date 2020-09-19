@@ -10,6 +10,7 @@ import { Link, useLocation} from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Container, Row, Card,} from 'react-bootstrap';
+import ethers from 'ethers';
 
 const queryString = require('query-string');
 
@@ -55,7 +56,8 @@ class CategoryForm extends Component {
                                                         product.wait();
                                                         console.log(product);
                                         
-                                                        setSubmitting(false);                                                       
+                                                        setSubmitting(false);   
+                                                        window.location.reload(false);                                                    
                                                     }}
                                                 >
                                                     {({
@@ -109,7 +111,7 @@ class CategoryForm extends Component {
                                                                             value={values.maxrent}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">ES</button>
+                                                                            <button className="btn btn-light" type="button">wei</button>
                                                                         </div>
                                                                     </div>
                 
@@ -124,7 +126,7 @@ class CategoryForm extends Component {
                                                                             value={values.security}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">ES</button>
+                                                                            <button className="btn btn-light" type="button">wei</button>
                                                                         </div>
                                                                     </div>
                 
@@ -139,7 +141,7 @@ class CategoryForm extends Component {
                                                                             value={values.cancellation}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">ES</button>
+                                                                            <button className="btn btn-light" type="button">wei</button>
                                                                         </div>
                                                                     </div>
                 

@@ -29,8 +29,8 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     "confirmAgreement()": FunctionFragment;
     "createdTimestamp()": FunctionFragment;
     "finalCheck()": FunctionFragment;
-    "finalCheckByLessee(bool)": FunctionFragment;
-    "finalCheckByLessor(bool)": FunctionFragment;
+    "finalCheckByLessee(uint48)": FunctionFragment;
+    "finalCheckByLessor(uint48)": FunctionFragment;
     "getContractAddress()": FunctionFragment;
     "getContractCreated()": FunctionFragment;
     "getItem()": FunctionFragment;
@@ -41,8 +41,8 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     "getState()": FunctionFragment;
     "incentive()": FunctionFragment;
     "initialCheck()": FunctionFragment;
-    "initialCheckByLessee(bool)": FunctionFragment;
-    "initialCheckByLessor(bool)": FunctionFragment;
+    "initialCheckByLessee(uint48)": FunctionFragment;
+    "initialCheckByLessor(uint48)": FunctionFragment;
     "item()": FunctionFragment;
     "lessee()": FunctionFragment;
     "lessor()": FunctionFragment;
@@ -82,11 +82,11 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "finalCheckByLessee",
-    values: [boolean]
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "finalCheckByLessor",
-    values: [boolean]
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "getContractAddress",
@@ -112,11 +112,11 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "initialCheckByLessee",
-    values: [boolean]
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "initialCheckByLessor",
-    values: [boolean]
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "item", values?: undefined): string;
   encodeFunctionData(functionFragment: "lessee", values?: undefined): string;
@@ -318,22 +318,22 @@ export class RentalAgreement extends Contract {
     "finalCheck()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     finalCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "finalCheckByLessee(bool)"(
-      _condition: boolean,
+    "finalCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     finalCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "finalCheckByLessor(bool)"(
-      _condition: boolean,
+    "finalCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -452,22 +452,22 @@ export class RentalAgreement extends Contract {
     ): Promise<ContractTransaction>;
 
     initialCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
-    "initialCheckByLessee(bool)"(
-      _condition: boolean,
+    "initialCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
     initialCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "initialCheckByLessor(bool)"(
-      _condition: boolean,
+    "initialCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -653,22 +653,22 @@ export class RentalAgreement extends Contract {
   "finalCheck()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   finalCheckByLessee(
-    _condition: boolean,
+    _condition: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "finalCheckByLessee(bool)"(
-    _condition: boolean,
+  "finalCheckByLessee(uint48)"(
+    _condition: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   finalCheckByLessor(
-    _condition: boolean,
+    _condition: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "finalCheckByLessor(bool)"(
-    _condition: boolean,
+  "finalCheckByLessor(uint48)"(
+    _condition: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -717,22 +717,22 @@ export class RentalAgreement extends Contract {
   "initialCheck()"(overrides?: PayableOverrides): Promise<ContractTransaction>;
 
   initialCheckByLessee(
-    _condition: boolean,
+    _condition: BigNumberish,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
-  "initialCheckByLessee(bool)"(
-    _condition: boolean,
+  "initialCheckByLessee(uint48)"(
+    _condition: BigNumberish,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
   initialCheckByLessor(
-    _condition: boolean,
+    _condition: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "initialCheckByLessor(bool)"(
-    _condition: boolean,
+  "initialCheckByLessor(uint48)"(
+    _condition: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -848,22 +848,22 @@ export class RentalAgreement extends Contract {
     "finalCheck()"(overrides?: CallOverrides): Promise<void>;
 
     finalCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "finalCheckByLessee(bool)"(
-      _condition: boolean,
+    "finalCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
     finalCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "finalCheckByLessor(bool)"(
-      _condition: boolean,
+    "finalCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -916,22 +916,22 @@ export class RentalAgreement extends Contract {
     "initialCheck()"(overrides?: CallOverrides): Promise<void>;
 
     initialCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "initialCheckByLessee(bool)"(
-      _condition: boolean,
+    "initialCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
     initialCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "initialCheckByLessor(bool)"(
-      _condition: boolean,
+    "initialCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1056,22 +1056,22 @@ export class RentalAgreement extends Contract {
     "finalCheck()"(overrides?: Overrides): Promise<BigNumber>;
 
     finalCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "finalCheckByLessee(bool)"(
-      _condition: boolean,
+    "finalCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
     finalCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "finalCheckByLessor(bool)"(
-      _condition: boolean,
+    "finalCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -1116,22 +1116,22 @@ export class RentalAgreement extends Contract {
     "initialCheck()"(overrides?: PayableOverrides): Promise<BigNumber>;
 
     initialCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
-    "initialCheckByLessee(bool)"(
-      _condition: boolean,
+    "initialCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
     initialCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "initialCheckByLessor(bool)"(
-      _condition: boolean,
+    "initialCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -1240,22 +1240,22 @@ export class RentalAgreement extends Contract {
     "finalCheck()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     finalCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "finalCheckByLessee(bool)"(
-      _condition: boolean,
+    "finalCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     finalCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "finalCheckByLessor(bool)"(
-      _condition: boolean,
+    "finalCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -1310,22 +1310,22 @@ export class RentalAgreement extends Contract {
     ): Promise<PopulatedTransaction>;
 
     initialCheckByLessee(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
-    "initialCheckByLessee(bool)"(
-      _condition: boolean,
+    "initialCheckByLessee(uint48)"(
+      _condition: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
     initialCheckByLessor(
-      _condition: boolean,
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "initialCheckByLessor(bool)"(
-      _condition: boolean,
+    "initialCheckByLessor(uint48)"(
+      _condition: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 

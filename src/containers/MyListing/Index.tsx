@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './MyListing.scss';
 import Images from '../Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
+//import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import Modal from 'react-bootstrap/Modal';
-import {  Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -23,7 +23,12 @@ class MyListing extends Component {
     }
 
     getProduct = async () => {
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null);
+        if(window.wallet===undefined)
+        {
+            alert("Wallet not loaded");
+            return;
+        }
+        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -56,7 +61,7 @@ class MyListing extends Component {
                 <div className='myListing-wrapper-container'>
                     {
                         this.state.allProduct.map((ele: React.ReactNode[]) => {
-                            return <div className='row listing-border'>
+                            return <div className='row listing-border position-relative'>
                                 <div className='r-col-d-4'>
                                     <div className='section1-listing'>
                                         <img className='listing-main-img' src={Images.path.rlTwo} />
@@ -67,18 +72,18 @@ class MyListing extends Component {
                                 </div>
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
-                                        <h5 className='listing-head'>{ele[2]}</h5>
-                                        <div className='desc-para'>Rent: {ele[5]?.toLocaleString()} ES</div>
-                                        <div className='desc-para'>Security Fee: {ele[6]?.toLocaleString()} ES</div>
-                                        <div className='desc-para'>Cancellation Fee: {ele[7]?.toLocaleString()} ES</div><br/>
+                                        <h5><Link className='stretched-link listing-head' to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></h5>
+                                        <div className='desc-para'>Rent: {ele[5]?.toLocaleString()} wei</div>
+                                        <div className='desc-para'>Security Fee: {ele[6]?.toLocaleString()} wei</div>
+                                        <div className='desc-para'>Cancellation Fee: {ele[7]?.toLocaleString()} wei</div><br/>
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele[3]}</p>
                                         <h5 className='desc-head'>Address</h5>
                                         <p className='desc-para'>{ele[4]}</p>
-                                        <div className='two-btn-container'>
+                                        {/*<div className='two-btn-container'>
                                             <button className='listing-edit'>Edit</button>
                                             <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>
-                                        </div>
+                                        </div>*/}
                                     </div>
                                 </div>
                             </div>

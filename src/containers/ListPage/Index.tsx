@@ -45,6 +45,7 @@ class ListPage extends Component {
                 <br/>
                 <br/>
                 <div className='myListing-wrapper-container'>
+                    <div className="row">
                     {
                         this.state.allProduct.map((ele: React.ReactNode[]) => {
                         return <div className='r-col-d-4 position-relative'>
@@ -66,16 +67,25 @@ class ListPage extends Component {
                                 </div>
                                 
                                 <div className='catg-body-txt'>
-                                    <p>Rent: {ele[5]?.toLocaleString()} ES</p>
+                                    <p>Rent: {ele[5]?.toLocaleString()} wei</p>
                                 </div>
-                                <p className='location-catg'>Security Fee: {ele[6]?.toLocaleString()} ES</p>
-                                <p className='location-catg'>Cancellation Fee: {ele[7]?.toLocaleString()} ES</p>
+                                <p className='location-catg'>Security Fee: {ele[6]?.toLocaleString()} wei</p>
+                                <p className='location-catg'>Cancellation Fee: {ele[7]?.toLocaleString()} wei</p>
 
                             </div>
                         </div>
                         })
-                    }
+                    }    
+                    </div>                
                 </div>
+                <br/>
+            <br/>
+            <br/>
+            <div className='footer-bgd'>
+                <div className='wrapper-container'>
+                    <Footer />
+                </div>
+            </div>
             </div>
 
         );

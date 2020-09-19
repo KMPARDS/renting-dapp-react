@@ -272,7 +272,7 @@ export class RentingDappManager extends Contract {
 
   filters: {
     ProductDetails(
-      lessor: null,
+      lessor: string | null,
       item: null,
       _name: null,
       _description: null,

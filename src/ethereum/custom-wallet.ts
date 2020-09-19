@@ -18,6 +18,36 @@ export class CustomWallet extends ethers.Wallet {
     return new CustomWallet(this.privateKey, provider);
   }
 
+  async call(
+    transaction: Deferrable<TransactionRequest>,
+    blockTag?: string | number | undefined
+    // @ts-ignore
+  ): Promise<string> {
+    try {
+      const resp = await super.call(transaction, blockTag);
+      console.log(resp);
+
+      return resp;
+    } catch (err) {
+      const data = err?.body?.error?.data;
+
+      if (typeof data === 'string' && data.slice(0, 9) === 'Reverted ') {
+        const actualData = data.slice(9);
+        const iface = new ethers.utils.Interface(['function Error(string)']);
+
+        logger.throwError(
+          actualData !== '0x'
+            ? iface.decodeFunctionData('Error', actualData)[0]
+            : 'Call was reverted without a revert reason',
+          Logger.errors.CALL_EXCEPTION
+        );
+      } else {
+        throw err;
+      }
+    }
+  }
+
+
   async populateTransaction(
     transaction: Deferrable<TransactionRequest>
   ): Promise<TransactionRequest> {

@@ -10,6 +10,7 @@ import { Link, useLocation} from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Container, Row, Card,} from 'react-bootstrap';
+import ethers from 'ethers';
 
 const queryString = require('query-string');
 
@@ -28,20 +29,6 @@ class CategoryForm extends Component {
         console.log(window.location.search);
         const parsed = queryString.parse(window.location.search);
         console.log(parsed);
-
-        {/*const SignupSchema = Yup.object().shape({
-            firstName: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            lastName: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            email: Yup.string()
-                .email('Invalid email')
-                .required('Required'),
-        });*/}
         
         return (
 
@@ -69,7 +56,8 @@ class CategoryForm extends Component {
                                                         product.wait();
                                                         console.log(product);
                                         
-                                                        setSubmitting(false);                                                       
+                                                        setSubmitting(false);   
+                                                        window.location.reload(false);                                                    
                                                     }}
                                                 >
                                                     {({
@@ -123,7 +111,7 @@ class CategoryForm extends Component {
                                                                             value={values.maxrent}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">ES</button>
+                                                                            <button className="btn btn-light" type="button">wei</button>
                                                                         </div>
                                                                     </div>
                 
@@ -138,7 +126,7 @@ class CategoryForm extends Component {
                                                                             value={values.security}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">ES</button>
+                                                                            <button className="btn btn-light" type="button">wei</button>
                                                                         </div>
                                                                     </div>
                 
@@ -153,7 +141,7 @@ class CategoryForm extends Component {
                                                                             value={values.cancellation}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">ES</button>
+                                                                            <button className="btn btn-light" type="button">wei</button>
                                                                         </div>
                                                                     </div>
                 

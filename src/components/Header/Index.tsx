@@ -23,18 +23,16 @@ import {
 } from "reactstrap";
 
 class Header extends Component {
-  public state: any;
-  public setState: any;
 
-  constructor(props) {
+  constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       showMenu: false,
       profileMenu: false,
       isOpen: false,
     };
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.toggleProfile = this.toggleProfile.bind(this);
+    //this.toggleMenu = this.toggleMenu.bind(this);
+    //this.toggleProfile = this.toggleProfile.bind(this);
   }
 
   toggleMenu = () => {
@@ -133,7 +131,7 @@ class Header extends Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               {" "}
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/#">
                 Home{" "}
               </a>{" "}
             </li>
@@ -148,6 +146,13 @@ class Header extends Component {
               <a className="nav-link catgry-texttwo" href="/List">
                 {" "}
                 Product list{" "}
+              </a>{" "}
+            </li>
+            <li className="nav-item ">
+              {" "}
+              <a className="nav-link catgry-texttwo" href="/MyListing">
+                {" "}
+                My Listings{" "}
               </a>{" "}
             </li>
             <li className="nav-item">
@@ -169,9 +174,9 @@ class Header extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/myFav">
                 {" "}
-                <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
+                <i className="fa fa-heart" aria-hidden="true"></i>{" "}
               </a>
             </li>
             <li className="nav-item">

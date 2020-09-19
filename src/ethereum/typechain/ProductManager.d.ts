@@ -25,7 +25,7 @@ interface ProductManagerInterface extends ethers.utils.Interface {
     "bookedDates(uint256,uint256)": FunctionFragment;
     "bookings()": FunctionFragment;
     "cancellationFee()": FunctionFragment;
-    "createAgreement(uint256,uint256,uint256)": FunctionFragment;
+    "createAgreement(uint256,uint48,uint48)": FunctionFragment;
     "description()": FunctionFragment;
     "discounts(uint256)": FunctionFragment;
     "emitEndEvent(address)": FunctionFragment;
@@ -219,7 +219,7 @@ interface ProductManagerInterface extends ethers.utils.Interface {
 
   events: {
     "EndRentalContract(address,address)": EventFragment;
-    "NewRentalContract(address,address,uint256,uint256,uint256,uint256,uint256,uint256,string)": EventFragment;
+    "NewRentalContract(address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,string)": EventFragment;
     "NewRenting(address,address,address,string)": EventFragment;
   };
 
@@ -257,7 +257,7 @@ export class ProductManager extends Contract {
       arg1: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber;
+      0: number;
     }>;
 
     "bookedDates(uint256,uint256)"(
@@ -265,7 +265,7 @@ export class ProductManager extends Contract {
       arg1: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber;
+      0: number;
     }>;
 
     bookings(
@@ -299,7 +299,7 @@ export class ProductManager extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "createAgreement(uint256,uint256,uint256)"(
+    "createAgreement(uint256,uint48,uint48)"(
       _incentive: BigNumberish,
       start: BigNumberish,
       end: BigNumberish,
@@ -364,26 +364,26 @@ export class ProductManager extends Contract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber;
+      0: number;
     }>;
 
     "endingTime(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber;
+      0: number;
     }>;
 
     getBookedDates(
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber[][];
+      0: number[][];
     }>;
 
     "getBookedDates()"(
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber[][];
+      0: number[][];
     }>;
 
     getDiscounts(
@@ -576,14 +576,14 @@ export class ProductManager extends Contract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber;
+      0: number;
     }>;
 
     "startingTime(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<{
-      0: BigNumber;
+      0: number;
     }>;
   };
 
@@ -601,13 +601,13 @@ export class ProductManager extends Contract {
     arg0: BigNumberish,
     arg1: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<number>;
 
   "bookedDates(uint256,uint256)"(
     arg0: BigNumberish,
     arg1: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<number>;
 
   bookings(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -624,7 +624,7 @@ export class ProductManager extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "createAgreement(uint256,uint256,uint256)"(
+  "createAgreement(uint256,uint48,uint48)"(
     _incentive: BigNumberish,
     start: BigNumberish,
     end: BigNumberish,
@@ -670,16 +670,16 @@ export class ProductManager extends Contract {
 
   "endAgreement()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-  endingTime(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+  endingTime(arg0: BigNumberish, overrides?: CallOverrides): Promise<number>;
 
   "endingTime(uint256)"(
     arg0: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<number>;
 
-  getBookedDates(overrides?: CallOverrides): Promise<BigNumber[][]>;
+  getBookedDates(overrides?: CallOverrides): Promise<number[][]>;
 
-  "getBookedDates()"(overrides?: CallOverrides): Promise<BigNumber[][]>;
+  "getBookedDates()"(overrides?: CallOverrides): Promise<number[][]>;
 
   getDiscounts(overrides?: CallOverrides): Promise<BigNumber[]>;
 
@@ -762,15 +762,12 @@ export class ProductManager extends Contract {
 
   "security()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-  startingTime(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  startingTime(arg0: BigNumberish, overrides?: CallOverrides): Promise<number>;
 
   "startingTime(uint256)"(
     arg0: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<number>;
 
   callStatic: {
     addDiscount(
@@ -787,13 +784,13 @@ export class ProductManager extends Contract {
       arg0: BigNumberish,
       arg1: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<number>;
 
     "bookedDates(uint256,uint256)"(
       arg0: BigNumberish,
       arg1: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<number>;
 
     bookings(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -810,7 +807,7 @@ export class ProductManager extends Contract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    "createAgreement(uint256,uint256,uint256)"(
+    "createAgreement(uint256,uint48,uint48)"(
       _incentive: BigNumberish,
       start: BigNumberish,
       end: BigNumberish,
@@ -856,19 +853,16 @@ export class ProductManager extends Contract {
 
     "endAgreement()"(overrides?: CallOverrides): Promise<void>;
 
-    endingTime(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    endingTime(arg0: BigNumberish, overrides?: CallOverrides): Promise<number>;
 
     "endingTime(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<number>;
 
-    getBookedDates(overrides?: CallOverrides): Promise<BigNumber[][]>;
+    getBookedDates(overrides?: CallOverrides): Promise<number[][]>;
 
-    "getBookedDates()"(overrides?: CallOverrides): Promise<BigNumber[][]>;
+    "getBookedDates()"(overrides?: CallOverrides): Promise<number[][]>;
 
     getDiscounts(overrides?: CallOverrides): Promise<BigNumber[]>;
 
@@ -954,12 +948,12 @@ export class ProductManager extends Contract {
     startingTime(
       arg0: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<number>;
 
     "startingTime(uint256)"(
       arg0: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<number>;
   };
 
   filters: {
@@ -969,7 +963,8 @@ export class ProductManager extends Contract {
     ): EventFilter;
 
     NewRentalContract(
-      _deployer: string | null,
+      _lessor: string | null,
+      _lessee: string | null,
       _contractAddress: null,
       _start: null,
       _end: null,
@@ -1026,7 +1021,7 @@ export class ProductManager extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "createAgreement(uint256,uint256,uint256)"(
+    "createAgreement(uint256,uint48,uint48)"(
       _incentive: BigNumberish,
       start: BigNumberish,
       end: BigNumberish,
@@ -1218,7 +1213,7 @@ export class ProductManager extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "createAgreement(uint256,uint256,uint256)"(
+    "createAgreement(uint256,uint48,uint48)"(
       _incentive: BigNumberish,
       start: BigNumberish,
       end: BigNumberish,

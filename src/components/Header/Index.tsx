@@ -23,18 +23,16 @@ import {
 } from "reactstrap";
 
 class Header extends Component {
-	public state: any;
-	public setState: any;
 
-  constructor(props) {
+  constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       showMenu: false,
       profileMenu: false,
       isOpen: false,
     };
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.toggleProfile = this.toggleProfile.bind(this);
+    //this.toggleMenu = this.toggleMenu.bind(this);
+    //this.toggleProfile = this.toggleProfile.bind(this);
   }
 
   toggleMenu = () => {
@@ -55,17 +53,21 @@ class Header extends Component {
 
   render() {
     return (
-
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark  navbar-light bg-transparent black custom-menu ">
-
-<img className="rentDaap-Img" src={Images.path.logocolor} />
-                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-                  <div className="collapse navbar-collapse" id="main_nav">
-
-                <ul className="navbar-nav">
-                    {/* <li className="nav-item dropdown has-megamenu">
+        <img className="rentDaap-Img" src={Images.path.logocolor} />
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#main_nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="main_nav">
+          <ul className="navbar-nav">
+            {/* <li className="nav-item dropdown has-megamenu">
                     <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"> ALL CATEGORIES  </a>
                       <div className="dropdown-menu megamenu" role="menu">
                                     <div className="row">
@@ -124,29 +126,82 @@ class Header extends Component {
                                     </div>
                         </div> 
                   </li> */}
-                 </ul> 
+          </ul>
 
-
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item active"> <a className="nav-link" href="#">Home </a> </li>
-                    <li className="nav-item "> <a className="nav-link catgry-texttwo" onClick={this.toggleMenu}>All Categories </a> </li>
-                    <li className="nav-item "> <a className="nav-link catgry-texttwo" href="/List"> Product list </a> </li>
-                    <li className="nav-item"><a className="nav-link" href="#"> <i className="fa fa-comment-o" aria-hidden="true"></i> </a></li>
-                    <li className="nav-item"><a className="nav-link" href="#">  <i className="fa fa-bell-o" aria-hidden="true"></i> </a></li>
-                    <li className="nav-item"><a className="nav-link" href="#">  <i className="fa fa-user-o" aria-hidden="true"></i> </a></li>
-                    <li className="nav-item"><a className="nav-link" href="#"> <i className="fa fa-shopping-cart" aria-hidden="true"></i> </a></li>
-                    <li className="nav-item"><a className="nav-link btn btn-outline-warning conn-wallet-btn" href="/RentPage"> Rent </a></li>
-                    <li className="nav-item"><a className="nav-link btn btn-outline-warning conn-wallet-btn" href="https://eraswap.life/" target="_blank"> CONNECT TO WALLET </a></li>
-               </ul>
-
-                  </div> 
-
-                </nav>
-
-
-
-
-       );
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item active">
+              {" "}
+              <a className="nav-link" href="/#">
+                Home{" "}
+              </a>{" "}
+            </li>
+            <li className="nav-item ">
+              {" "}
+              <a className="nav-link catgry-texttwo" onClick={this.toggleMenu}>
+                All Categories{" "}
+              </a>{" "}
+            </li>
+            <li className="nav-item ">
+              {" "}
+              <a className="nav-link catgry-texttwo" href="/List">
+                {" "}
+                Product list{" "}
+              </a>{" "}
+            </li>
+            <li className="nav-item ">
+              {" "}
+              <a className="nav-link catgry-texttwo" href="/MyListing">
+                {" "}
+                My Listings{" "}
+              </a>{" "}
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                {" "}
+                <i className="fa fa-comment-o" aria-hidden="true"></i>{" "}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                {" "}
+                <i className="fa fa-bell-o" aria-hidden="true"></i>{" "}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                {" "}
+                <i className="fa fa-user-o" aria-hidden="true"></i>{" "}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/myFav">
+                {" "}
+                <i className="fa fa-heart" aria-hidden="true"></i>{" "}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link btn btn-outline-warning conn-wallet-btn"
+                href="/RentPage"
+              >
+                {" "}
+                Rent{" "}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link btn btn-outline-warning conn-wallet-btn"
+                href="https://eraswap.life/"
+                target="_blank"
+              >
+                {" "}
+                CONNECT TO WALLET{" "}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
   }
 }
 

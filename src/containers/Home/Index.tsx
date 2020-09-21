@@ -16,7 +16,7 @@ class Home extends Component {
     public setState: any;
     public handleInputChange: any;
 
-    constructor(props) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
             country: '',
@@ -24,12 +24,12 @@ class Home extends Component {
             showCountry: true,
         };
     }
-
-    selectCountry(val) {
-        this.setState({ country: val, showCountry: false });
-    }
-
-    selectRegion(val) {
+    
+    selectCountry (val: any) {
+        this.setState({ country: val ,showCountry:false});
+      }
+     
+      selectRegion (val: any) {
         this.setState({ region: val });
     }
 
@@ -76,11 +76,14 @@ class Home extends Component {
                    </div>
                     </div>
                 </div>
-                <div className='homeCateg-bgd'>
-                    <div className='wrapper-container'>
-                        <CarouselPage />
-                    </div>
-                </div>
+                <section className='homeCateg-bgd '>
+                    <Container>
+                        <Row>
+                            <Col lg={12}> <CarouselPage /></Col>
+                        </Row>
+                    </Container>
+                </section>
+               
                 
                 <section className='desc-bgd-color mt60 mb60'>
                         <Container>

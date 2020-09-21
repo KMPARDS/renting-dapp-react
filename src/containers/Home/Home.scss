@@ -6,8 +6,7 @@
  background-size: cover;
 }
 .wrapper-container{
-    width: 95%;
-    margin: 0 auto;
+
 }
 
 .hero-txt-style{
@@ -148,13 +147,7 @@ padding-left: 10px;
     background-color: #d0e2f48c;
 }
 
-.footer-bgd{
- background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../../assets/Images/pebble.jpg');
- background-repeat: no-repeat;
- width:100%;
- height: 50vh;
- background-size: cover;
-}
+
 .desc-bgd-color{
     background-color: #ffffff;
 }
@@ -169,6 +162,7 @@ padding-left: 10px;
     .search-field{
       width: 230px;
       height: 44px;
+      margin-bottom: 20px;
     }
     .hero-txt-style{
         font-size: 16px !important;
@@ -196,13 +190,13 @@ padding-left: 10px;
         margin-bottom: 20px;
     }
     .homeCateg-bgd{
-        background-color: #ffffff;
+        // background-color: #ffffff;
     }
     .rental-hero-bgd {
-        height: 70vh;
+        height: 60vh;
     }
     .buy-main-container {
-        padding-top: 35%;
+        padding-top: 30%;
     }
     .custom-menu .navbar-collapse {
         background: #eee;
@@ -211,8 +205,9 @@ padding-left: 10px;
         color: #000 !important;
         padding: 0 15px;
         line-height: 45px;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #00000059;
         width: 96%;
+        font-weight: 600;
     }
     .navbar-dark .navbar-toggler {
         color: #000;
@@ -233,5 +228,5 @@ padding-left: 10px;
     top: 27px;
 }
 li.react-multi-carousel-item .card.text-center {
-    width: 68% !important;
+    // width: 68% !important;
 }

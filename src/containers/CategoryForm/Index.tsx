@@ -52,7 +52,7 @@ class CategoryForm extends Component {
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         alert(JSON.stringify(values, null, 2));
 
-                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, values.maxrent, values.security, values.cancellation, values.description);
+                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description);
                                                         product.wait();
                                                         console.log(product);
                                         
@@ -111,7 +111,7 @@ class CategoryForm extends Component {
                                                                             value={values.maxrent}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">wei</button>
+                                                                            <button className="btn btn-light" type="button">ES</button>
                                                                         </div>
                                                                     </div>
                 
@@ -126,7 +126,7 @@ class CategoryForm extends Component {
                                                                             value={values.security}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">wei</button>
+                                                                            <button className="btn btn-light" type="button">ES</button>
                                                                         </div>
                                                                     </div>
                 
@@ -141,7 +141,7 @@ class CategoryForm extends Component {
                                                                             value={values.cancellation}
                                                                         />
                                                                         <div className="input-group-append">
-                                                                            <button className="btn btn-light" type="button">wei</button>
+                                                                            <button className="btn btn-light" type="button">ES</button>
                                                                         </div>
                                                                     </div>
                 

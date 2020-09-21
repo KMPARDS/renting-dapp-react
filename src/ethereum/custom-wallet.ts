@@ -57,8 +57,12 @@ export class CustomWallet extends ethers.Wallet {
 
     if (tx.gasLimit == null || tx.gasLimit instanceof Promise) {
       tx.gasLimit = await this.estimateGas(tx).catch(async (error) => {
-        const { from, to, data, value } = tx;
+        let { from, to, data, value } = tx;
 
+        if(typeof(value) == "object")
+        {
+          value = value.toHexString();
+        }
         const provider = this.provider as ethers.providers.JsonRpcProvider;
 
         if (provider.send) {

@@ -4,22 +4,22 @@
 }
 
 .car-slider-img{
-    width: 100px;
+    width: 100%;
     height: 158px;
-    margin-top: 20px;
+    object-fit: cover;
 }
 .react-multi-carousel-item.react-multi-carousel-item--active{
-    margin-right: -90px;
+    margin-right:15px;
 }
 .card.text-center{
-    width: 60%;
+    // width: 60%;
 }
 .card-title{
-    font-size: 18px;
-    white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-   
+font-size: 18px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+color: #ff5d22;
 }
 .card-body.text-dark{
     text-align: justify;
@@ -38,13 +38,14 @@
         overflow: visible;
     }
     .card.text-center{
-        width: 50%;
+        // width: 50%;
     }
     .react-multi-carousel-item.react-multi-carousel-item--active{
         margin-right: 10px;
-        width: 587px !important;
+        // width: 587px !important;
     }
     .car-slider-img{
-       width: 204px;
+        width: 100%;
+        
     }
 }

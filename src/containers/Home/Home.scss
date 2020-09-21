@@ -22,7 +22,7 @@
 }
 
 .buy-main-container{
-    padding-top: 25%;
+    padding-top: 20%;
 }
 
 .search-field{
@@ -81,8 +81,8 @@ padding-left: 10px;
 }
 .desc-text{
     text-align: center;
-    margin-top: 8%;
-    margin-bottom: 45px;
+    // margin-top: 8%;
+    // margin-bottom: 45px;
 }
 .rent-main-container{
     width: 108%;
@@ -162,6 +162,7 @@ padding-left: 10px;
     .search-field{
       width: 230px;
       height: 44px;
+      margin-bottom: 20px;
     }
     .hero-txt-style{
         font-size: 16px !important;
@@ -185,17 +186,17 @@ padding-left: 10px;
         font-size: 12px;
     }
     .better-container{
-        width: 75%;
+     
         margin-bottom: 20px;
     }
     .homeCateg-bgd{
-        background-color: #ffffff;
+        // background-color: #ffffff;
     }
     .rental-hero-bgd {
-        height: 70vh;
+        height: 60vh;
     }
     .buy-main-container {
-        padding-top: 35%;
+        padding-top: 30%;
     }
     .custom-menu .navbar-collapse {
         background: #eee;
@@ -204,8 +205,9 @@ padding-left: 10px;
         color: #000 !important;
         padding: 0 15px;
         line-height: 45px;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #00000059;
         width: 96%;
+        font-weight: 600;
     }
     .navbar-dark .navbar-toggler {
         color: #000;
@@ -226,5 +228,5 @@ padding-left: 10px;
     top: 27px;
 }
 li.react-multi-carousel-item .card.text-center {
-    width: 68% !important;
+    // width: 68% !important;
 }

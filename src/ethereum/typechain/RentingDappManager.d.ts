@@ -25,8 +25,10 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
     "isAuthorised(address)": FunctionFragment;
     "isAvailable(address)": FunctionFragment;
     "items(uint256)": FunctionFragment;
+    "kycContract()": FunctionFragment;
     "owner()": FunctionFragment;
     "removeItem(address)": FunctionFragment;
+    "setKycDapp(address)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -47,8 +49,13 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "isAvailable", values: [string]): string;
   encodeFunctionData(functionFragment: "items", values: [BigNumberish]): string;
+  encodeFunctionData(
+    functionFragment: "kycContract",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(functionFragment: "removeItem", values: [string]): string;
+  encodeFunctionData(functionFragment: "setKycDapp", values: [string]): string;
 
   decodeFunctionResult(functionFragment: "addItem", data: BytesLike): Result;
   decodeFunctionResult(
@@ -60,8 +67,13 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "items", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "kycContract",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "removeItem", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setKycDapp", data: BytesLike): Result;
 
   events: {
     "ProductDetails(address,address,string,string,string,uint256,uint256,uint256,string)": EventFragment;
@@ -148,6 +160,18 @@ export class RentingDappManager extends Contract {
       0: string;
     }>;
 
+    kycContract(
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "kycContract()"(
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
     owner(
       overrides?: CallOverrides
     ): Promise<{
@@ -167,6 +191,16 @@ export class RentingDappManager extends Contract {
 
     "removeItem(address)"(
       _item: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    setKycDapp(
+      kycDapp: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "setKycDapp(address)"(
+      kycDapp: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
@@ -214,6 +248,10 @@ export class RentingDappManager extends Contract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  kycContract(overrides?: CallOverrides): Promise<string>;
+
+  "kycContract()"(overrides?: CallOverrides): Promise<string>;
+
   owner(overrides?: CallOverrides): Promise<string>;
 
   "owner()"(overrides?: CallOverrides): Promise<string>;
@@ -225,6 +263,16 @@ export class RentingDappManager extends Contract {
 
   "removeItem(address)"(
     _item: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  setKycDapp(
+    kycDapp: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "setKycDapp(address)"(
+    kycDapp: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -272,6 +320,10 @@ export class RentingDappManager extends Contract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    kycContract(overrides?: CallOverrides): Promise<string>;
+
+    "kycContract()"(overrides?: CallOverrides): Promise<string>;
+
     owner(overrides?: CallOverrides): Promise<string>;
 
     "owner()"(overrides?: CallOverrides): Promise<string>;
@@ -280,6 +332,13 @@ export class RentingDappManager extends Contract {
 
     "removeItem(address)"(
       _item: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setKycDapp(kycDapp: string, overrides?: CallOverrides): Promise<void>;
+
+    "setKycDapp(address)"(
+      kycDapp: string,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -342,6 +401,10 @@ export class RentingDappManager extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    kycContract(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "kycContract()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
     "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -350,6 +413,13 @@ export class RentingDappManager extends Contract {
 
     "removeItem(address)"(
       _item: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    setKycDapp(kycDapp: string, overrides?: Overrides): Promise<BigNumber>;
+
+    "setKycDapp(address)"(
+      kycDapp: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
   };
@@ -407,6 +477,10 @@ export class RentingDappManager extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    kycContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "kycContract()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -418,6 +492,16 @@ export class RentingDappManager extends Contract {
 
     "removeItem(address)"(
       _item: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    setKycDapp(
+      kycDapp: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "setKycDapp(address)"(
+      kycDapp: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };

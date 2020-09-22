@@ -6,7 +6,7 @@ import { RentingDappManagerFactory } from './typechain/RentingDappManagerFactory
 const config = {
     ESN: {
       rentingdappmanager: process.env.REACT_APP_RENTINGDAPP_ADDRESS,
-      kycdapp: '0xF9FCb8678dB15A5507A5f5414D68aBB2f4568E27'
+      kycdapp: '0xC4336494606203e3907539d5b462A5cb7853B3C6'
     },
 };
 

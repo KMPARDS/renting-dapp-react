@@ -92,6 +92,26 @@ export default function Product()
 
         const parseLogs = (contract.logs).map((log) => productInstance.interface.parseLog(log));
         console.log(parseLogs[0].args);
+
+        const product = {address: address, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location};        
+        const userId = ''+window.wallet.address+'store';
+        
+        //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");
+        if(localStorage.getItem(JSON.stringify(userId)) === null)
+        {
+            let val = [];
+            val.push(product);
+            localStorage.setItem(JSON.stringify(userId), JSON.stringify(val));
+        }
+        else
+        {
+            let arr = [];
+            arr = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
+
+            arr.push(product);
+            localStorage.setItem(JSON.stringify(userId), JSON.stringify(arr));          
+        }
+
         alert("Rented");
     }
 

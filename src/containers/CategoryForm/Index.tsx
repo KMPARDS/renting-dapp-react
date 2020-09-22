@@ -52,7 +52,8 @@ class CategoryForm extends Component {
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         alert(JSON.stringify(values, null, 2));
 
-                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description);
+                                                        const categoryId = new URLSearchParams(this.props.location.search).get("id");
+                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, categoryId);
                                                         product.wait();
                                                         console.log(product);
                                         

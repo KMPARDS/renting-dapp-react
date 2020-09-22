@@ -21,7 +21,7 @@ class ListPage extends Component {
     }
 
     getProduct = async () => {
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);

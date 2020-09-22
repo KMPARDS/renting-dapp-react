@@ -204,7 +204,7 @@ class NavBar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/MyAccount">
                 {" "}
                 <i className="fa fa-user-o" aria-hidden="true"></i>{" "}
               </a>

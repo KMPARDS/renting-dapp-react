@@ -29,7 +29,7 @@ class MyListing extends Component {
             alert("Wallet not loaded");
             return;
         }
-        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);

@@ -17,6 +17,7 @@ class RentPage extends Component {
     this.state = {
       currentCategory: 0,
 
+      //Follow this structure for adding any Categiry or Sub-Category
       categoryArr: [
         {
           id: 1,
@@ -111,8 +112,6 @@ class RentPage extends Component {
                         <b>Select Category</b>
                       </p>
                     <div className="">
-                       
-
                       <div style={{ display: "flex" }}>
                         <div style={{ flex: 1 }}>
                           <table style={{ width: "100%" }}>
@@ -164,7 +163,7 @@ class RentPage extends Component {
                           <table style={{ width: "100%" }}>
                             {this.state.categoryArr[
                               this.state.currentCategory
-                            ].sub.map((item) => (
+                            ].sub.map((item, i) => (
                               <tr>
                                 <td>
                                   <Link
@@ -173,6 +172,7 @@ class RentPage extends Component {
                                         this.state.currentCategory
                                       ].cat,
                                       sub: item,
+                                      id: ''+this.state.categoryArr[this.state.currentCategory].id + i
                                     })}`}
                                   >
                                     {item}

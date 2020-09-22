@@ -84,9 +84,10 @@ export default function FavPage()
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='listing-head' to={'/Product/'+ele.address}>{ele.title}</Link></h5>
-                                        <div className='desc-para'>Rent: {ele.rent?.toLocaleString()} wei</div>
-                                        <div className='desc-para'>Security Fee: {ele.security?.toLocaleString()} wei</div>
-                                        <div className='desc-para'>Cancellation Fee: {ele.cancellation?.toLocaleString()} wei</div><br/>
+                                        <div className='desc-para'>Rent: {ele.rent} ES</div>
+                                        <div className='desc-para'>Security Fee: {ele.security} ES</div>
+                                        <div className='desc-para'>Cancellation Fee: {ele.cancellation} ES</div>
+                                        <br/>
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele.description}</p>
                                         <h5 className='desc-head'>Address</h5>

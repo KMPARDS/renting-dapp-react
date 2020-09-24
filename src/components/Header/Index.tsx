@@ -129,64 +129,64 @@ class Header extends Component {
           </ul>
 
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
+          <li className="nav-item active">
               {" "}
-              <a className="nav-link" href="/#">
+              <Link className="nav-link" to="/#">
                 Home{" "}
-              </a>{" "}
+              </Link>{" "}
             </li>
-            <li className="nav-item ">
+            {/*<li className="nav-item ">
               {" "}
-              <a className="nav-link catgry-texttwo" onClick={this.toggleMenu}>
+              <Link className="nav-link catgry-texttwo" onClick={this.toggleMenu}>
                 All Categories{" "}
-              </a>{" "}
-            </li>
+              </Link>{" "}
+            </li>*/}
             <li className="nav-item ">
               {" "}
-              <a className="nav-link catgry-texttwo" href="/List">
+              <Link className="nav-link catgry-texttwo" to="/List">
                 {" "}
                 Product list{" "}
-              </a>{" "}
+              </Link>{" "}
             </li>
             <li className="nav-item ">
               {" "}
-              <a className="nav-link catgry-texttwo" href="/MyListing">
+              <Link className="nav-link catgry-texttwo" to="/MyListing">
                 {" "}
                 My Listings{" "}
-              </a>{" "}
+              </Link>{" "}
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 {" "}
                 <i className="fa fa-comment-o" aria-hidden="true"></i>{" "}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 {" "}
                 <i className="fa fa-bell-o" aria-hidden="true"></i>{" "}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/MyAccount">
+              <Link className="nav-link" to="/MyAccount">
                 {" "}
                 <i className="fa fa-user-o" aria-hidden="true"></i>{" "}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/myFav">
+              <Link className="nav-link" to="/myFav">
                 {" "}
                 <i className="fa fa-heart" aria-hidden="true"></i>{" "}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link btn btn-outline-warning conn-wallet-btn"
-                href="/RentPage"
+                to="/RentPage"
               >
                 {" "}
                 Rent{" "}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a

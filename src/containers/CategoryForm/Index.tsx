@@ -58,7 +58,7 @@ class CategoryForm extends Component {
                                                         console.log(product);
                                         
                                                         setSubmitting(false);   
-                                                        window.location.reload(false);                                                    
+                                                        //window.location.reload(false);                                                    
                                                     }}
                                                 >
                                                     {({

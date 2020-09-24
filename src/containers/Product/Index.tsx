@@ -109,7 +109,7 @@ export default function Product()
             arr = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
 
             arr.push(product);
-            localStorage.setItem(JSON.stringify(userId), JSON.stringify(arr));          
+            localStorage.setItem(JSON.stringify(userId), JSON.stringify(arr));              
         }
 
         alert("Rented");
@@ -286,6 +286,24 @@ export default function Product()
                                                 Initial Lessee
                                             </button>
                                         </div>
+                                        <hr/>
+
+                                        <button className="listing-rent-small" onClick={async () => {
+                                            const agreementInstance = RentalAgreementFactory.connect(
+                                                ele[2],
+                                                window.wallet ?? window.provider
+                                            );
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+                                            const cancelRent = await agreementInstance.connect(window.wallet).cancelRent({value: ele[7]});
+                                            console.log(cancelRent);
+                                            alert(ethers.utils.formatEther(ele[7])+" ES rent paid as cencellation charge");
+                                        }}>
+                                            Cancel Rent
+                                        </button>
                                         <hr/>
 
                                         <button className="listing-rent-small" onClick={async () => {

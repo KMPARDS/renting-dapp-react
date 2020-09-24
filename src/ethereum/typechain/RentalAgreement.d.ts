@@ -45,7 +45,6 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     "item()": FunctionFragment;
     "lessee()": FunctionFragment;
     "lessor()": FunctionFragment;
-    "manager()": FunctionFragment;
     "maxRent()": FunctionFragment;
     "paidrents(uint256)": FunctionFragment;
     "payRent()": FunctionFragment;
@@ -117,7 +116,6 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "item", values?: undefined): string;
   encodeFunctionData(functionFragment: "lessee", values?: undefined): string;
   encodeFunctionData(functionFragment: "lessor", values?: undefined): string;
-  encodeFunctionData(functionFragment: "manager", values?: undefined): string;
   encodeFunctionData(functionFragment: "maxRent", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "paidrents",
@@ -203,7 +201,6 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "item", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "lessee", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "lessor", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "manager", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "maxRent", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "paidrents", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "payRent", data: BytesLike): Result;
@@ -500,18 +497,6 @@ export class RentalAgreement extends Contract {
       0: string;
     }>;
 
-    manager(
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-    }>;
-
-    "manager()"(
-      overrides?: CallOverrides
-    ): Promise<{
-      0: string;
-    }>;
-
     maxRent(
       overrides?: CallOverrides
     ): Promise<{
@@ -749,10 +734,6 @@ export class RentalAgreement extends Contract {
 
   "lessor()"(overrides?: CallOverrides): Promise<string>;
 
-  manager(overrides?: CallOverrides): Promise<string>;
-
-  "manager()"(overrides?: CallOverrides): Promise<string>;
-
   maxRent(overrides?: CallOverrides): Promise<BigNumber>;
 
   "maxRent()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -947,10 +928,6 @@ export class RentalAgreement extends Contract {
     lessor(overrides?: CallOverrides): Promise<string>;
 
     "lessor()"(overrides?: CallOverrides): Promise<string>;
-
-    manager(overrides?: CallOverrides): Promise<string>;
-
-    "manager()"(overrides?: CallOverrides): Promise<string>;
 
     maxRent(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1148,10 +1125,6 @@ export class RentalAgreement extends Contract {
 
     "lessor()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    manager(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "manager()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     maxRent(overrides?: CallOverrides): Promise<BigNumber>;
 
     "maxRent()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1341,10 +1314,6 @@ export class RentalAgreement extends Contract {
     lessor(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "lessor()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    manager(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "manager()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     maxRent(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

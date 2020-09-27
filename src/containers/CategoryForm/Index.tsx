@@ -53,7 +53,10 @@ class CategoryForm extends Component {
                                                         alert(JSON.stringify(values, null, 2));
 
                                                         const categoryId = new URLSearchParams(this.props.location.search).get("id");
-                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, categoryId);
+                                                        alert(typeof(categoryId));
+                                                        if(categoryId === null)
+                                                            return;
+                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, ethers.utils.formatBytes32String(categoryId));
                                                         product.wait();
                                                         console.log(product);
                                         

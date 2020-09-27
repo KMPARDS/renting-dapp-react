@@ -172,7 +172,7 @@ class RentPage extends Component {
                                         this.state.currentCategory
                                       ].cat,
                                       sub: item,
-                                      id: ''+this.state.categoryArr[this.state.currentCategory].id + i
+                                      id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + i
                                     })}`}
                                   >
                                     {item}

@@ -46,7 +46,10 @@ export default function FavPage()
         }
         products = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
         if(products === null)
-        alert("No items in favourites");
+        {
+            alert("No items in favourites");
+            return;
+        }
         setState({allProduct: products});
         //alert(state.allProduct.length);
     }

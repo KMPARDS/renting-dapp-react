@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ListPage.scss';
+import './SearchedProducts.scss';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import Images from '../../containers/Images/Image';
@@ -9,7 +9,7 @@ import ethers from 'ethers';
 import {Link} from 'react-router-dom';
 
 
-class ListPage extends Component {
+class SearchedProducts extends Component {
 	public state: any;
 
     constructor(props: Readonly<{}>) {
@@ -21,7 +21,8 @@ class ListPage extends Component {
     }
 
     getProduct = async () => {
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null);
+        const categoryId = new URLSearchParams(this.props.location.search).get("id");
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,ethers.utils.formatBytes32String(categoryId));
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -47,7 +48,7 @@ class ListPage extends Component {
                 <div className='myListing-wrapper-container'>
                     <div className="row">
                     {
-                        this.state.allProduct.map(ele => {
+                        this.state.allProduct.map((ele: React.ReactNode[]) => {
                         return <div className='r-col-d-4 position-relative'>
                             <div className='card-category-container'>
 
@@ -92,4 +93,4 @@ class ListPage extends Component {
     }
 }
 
-export default ListPage;
+export default SearchedProducts;

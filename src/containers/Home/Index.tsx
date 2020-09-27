@@ -9,7 +9,7 @@ import Footer from '../../components/Footer/Index';
 import { Link } from 'react-router-dom';
 import CarouselPage  from '../../components/Carousel/Index';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
-
+const queryString = require("query-string");
 
 class Home extends Component {
 	public state: any;
@@ -21,6 +21,80 @@ class Home extends Component {
             country: '',
             region: '',
             showCountry: true,
+            currentCategory: 0,
+            currentSubCategory: 0,
+            categoryArr: [
+                {
+                  id: 1,
+                  cat: "Real Estate",
+                  sub: [
+                    "For Sale Houses & Appartments",
+                    "For Rent Houses & Appartments",
+                    "Lands & Plots",
+                    "Shops & Offices",
+                    "PG 7 Guests",
+                    "For Sale Houses & Appartments",
+                  ],
+                },
+                {
+                  id: 2,
+                  cat: "Vehicle",
+                  sub: ["Cars", "Commercial Vehicles", "Spare Parts", "Other Vehicles"],
+                },
+                {
+                  id: 3,
+                  cat: "Electronics & Appliances",
+                  sub: [
+                    "TV-Video-Audio",
+                    "Kitchen & Other Appliances",
+                    "Computers & Laptops",
+                    "Cameras & Lenses",
+                    "Games & Entertainment",
+                    "Fridges",
+                    "Computer Accessories",
+                    "Hard Disks,Printers & Monitors",
+                    "Acs",
+                  ],
+                },
+                {
+                  id: 4,
+                  cat: "Mobiles",
+                  sub: [
+                    "Smart Phones: Android",
+                    "Smart Phones: iPhone",
+                    "Camera Phones",
+                    "Music Phones",
+                    "Feature Phones",
+                  ],
+                },
+                {
+                  id: 5,
+                  cat: "Furniture",
+                  sub: [
+                    "Sofa",
+                    "Tables",
+                    "Chairs/ Stools/ Benches",
+                    "Beds",
+                    "Bean Bags",
+                    "Cupboard/ Cabinet/ Wardrobe",
+                    "TV Unit",
+                    "Shoe Rack",
+                    "Others",
+                  ],
+                },
+                {
+                  id: 6,
+                  cat: "Bikes",
+                  sub: [
+                    "Standard",
+                    "Sport Bike",
+                    "Touring Bike",
+                    "Scooters, underbones and mopeds",
+                    "Offroad Bike",
+                    "Others",
+                  ],
+                },
+              ],
         };
     }
     
@@ -63,15 +137,15 @@ class Home extends Component {
                                                 as="select"
                                                 className="mr-sm-2 search-field"
                                                 id="inlineFormCustomSelect"
+                                                onChange={(e) => {this.setState({currentCategory: e.target.value})}}
                                                 custom
                                             >
-                                                <option value="0">Search for anything here</option>
-                                                <option value="1">Real Estate</option>
-                                                <option value="2">Vehicle</option>
-                                                <option value="3">Electronics & Appliances</option>
-                                                <option value="4">Mobiles</option>
-                                                <option value="5">Furniture</option>
-                                                <option value="6">Bikes</option>
+                                                <option value={0}>Real Estate</option>
+                                                <option value={1}>Vehicle</option>
+                                                <option value={2}>Electronics & Appliances</option>
+                                                <option value={3}>Mobiles</option>
+                                                <option value={4}>Furniture</option>
+                                                <option value={5}>Bikes</option>
                                             </Form.Control>
                                         </Col>
 
@@ -83,17 +157,30 @@ class Home extends Component {
                                                 as="select"
                                                 className="mr-sm-2 search-field"
                                                 id="inlineFormCustomSelect"
+                                                onChange={(e) => {this.setState({currentSubCategory: e.target.value})}}
                                                 custom
                                             >
-                                                <option value="0">Select Sub Categories</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                {
+                                                    this.state.categoryArr[this.state.currentCategory].sub.map((item: React.ReactNode, i: string | number | readonly string[] | undefined) => (
+                                                        <option value={i}> {item} </option>
+                                                    ))
+                                                }
+
                                             </Form.Control>
                                         </Col>  
 
                                         <Col xs="auto" className="my-1">
-                                            <Button type="submit" className="search-rent-btn">Search Now</Button>
+                                            <button className="search-rent-btn position-relative">
+                                                <Link 
+                                                    to={`/search?${queryString.stringify({
+                                                    category: this.state.categoryArr[this.state.currentCategory].cat,                                               
+                                                    id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + this.state.currentSubCategory
+                                                    })}`}
+                                                    className="search-rent-btn stretched-link"
+                                                >
+                                                    Search Now
+                                                </Link>
+                                            </button>
                                         </Col>
                                     </Form.Row>
                                 </Form>

@@ -47,9 +47,8 @@ class MyAccount extends Component {
         const userId = ''+window.wallet.address+'store';
         orders = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
         if(orders === null)
-        alert("No items in favourites");
+            return;
         this.setState({ ...this.state, allOrders: orders});
-        //alert(state.allProduct.length);
     }
 
     fetchBalance = async() => {
@@ -104,14 +103,16 @@ class MyAccount extends Component {
                                     <Tab.Content>
                                         <Tab.Pane eventKey="first">
                                             <Row>
-                                                <Col lg={12}>
-                                                    <Card className="text-center" >
-                                                        <Card.Body>
+                                                <Col lg={12} style={{textAlign: "center"}}>
+                                                    {/*<Card className="text-center" >
+                                                        <Card.Body>*/}
                                                             <Card.Text>
                                                                 <img src={Images.path.defaultProfile} className="img-circle avatar" alt="User avatar" />
                                                             </Card.Text>
-                                                            <Button variant="primary">Change Photo</Button>
 
+                                                            <Button variant="primary">Change Photo</Button>
+                                                            <br/><br/>
+                                                            
                                                             <div className="yourwallet ">
                                                                 <h5 className="feature-head text-left"> Account address</h5>
                                                                 <div className="wallet-address">{window.wallet.address}</div>
@@ -123,9 +124,9 @@ class MyAccount extends Component {
                                                              <div className="yourwallet ">
                                                                 <h5 className="feature-head text-left">KYC Level</h5>
                                                               </div>
-                                                        </Card.Body>
+                                                        {/*</Card.Body>
 
-                                                    </Card>
+                                                        </Card>*/}
                                                 </Col>
 
                                             </Row>

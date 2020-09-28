@@ -17,10 +17,17 @@
        display: flex;
    }
    .catg-body-txt{
-       display: flex;
-       justify-content: space-between;
-       color: #FF5D22;
-      margin: 10px 10px 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #FF5D22;
+    margin: 10px 10px 0px 10px;
+    min-height: 25px;
+    line-height: 1.5em;
+    overflow: hidden;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 600;
    }
    .location-catg{
     color:#A7A7A7;

@@ -60,7 +60,7 @@ class ListPage extends Component {
                                     {/*<div className='catg-rating'><img className='rate-imgs' src={Images.path.orangeStar} />4.5</div>*/}
                                 </div>
 
-                                <p className='location-catg'>Description: {ele[3]}</p>
+                                <p className='location-catg list-box-desc'>Description: {ele[3]}</p>
                                 
                                 <div className='catg-body-txt'>
                                     <p>Address: {ele[4]}</p>

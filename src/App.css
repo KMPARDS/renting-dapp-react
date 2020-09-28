@@ -1,7 +1,10 @@
 body {
   background-color: #ffffff;
+  font-family: "Roboto", sans-serif !important;
 }
-
+nav ul li {
+  font-family: "Roboto", sans-serif !important;
+}
 .header-listItem a:hover {
   color: #ff5d22 !important;
 }
@@ -46,8 +49,6 @@ body {
 .navbar-dark .navbar-nav .nav-link {
   color: #fff;
 }
-/*Space css class
------------------------------------*/
 
 /*----------------
 margin space
@@ -226,9 +227,6 @@ Padding space
 .pdl60 {
   padding-left: 60px;
 }
-.pdl70 {
-  padding-left: 70px;
-}
 .pdl80 {
   padding-left: 80px;
 }
@@ -257,8 +255,28 @@ Padding space
   padding: 0;
   margin: 0;
 }
-
-a,
-button {
-  cursor: pointer;
+.btn-outline-warning {
+  border-color: #ff5d22;
+}
+@media (max-width: 992px) {
+  .nav-link {
+    font-size: 12px  !important;
+    padding: -3px 0px!important;
+    margin: 0px 1px!important;
+}
+}
+.list-box-desc{
+  color: #A7A7A7;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: -16px;
+  min-height: 25px;
+  line-height: 1.5em;
+  overflow: hidden;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.stretched-link::after {
+  z-index: 0;
 }

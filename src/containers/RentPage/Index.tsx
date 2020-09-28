@@ -15,6 +15,7 @@ class RentPage extends Component {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
+      makeBold: false,
       currentCategory: 0,
 
       //Follow this structure for adding any Categiry or Sub-Category
@@ -119,6 +120,9 @@ class RentPage extends Component {
                               onMouseEnter={() => {
                                 this.setState({ currentCategory: 0 });
                               }}
+                                /*this.setState({ makeBold: !this.state.makeBold});
+                              }}
+                              className={`${this.state.makeBold ? "makeBold" : ""}`}*/
                             >
                               <td>Real Estate</td>
                             </tr>
@@ -159,28 +163,29 @@ class RentPage extends Component {
                             </tr>
                           </table>
                         </div>
+                        
                         <div style={{ flex: 1 }}>
                           <table style={{ width: "100%" }}>
-                            {this.state.categoryArr[
-                              this.state.currentCategory
-                            ].sub.map((item, i) => (
-                              <tr>
-                                <td>
-                                  <Link
-                                    to={`/form?${queryString.stringify({
-                                      category: this.state.categoryArr[
-                                        this.state.currentCategory
-                                      ].cat,
-                                      sub: item,
-                                      id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + i
-                                    })}`}
-                                  >
-                                    {item}
-                                  </Link>
-                                </td>
-                                {/*<td>For Sale Houses & Appartments</td>*/}
-                              </tr>
-                            ))}
+                            {
+                              this.state.categoryArr[this.state.currentCategory].sub.map((item, i) => (
+                                <tr>
+                                  <td>
+                                    <Link
+                                      to={`/form?${queryString.stringify({
+                                        category: this.state.categoryArr[
+                                          this.state.currentCategory
+                                        ].cat,
+                                        sub: item,
+                                        id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + i
+                                      })}`}
+                                    >
+                                      {item}
+                                    </Link>
+                                  </td>
+                                  {/*<td>For Sale Houses & Appartments</td>*/}
+                                </tr>
+                              ))
+                            }
                           </table>
                         </div>
                       </div>

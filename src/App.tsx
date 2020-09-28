@@ -22,12 +22,14 @@ import CategoryForm from './containers/CategoryForm/Index';
 import ComingSoon from './components/ComingSoon/ComingSoon';
 import Product from './containers/Product/Index';
 import MyProduct from './containers/MyProduct/Index';
+import MyAccount from './containers/MyAccount/Index';
 import {MapProvider} from './MapState';
 // import {
 //   categoryArray,
 //   subCategoryArray,
 // } from './env.js';
 import RentPage from './containers/RentPage/Index';
+import SearchedProducts from './containers/SearchedProducts/Index';
 
 function App() {
   return (
@@ -41,11 +43,13 @@ function App() {
                 <Route exact path="/categoryDetail" component={categoryDetail} />
                 <Route exact path="/myFav" component={FavPage} />
                 <Route exact path="/myChat" component={ChatPage} />
-                <Route exact path="/RentList" component={RentalPage} />
+                {/*<Route exact path="/RentList" component={RentalPage} />*/}
                 <Route exact path="/MyListing" component={MyListing} />
                 <Route exact path="/form" component={CategoryForm} />
+                <Route exact path="/search" component={SearchedProducts} />
                 <Route exact path="/ComingSoon" component={ComingSoon} />
                 <Route exact path="/RentPage" component={RentPage} />
+                <Route exact path="/MyAccount" component={MyAccount} />
                 <Route path="/Product/:address" exact component={Product} />
                 <Route path="/MyProduct/:address" exact component={MyProduct} />
 

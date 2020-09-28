@@ -9,6 +9,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import ethers from 'ethers'
 
 class MyListing extends Component {
 	public state: any;
@@ -28,7 +29,7 @@ class MyListing extends Component {
             alert("Wallet not loaded");
             return;
         }
-        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -73,9 +74,9 @@ class MyListing extends Component {
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='stretched-link listing-head' to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></h5>
-                                        <div className='desc-para'>Rent: {ele[5]?.toLocaleString()} wei</div>
-                                        <div className='desc-para'>Security Fee: {ele[6]?.toLocaleString()} wei</div>
-                                        <div className='desc-para'>Cancellation Fee: {ele[7]?.toLocaleString()} wei</div><br/>
+                                        <div className='desc-para'>Rent: {ethers.utils.formatEther(ele[5])} ES</div>
+                                        <div className='desc-para'>Security Fee: {ethers.utils.formatEther(ele[6])} ES</div>
+                                        <div className='desc-para'>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</div><br/>
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele[3]}</p>
                                         <h5 className='desc-head'>Address</h5>

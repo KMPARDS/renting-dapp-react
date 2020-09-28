@@ -19,10 +19,11 @@ import { RentalAgreement } from '../../ethereum/typechain/RentalAgreement';
 
 export default function MyProduct() 
 {
-    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: 0, security: 0, cancellation: 0})
+    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: ''})
     const [discountState, setDiscountState] = useState({added: 0, removed: 0});
     const [contracts, setContracts] = useState({allContracts: []});
     const [check, setCheck] = useState({initial: 0, final: 0});
+    const [terminate, setTerminate] = useState({penalty: 0});
     const {address} = useParams(); 
     //alert(address);
     const productInstance = ProductManagerFactory.connect(
@@ -34,9 +35,9 @@ export default function MyProduct()
         const title = await productInstance.lessorName();
         const location = await productInstance.location();
         const description = await productInstance.description();
-        const maxRent = (await productInstance.maxRent()).toNumber();
-        const security = (await productInstance.security()).toNumber();
-        const cancellation = (await productInstance.cancellationFee()).toNumber();
+        const maxRent = ethers.utils.formatEther(await productInstance.maxRent());
+        const security = ethers.utils.formatEther(await productInstance.security());
+        const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
 
         setstate({title, location, description, maxRent, security, cancellation});
 
@@ -69,6 +70,11 @@ export default function MyProduct()
     function handleChecks(e:React.ChangeEvent<HTMLInputElement>)
     {
         setCheck({...check, [e.target.name] : e.target.value})
+    }
+
+    function handlePenalty(e:React.ChangeEvent<HTMLInputElement>)
+    {
+        setTerminate({...terminate, [e.target.name] : e.target.value})
     }
 
     async function handleDiscounts()
@@ -147,9 +153,9 @@ export default function MyProduct()
                         <h6 className="my-3 catg-body-txt desc-para">{state.description}</h6>
 
                         <h3 className="my-3 catg-body-txt">Payment Info</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} wei</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} wei</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} wei</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} ES</h6>
                         <h6 className="my-3 catg-body-txt desc-para">Available Discounts: Loading...</h6>
 
                         <h3 className="my-3 catg-body-txt">Pick Up Address</h3>
@@ -201,15 +207,62 @@ export default function MyProduct()
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
                                     <td style={{textAlign: "center"}}>
                                         <div>
-                                        <input 
-                                            type="number" 
-                                            placeholder="Enter 1 if OK else 0"
-                                            style={{width: '160px'}}
-                                            name='initial'
-                                            onChange={handleChecks}
-                                            value={check.initial}                                           
-                                        />
-                                        <button onClick={() => {
+                                            <input 
+                                                type="number" 
+                                                placeholder="Enter 1 if OK else 0"
+                                                style={{width: '160px'}}
+                                                name='initial'
+                                                onChange={handleChecks}
+                                                value={check.initial}                                           
+                                            />
+                                            <button className="listing-rent-small" onClick={async () => {
+                                                const agreementInstance = RentalAgreementFactory.connect(
+                                                    ele[2],
+                                                    window.wallet ?? window.provider
+                                                );
+                                                if(window.wallet===undefined)
+                                                {
+                                                    alert("Wallet not loaded");
+                                                    return;
+                                                }
+                                                const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
+                                                console.log(checkInitial);
+                                                alert("Initial check by Lessor done");
+                                            }}>
+                                                Initial Lessor
+                                            </button>
+                                        </div>
+                                        <hr/>
+
+                                        <div>
+                                            <input 
+                                                type="number" 
+                                                placeholder="Enter 1 if OK else 0"
+                                                style={{width: '160px'}}
+                                                name='final'
+                                                onChange={handleChecks}
+                                                value={check.final}                                           
+                                            />
+                                            <button className="listing-rent-small" onClick={async () => {
+                                                const agreementInstance = RentalAgreementFactory.connect(
+                                                    ele[2],
+                                                    window.wallet ?? window.provider
+                                                );
+                                                if(window.wallet===undefined)
+                                                {
+                                                    alert("Wallet not loaded");
+                                                    return;
+                                                }
+                                                const checkFinal = await agreementInstance.connect(window.wallet).finalCheckByLessor(check.final);
+                                                console.log(checkFinal);
+                                                alert("Final check by Lessor done");
+                                            }}>
+                                                Final Lessor
+                                            </button>
+                                        </div>
+                                        <hr/>
+
+                                        <button className="listing-rent-big" onClick={async () => {
                                             const agreementInstance = RentalAgreementFactory.connect(
                                                 ele[2],
                                                 window.wallet ?? window.provider
@@ -219,21 +272,40 @@ export default function MyProduct()
                                                 alert("Wallet not loaded");
                                                 return;
                                             }
-                                            const checkInitial = agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
-                                            alert("Initial check by Lessor done");
+                                            const terminate = await agreementInstance.connect(window.wallet).terminateNormally();
+                                            console.log(terminate);
+                                            alert("Terminated normally");
                                         }}>
-                                            InitialLessor
+                                            Terminate Normally
                                         </button>
+                                        <hr/>
+
+                                        <div>
+                                            <input 
+                                                type="number" 
+                                                placeholder="Enter penalty amount"
+                                                style={{width: '160px'}}
+                                                name='penalty'
+                                                onChange={handlePenalty}
+                                                value={terminate.penalty}                                           
+                                            />
+                                            <button className="listing-rent-big" onClick={async () => {
+                                                const agreementInstance = RentalAgreementFactory.connect(
+                                                    ele[2],
+                                                    window.wallet ?? window.provider
+                                                );
+                                                if(window.wallet===undefined)
+                                                {
+                                                    alert("Wallet not loaded");
+                                                    return;
+                                                }
+                                                const penalty = await agreementInstance.connect(window.wallet).terminateWithAdditionalCharges(ethers.utils.parseEther(String(terminate.penalty)));
+                                                console.log(penalty);
+                                                alert("Contract terminated with penalty");
+                                            }}>
+                                                Terminate with penalty
+                                            </button>
                                         </div>
-                                        <hr/>
-                                        <input 
-                                            type="number" 
-                                            placeholder="Enter 1 if OK else 0"
-                                            style={{width: '160px'}}
-                                        />
-                                        <button>FinalLessor</button>
-                                        <hr/>
-                                        <button>Terminate</button>
                                     </td>
                                 </tr>
                             ))

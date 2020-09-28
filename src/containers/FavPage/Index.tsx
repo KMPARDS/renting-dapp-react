@@ -46,7 +46,10 @@ export default function FavPage()
         }
         products = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
         if(products === null)
-        alert("No items in favourites");
+        {
+            alert("No items in favourites");
+            return;
+        }
         setState({allProduct: products});
         //alert(state.allProduct.length);
     }
@@ -84,9 +87,11 @@ export default function FavPage()
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='listing-head' to={'/Product/'+ele.address}>{ele.title}</Link></h5>
-                                        <div className='desc-para'>Rent: {ele.rent?.toLocaleString()} wei</div>
-                                        <div className='desc-para'>Security Fee: {ele.security?.toLocaleString()} wei</div>
-                                        <div className='desc-para'>Cancellation Fee: {ele.cancellation?.toLocaleString()} wei</div><br/>
+                                        <div className='desc-para'>Rent: {ele.rent} ES</div>
+                                        <div className='desc-para'>Security Fee: {ele.security} ES</div>
+                                        <div className='desc-para'>Cancellation Fee: {ele.cancellation
+                                        } ES</div>
+                                        <br/>
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele.description}</p>
                                         <h5 className='desc-head'>Address</h5>
@@ -105,7 +110,7 @@ export default function FavPage()
                                             }
                                             localStorage.setItem(JSON.stringify(window.wallet.address), JSON.stringify(arr));
                                             alert("Product removed from favourites, refresh page");
-                                            window.location.reload(false);
+                                            //window.location.reload(false);
                                         }}>
                                             Remove from Favourites
                                         </Link>

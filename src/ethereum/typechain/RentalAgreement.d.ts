@@ -28,7 +28,6 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     "check()": FunctionFragment;
     "confirmAgreement()": FunctionFragment;
     "createdTimestamp()": FunctionFragment;
-    "finalCheck()": FunctionFragment;
     "finalCheckByLessee(uint48)": FunctionFragment;
     "finalCheckByLessor(uint48)": FunctionFragment;
     "getContractAddress()": FunctionFragment;
@@ -74,10 +73,6 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "createdTimestamp",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "finalCheck",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -165,7 +160,6 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     functionFragment: "createdTimestamp",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "finalCheck", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "finalCheckByLessee",
     data: BytesLike
@@ -312,10 +306,6 @@ export class RentalAgreement extends Contract {
     ): Promise<{
       0: BigNumber;
     }>;
-
-    finalCheck(overrides?: Overrides): Promise<ContractTransaction>;
-
-    "finalCheck()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     finalCheckByLessee(
       _condition: BigNumberish,
@@ -648,10 +638,6 @@ export class RentalAgreement extends Contract {
 
   "createdTimestamp()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-  finalCheck(overrides?: Overrides): Promise<ContractTransaction>;
-
-  "finalCheck()"(overrides?: Overrides): Promise<ContractTransaction>;
-
   finalCheckByLessee(
     _condition: BigNumberish,
     overrides?: Overrides
@@ -842,10 +828,6 @@ export class RentalAgreement extends Contract {
     createdTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
 
     "createdTimestamp()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    finalCheck(overrides?: CallOverrides): Promise<void>;
-
-    "finalCheck()"(overrides?: CallOverrides): Promise<void>;
 
     finalCheckByLessee(
       _condition: BigNumberish,
@@ -1051,10 +1033,6 @@ export class RentalAgreement extends Contract {
 
     "createdTimestamp()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    finalCheck(overrides?: Overrides): Promise<BigNumber>;
-
-    "finalCheck()"(overrides?: Overrides): Promise<BigNumber>;
-
     finalCheckByLessee(
       _condition: BigNumberish,
       overrides?: Overrides
@@ -1234,10 +1212,6 @@ export class RentalAgreement extends Contract {
     "createdTimestamp()"(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
-
-    finalCheck(overrides?: Overrides): Promise<PopulatedTransaction>;
-
-    "finalCheck()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     finalCheckByLessee(
       _condition: BigNumberish,

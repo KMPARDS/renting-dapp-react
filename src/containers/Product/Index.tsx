@@ -21,7 +21,7 @@ import {useMapState} from '../../MapState';
 
 export default function Product() 
 {
-    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: 0, security: 0, cancellation: 0})
+    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: ''})
     const [timestate, settimestate] = useState({startTime: '', endTime: ''})
     const [modalstate, setmodalstate] = useState({showModal: false}); 
     const [dateState, setDateState] = useState([['','']]);
@@ -40,9 +40,9 @@ export default function Product()
         const title = await productInstance.lessorName();
         const location = await productInstance.location();
         const description = await productInstance.description();
-        const maxRent = (await productInstance.maxRent()).toNumber();
-        const security = (await productInstance.security()).toNumber();
-        const cancellation = (await productInstance.cancellationFee()).toNumber();
+        const maxRent = ethers.utils.formatEther(await productInstance.maxRent());
+        const security = ethers.utils.formatEther(await productInstance.security());
+        const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
 
         setstate({title, location, description, maxRent, security, cancellation});
 
@@ -92,6 +92,26 @@ export default function Product()
 
         const parseLogs = (contract.logs).map((log) => productInstance.interface.parseLog(log));
         console.log(parseLogs[0].args);
+
+        const product = {address: address, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location};        
+        const userId = ''+window.wallet.address+'store';
+        
+        //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");
+        if(localStorage.getItem(JSON.stringify(userId)) === null)
+        {
+            let val = [];
+            val.push(product);
+            localStorage.setItem(JSON.stringify(userId), JSON.stringify(val));
+        }
+        else
+        {
+            let arr = [];
+            arr = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
+
+            arr.push(product);
+            localStorage.setItem(JSON.stringify(userId), JSON.stringify(arr));              
+        }
+
         alert("Rented");
     }
 
@@ -201,9 +221,9 @@ export default function Product()
                         <h6 className="my-3 catg-body-txt desc-para">{state.description}</h6>
 
                         <h3 className="my-3 catg-body-txt">Payment Info</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} wei</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} wei</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} wei</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} ES</h6>
+                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} ES</h6>
                         <h6 className="my-3 catg-body-txt desc-para">Available Discounts: Loading...</h6>
 
                         <h3 className="my-3 catg-body-txt">Pick Up Address</h3>
@@ -234,20 +254,41 @@ export default function Product()
                             contracts.allContracts.map(ele => (
                                 <tr>
                                     <td style={{textAlign: "center"}}>{ele[2]}</td>
-                                    <td style={{textAlign: "center"}}>{JSON.stringify(ele[6])}</td>
+                                    <td style={{textAlign: "center"}}>{ele[0]}</td>
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
                                     <td style={{textAlign: "center"}}>
                                         <div>
-                                        <input 
-                                            type="number" 
-                                            placeholder="Enter 1 if OK else 0"
-                                            style={{width: '160px'}}
-                                            name='initial'
-                                            onChange={handleChecks}
-                                            value={check.initial}                                           
-                                        />
-                                        <button onClick={async () => {
+                                            <input 
+                                                type="number" 
+                                                placeholder="Enter 1 if OK else 0"
+                                                style={{width: '160px'}}
+                                                name='initial'
+                                                onChange={handleChecks}
+                                                value={check.initial}                                           
+                                            />
+                                            <button className="listing-rent-small" onClick={async () => {
+                                                const agreementInstance = RentalAgreementFactory.connect(
+                                                    ele[2],
+                                                    window.wallet ?? window.provider
+                                                );
+                                                if(window.wallet===undefined)
+                                                {
+                                                    alert("Wallet not loaded");
+                                                    return;
+                                                }
+                                                
+                                                const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessee( check.initial, {value: ele[6]} );
+
+                                                console.log(checkInitial);
+                                                alert("Initial check by Lessee done");
+                                            }}>
+                                                Initial Lessee
+                                            </button>
+                                        </div>
+                                        <hr/>
+
+                                        <button className="listing-rent-small" onClick={async () => {
                                             const agreementInstance = RentalAgreementFactory.connect(
                                                 ele[2],
                                                 window.wallet ?? window.provider
@@ -257,20 +298,60 @@ export default function Product()
                                                 alert("Wallet not loaded");
                                                 return;
                                             }
-                                            //var wei = utils.bigNumberify(JSON.parse(ele[6]));
-                                            const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessee( check.initial, {value: ele[6]} );
-
-                                            console.log(checkInitial);
-                                            alert("Initial check by Lessee done");
+                                            const cancelRent = await agreementInstance.connect(window.wallet).cancelRent({value: ele[7]});
+                                            console.log(cancelRent);
+                                            alert(ethers.utils.formatEther(ele[7])+" ES rent paid as cencellation charge");
                                         }}>
-                                            InitialLessee
+                                            Cancel Rent
                                         </button>
+                                        <hr/>
+
+                                        <button className="listing-rent-small" onClick={async () => {
+                                            const agreementInstance = RentalAgreementFactory.connect(
+                                                ele[2],
+                                                window.wallet ?? window.provider
+                                            );
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+                                            const payRent = await agreementInstance.connect(window.wallet).payRent({value: ele[5]});
+                                            console.log(payRent);
+                                            alert(ethers.utils.formatEther(ele[5])+" ES rent paid");
+                                        }}>
+                                            Pay Rent
+                                        </button>
+                                        <hr/>
+
+                                        <div>
+                                            <input 
+                                                type="number" 
+                                                placeholder="Enter 1 if OK else 0"
+                                                style={{width: '160px'}}
+                                                name='final'
+                                                onChange={handleChecks}
+                                                value={check.final}                                           
+                                            />
+                                            <button className="listing-rent-small" onClick={async () => {
+                                                const agreementInstance = RentalAgreementFactory.connect(
+                                                    ele[2],
+                                                    window.wallet ?? window.provider
+                                                );
+                                                if(window.wallet===undefined)
+                                                {
+                                                    alert("Wallet not loaded");
+                                                    return;
+                                                }
+                                                
+                                                const checkFinal = await agreementInstance.connect(window.wallet).finalCheckByLessee(check.final);
+
+                                                console.log(checkFinal);
+                                                alert("Final check by Lessee done");
+                                            }}>
+                                                Final Lessee
+                                            </button>
                                         </div>
-                                        <hr/>
-                                        <input type="text" style={{width: '100px'}}/>
-                                        <button>FinalLessee</button>
-                                        <hr/>
-                                        <button>Terminate</button>
                                     </td>
                                 </tr>
                             ))

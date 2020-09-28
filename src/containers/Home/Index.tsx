@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.scss';
 import Header from '../../components/Header/Index';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Container, Row, Form, InputGroup, Col, FormControl } from 'react-bootstrap';
 import Images from '../../containers/Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
 import HomeCategory from '../../components/HomeCategory/Index';
@@ -9,12 +9,11 @@ import Footer from '../../components/Footer/Index';
 import { Link } from 'react-router-dom';
 import CarouselPage from '../../components/Carousel/Index';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
-
+const queryString = require("query-string");
 
 class Home extends Component {
     public state: any;
-    public setState: any;
-    public handleInputChange: any;
+	public handleInputChange: any;
 
     constructor(props: Readonly<{}>) {
         super(props);
@@ -22,6 +21,80 @@ class Home extends Component {
             country: '',
             region: '',
             showCountry: true,
+            currentCategory: 0,
+            currentSubCategory: 0,
+            categoryArr: [
+                {
+                  id: 1,
+                  cat: "Real Estate",
+                  sub: [
+                    "For Sale Houses & Appartments",
+                    "For Rent Houses & Appartments",
+                    "Lands & Plots",
+                    "Shops & Offices",
+                    "PG 7 Guests",
+                    "For Sale Houses & Appartments",
+                  ],
+                },
+                {
+                  id: 2,
+                  cat: "Vehicle",
+                  sub: ["Cars", "Commercial Vehicles", "Spare Parts", "Other Vehicles"],
+                },
+                {
+                  id: 3,
+                  cat: "Electronics & Appliances",
+                  sub: [
+                    "TV-Video-Audio",
+                    "Kitchen & Other Appliances",
+                    "Computers & Laptops",
+                    "Cameras & Lenses",
+                    "Games & Entertainment",
+                    "Fridges",
+                    "Computer Accessories",
+                    "Hard Disks,Printers & Monitors",
+                    "Acs",
+                  ],
+                },
+                {
+                  id: 4,
+                  cat: "Mobiles",
+                  sub: [
+                    "Smart Phones: Android",
+                    "Smart Phones: iPhone",
+                    "Camera Phones",
+                    "Music Phones",
+                    "Feature Phones",
+                  ],
+                },
+                {
+                  id: 5,
+                  cat: "Furniture",
+                  sub: [
+                    "Sofa",
+                    "Tables",
+                    "Chairs/ Stools/ Benches",
+                    "Beds",
+                    "Bean Bags",
+                    "Cupboard/ Cabinet/ Wardrobe",
+                    "TV Unit",
+                    "Shoe Rack",
+                    "Others",
+                  ],
+                },
+                {
+                  id: 6,
+                  cat: "Bikes",
+                  sub: [
+                    "Standard",
+                    "Sport Bike",
+                    "Touring Bike",
+                    "Scooters, underbones and mopeds",
+                    "Offroad Bike",
+                    "Others",
+                  ],
+                },
+              ],
         };
     }
     
@@ -29,7 +102,7 @@ class Home extends Component {
         this.setState({ country: val ,showCountry:false});
       }
      
-      selectRegion (val: any) {
+    selectRegion (val: any) {
         this.setState({ region: val });
     }
 
@@ -40,7 +113,8 @@ class Home extends Component {
                 <div className='rental-hero-bgd'>
                     <div className='wrapper-container'>
                         <Header />
-                        <div className='buy-main-container'><h4 className='hero-txt-style'>Rent & Lease anything Peer to Peer </h4>
+                        <div className='buy-main-container'>
+                            <h4 className='hero-txt-style'>Rent & Lease anything Peer to Peer </h4>
                             <div className='main-rent-search'>
                                 {/* <div className='location-dropdown'>
                                 {this.state.showCountry ?(<CountryDropdown
@@ -53,18 +127,70 @@ class Home extends Component {
                                         value={this.state.region}
                                         onChange={(val) => this.selectRegion(val)} />}
                                         </div> */}
-                                <form>
-                                    <input
-                                        placeholder='Search for anything here'
-                                        className='search-field'
-                                        onChange={this.handleInputChange}
-                                    />
-                                </form>
-                                <div className='search-btn-container'>
-                                    <a href=''><button className='search-rent-btn'>
-                                        Search Now
-                                    </button> </a>
-                                </div>
+                                <Form>
+                                    <Form.Row className="align-items-center">
+                                        <Col xs="{auto}" className="my-1">
+                                            <Form.Label className="mr-sm-2" htmlFor="inlineFormCustomSelect" srOnly>
+                                                Preference
+                                            </Form.Label>
+                                            <Form.Control
+                                                as="select"
+                                                className="mr-sm-2 search-field"
+                                                id="inlineFormCustomSelect"
+                                                onChange={(e) => {this.setState({currentCategory: e.target.value})}}
+                                                custom
+                                            >
+                                                <option value={0}>Real Estate</option>
+                                                <option value={1}>Vehicle</option>
+                                                <option value={2}>Electronics & Appliances</option>
+                                                <option value={3}>Mobiles</option>
+                                                <option value={4}>Furniture</option>
+                                                <option value={5}>Bikes</option>
+                                            </Form.Control>
+                                        </Col>
+
+                                        <Col xs="{auto}" className="my-1">
+                                            <Form.Label className="mr-sm-2" htmlFor="inlineFormCustomSelect" onChange={this.handleInputChange}  srOnly>
+                                                Preference
+                                            </Form.Label>
+                                            <Form.Control
+                                                as="select"
+                                                className="mr-sm-2 search-field"
+                                                id="inlineFormCustomSelect"
+                                                onChange={(e) => {this.setState({currentSubCategory: e.target.value})}}
+                                                custom
+                                            >
+                                                {
+                                                    this.state.categoryArr[this.state.currentCategory].sub.map((item: React.ReactNode, i: string | number | readonly string[] | undefined) => (
+                                                        <option value={i}> {item} </option>
+                                                    ))
+                                                }
+
+                                            </Form.Control>
+                                        </Col>  
+
+                                        <Col xs="auto" className="my-1">
+                                            <button className="search-rent-btn position-relative">
+                                                <Link 
+                                                    to={`/search?${queryString.stringify({
+                                                    category: this.state.categoryArr[this.state.currentCategory].cat,                                               
+                                                    id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + this.state.currentSubCategory
+                                                    })}`}
+                                                    className="search-rent-btn stretched-link"
+                                                >
+                                                    Search Now
+                                                </Link>
+                                            </button>
+                                        </Col>
+                                    </Form.Row>
+                                </Form>
+                                {/*<div className='search-btn-container'>
+                                    <a href=''>
+                                        <button  className='search-rent-btn'>
+                                            Search Now 
+                                        </button> 
+                                    </a>
+                                </div>*/}
                             </div>
                         </div>
                     </div>
@@ -73,7 +199,7 @@ class Home extends Component {
                     <div className='wrapper-container'>
                         <div className='recommn-txt-style container'>
                             Recommendations For You.
-                   </div>
+                        </div>
                     </div>
                 </div>
                 <section className='homeCateg-bgd '>

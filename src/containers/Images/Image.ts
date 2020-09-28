@@ -26,6 +26,7 @@ const path = {
     EmptyChat:require("../../assets/Images/EmptyChat.png"),
     fileUpload: require("../../assets/Images/fileUpload.png"),
     comingsoon: require("../../assets/Images/comingSoon.png"),
+    defaultProfile: require("../../assets/Images/defaultProfile.jpeg"),
 
  
 

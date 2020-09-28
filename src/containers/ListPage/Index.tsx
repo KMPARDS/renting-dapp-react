@@ -21,7 +21,7 @@ class ListPage extends Component {
     }
 
     getProduct = async () => {
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -47,7 +47,7 @@ class ListPage extends Component {
                 <div className='myListing-wrapper-container'>
                     <div className="row">
                     {
-                        this.state.allProduct.map((ele: React.ReactNode[]) => {
+                        this.state.allProduct.map(ele => {
                         return <div className='r-col-d-4 position-relative'>
                             <div className='card-category-container'>
 
@@ -56,7 +56,7 @@ class ListPage extends Component {
                                 </div>
 
                                 <div>
-                                    <p><Link className='catg-body-txt stretched-link' to={'/Product/'+ele[1]}>{ele[2]}</Link></p>
+                                    <p><Link className='catg-body-txt' to={'/Product/'+ele[1]}>{ele[2]}</Link></p>
                                     {/*<div className='catg-rating'><img className='rate-imgs' src={Images.path.orangeStar} />4.5</div>*/}
                                 </div>
 
@@ -67,10 +67,69 @@ class ListPage extends Component {
                                 </div>
                                 
                                 <div className='catg-body-txt'>
-                                    <p>Rent: {ele[5]?.toLocaleString()} wei</p>
+                                    <p>Rent: {ethers.utils.formatEther(ele[5])} ES</p>
                                 </div>
-                                <p className='location-catg'>Security Fee: {ele[6]?.toLocaleString()} wei</p>
-                                <p className='location-catg'>Cancellation Fee: {ele[7]?.toLocaleString()} wei</p>
+                                <p className='location-catg'>Security Fee: {ethers.utils.formatEther(ele[6])} ES</p>
+                                <p className='location-catg' style={{marginBottom: '0px'}}>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
+                                <i 
+                                    className="fa fa-heart" 
+                                    aria-hidden="true" 
+                                    onClick={() => {
+                                        const address = ele[1];
+                                        if(window.wallet===undefined)
+                                        {
+                                            alert("Wallet not loaded");
+                                            return;
+                                        }
+
+                                        const product = {address: address, title: ele[2], rent: ethers.utils.formatEther(ele[5]), security: ethers.utils.formatEther(ele[6]), cancellation: ethers.utils.formatEther(ele[7]), description: ele[3], location: ele[4]};        
+                                        const user = window.wallet.address;
+                                        
+                                        //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");
+                                        if(localStorage.getItem(JSON.stringify(user)) === null)
+                                        {
+                                            let val = [];
+                                            val.push(product);
+                                            localStorage.setItem(JSON.stringify(user), JSON.stringify(val));
+                                            alert("Added to favourites");
+                                        }
+                                        else
+                                        {
+                                            let arr = [];
+                                            arr = ( JSON.parse(localStorage.getItem(JSON.stringify(user))) );
+                                            let check = false;
+                                            arr.map(ob=> {
+                                                if(ob.title === product.title)
+                                                check = true;
+                                            })
+                                            if(check === false)
+                                            {
+                                                arr.push(product);
+                                                localStorage.setItem(JSON.stringify(user), JSON.stringify(arr));
+                                                alert("Added to favourites");
+                                            }
+                                            else
+                                            {
+                                                alert("Already added to favourites list");
+                                                for(var i=0; i<arr.length; i++)
+                                                {
+                                                    if(arr[i].address === product.address)
+                                                    {
+                                                        arr.splice(i, 1);
+                                                        i--;
+                                                    }
+                                                }
+                                                console.log(arr);
+                                                localStorage.setItem(JSON.stringify(user), JSON.stringify(arr));
+                                                alert("Therefore removed from favourites");
+                                            }
+                                        }
+                                    
+                                        //localStorage.removeItem(JSON.stringify(user));
+                                    }}
+                                    style={{marginLeft: '375px', marginBottom: '10px', color: 'red', fontSize: '20px'}}
+                                >                                    
+                                </i>
 
                             </div>
                         </div>

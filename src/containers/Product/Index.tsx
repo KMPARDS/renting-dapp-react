@@ -92,8 +92,8 @@ export default function Product()
 
         const parseLogs = (contract.logs).map((log) => productInstance.interface.parseLog(log));
         console.log(parseLogs[0].args);
-
-        const product = {address: address, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location};        
+        const currentDate = Date.now();
+        const product = {address: address, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location, bookingDate: currentDate, startDate: renderTimeStamp(timestate.startTime), endDate: renderTimeStamp(timestate.endTime)};        
         const userId = ''+window.wallet.address+'store';
         
         //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");

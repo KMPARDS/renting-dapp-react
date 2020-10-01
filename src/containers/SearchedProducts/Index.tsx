@@ -22,7 +22,7 @@ class SearchedProducts extends Component {
 
     getProduct = async () => {
         const categoryId = new URLSearchParams(this.props.location.search).get("id");
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,ethers.utils.formatBytes32String(categoryId));
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,ethers.utils.formatBytes32String(categoryId), null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);

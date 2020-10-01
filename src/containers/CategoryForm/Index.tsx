@@ -51,16 +51,19 @@ class CategoryForm extends Component {
 
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         alert(JSON.stringify(values, null, 2));
-
+                                                        
                                                         const categoryId = new URLSearchParams(this.props.location.search).get("id");
-                                                        alert(typeof(categoryId));
+                                                        const listDate = Date.now();
+                                                        //console.log(listDate);
+                                                        //alert(typeof(categoryId));
                                                         if(categoryId === null)
                                                             return;
-                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, ethers.utils.formatBytes32String(categoryId));
+                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, ethers.utils.formatBytes32String(categoryId), listDate);
                                                         product.wait();
                                                         console.log(product);
                                         
                                                         setSubmitting(false);   
+                                                        alert("Product successfully listed on RentingDApp!");
                                                         //window.location.reload(false);                                                    
                                                     }}
                                                 >

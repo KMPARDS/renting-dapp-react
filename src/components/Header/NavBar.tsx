@@ -225,14 +225,27 @@ class NavBar extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link btn btn-outline-warning conn-wallet-btn"
-                href="https://eraswap.life/"
-                target="_blank"
-              >
-                {" "}
-                CONNECT TO WALLET{" "}
-              </a>
+              {window.wallet ? (
+                  <Link
+                  className="nav-link btn btn-outline-warning conn-wallet-btn"
+                  to="/#"
+                  onClick={() => {
+                    delete window.wallet;
+                  }}
+                >
+                  {" "}
+                  LOGOUT{" "}
+                </Link>
+                ) : (
+                  <a
+                    className="nav-link btn btn-outline-warning conn-wallet-btn"
+                    href="https://eraswap.life/"
+                    target="_blank"
+                  >
+                    {" "}
+                    CONNECT TO WALLET{" "}
+                  </a>
+              )}
             </li>
           </ul>
         </div>

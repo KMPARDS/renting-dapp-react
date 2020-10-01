@@ -21,7 +21,7 @@ class ListPage extends Component {
     }
 
     getProduct = async () => {
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -70,7 +70,8 @@ class ListPage extends Component {
                                     <p>Rent: {ethers.utils.formatEther(ele[5])} ES</p>
                                 </div>
                                 <p className='location-catg'>Security Fee: {ethers.utils.formatEther(ele[6])} ES</p>
-                                <p className='location-catg' style={{marginBottom: '0px'}}>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
+                                <p className='location-catg'>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
+                                <p className='location-catg' style={{marginBottom: '0px'}}>Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                 <i 
                                     className="fa fa-heart" 
                                     aria-hidden="true" 

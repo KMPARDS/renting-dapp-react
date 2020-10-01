@@ -29,7 +29,7 @@ class MyListing extends Component {
             alert("Wallet not loaded");
             return;
         }
-        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -81,6 +81,7 @@ class MyListing extends Component {
                                         <p className='desc-para'>{ele[3]}</p>
                                         <h5 className='desc-head'>Address</h5>
                                         <p className='desc-para'>{ele[4]}</p>
+                                        <p className='desc-para'>Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                         {/*<div className='two-btn-container'>
                                             <button className='listing-edit'>Edit</button>
                                             <button onClick={() => this.setState({showModal: true})} className='listing-delete'>Delete</button>

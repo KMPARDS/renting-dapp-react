@@ -28,7 +28,7 @@ class MyAccount extends Component {
             alert("Wallet not loaded");
             return;
         }
-        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address, null, null, null, null, null, null, null, null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address, null, null, null, null, null, null, null, null, null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         const productAll = parseLogs.map(ele => ele.args);
@@ -153,6 +153,10 @@ class MyAccount extends Component {
                                                                         </div>
                                                                         <p className="location-catg">Security Fee: {ele.security} ES</p>
                                                                         <p className="location-catg">Cancellation Fee: {ele.cancellation} ES</p>
+                                                                        <br/>
+                                                                        <p className="location-catg">Booked on: {((new Date(Number(ele.bookingDate))).toString()).split("GMT+0530 (India Standard Time)")}</p> 
+                                                                        <p className="location-catg">Starts on: {((new Date(Number(ele.startDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                                                        <p className="location-catg">Ends on: {((new Date(Number(ele.endDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>                                                     
                                                                     </div>
                                                                 </Col>
                                                     })
@@ -181,6 +185,8 @@ class MyAccount extends Component {
                                                                     </div>
                                                                     <p className="location-catg">Security Fee: {ethers.utils.formatEther(ele[6])} ES</p>
                                                                     <p className="location-catg">Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
+                                                                    <br/>
+                                                                    <p className="location-catg">Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                                                 </div>
                                                             </Col>
                                                     })

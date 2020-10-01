@@ -21,7 +21,7 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
 interface RentingDappManagerInterface extends ethers.utils.Interface {
   functions: {
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32)": FunctionFragment;
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48)": FunctionFragment;
     "isAuthorised(address)": FunctionFragment;
     "isAvailable(address)": FunctionFragment;
     "items(uint256)": FunctionFragment;
@@ -38,7 +38,8 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
       BigNumberish,
       BigNumberish,
       string,
-      BytesLike
+      BytesLike,
+      BigNumberish
     ]
   ): string;
   encodeFunctionData(
@@ -64,7 +65,7 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "removeItem", data: BytesLike): Result;
 
   events: {
-    "ProductDetails(address,address,string,string,string,uint256,uint256,uint256,bytes32)": EventFragment;
+    "ProductDetails(address,address,string,string,string,uint256,uint256,uint256,bytes32,uint48)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "ProductDetails"): EventFragment;
@@ -92,10 +93,11 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -103,6 +105,7 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -179,10 +182,11 @@ export class RentingDappManager extends Contract {
     _cancellationFee: BigNumberish,
     _description: string,
     _categoryId: BytesLike,
+    _listDate: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "addItem(string,string,uint256,uint256,uint256,string,bytes32)"(
+  "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48)"(
     _name: string,
     _location: string,
     _maxRent: BigNumberish,
@@ -190,6 +194,7 @@ export class RentingDappManager extends Contract {
     _cancellationFee: BigNumberish,
     _description: string,
     _categoryId: BytesLike,
+    _listDate: BigNumberish,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -237,10 +242,11 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -248,6 +254,7 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -294,7 +301,8 @@ export class RentingDappManager extends Contract {
       _maxRent: null,
       _security: null,
       _cancellationFee: null,
-      _categoryId: BytesLike | null
+      _categoryId: BytesLike | null,
+      _listDate: null
     ): EventFilter;
   };
 
@@ -307,10 +315,11 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -318,6 +327,7 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -363,10 +373,11 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -374,6 +385,7 @@ export class RentingDappManager extends Contract {
       _cancellationFee: BigNumberish,
       _description: string,
       _categoryId: BytesLike,
+      _listDate: BigNumberish,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 

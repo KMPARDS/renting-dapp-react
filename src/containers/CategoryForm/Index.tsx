@@ -48,23 +48,27 @@ class CategoryForm extends Component {
                                                 <h5>Please fill in details of your product</h5>
                                                 <Formik
                                                     initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0 }}
-
+                                                    
                                                     onSubmit={async (values, { setSubmitting }) => { 
-                                                        alert(JSON.stringify(values, null, 2));
-                                                        
-                                                        const categoryId = new URLSearchParams(this.props.location.search).get("id");
-                                                        const listDate = Date.now();
-                                                        //console.log(listDate);
-                                                        //alert(typeof(categoryId));
-                                                        if(categoryId === null)
-                                                            return;
-                                                        const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, ethers.utils.formatBytes32String(categoryId), listDate);
-                                                        product.wait();
-                                                        console.log(product);
-                                        
-                                                        setSubmitting(false);   
-                                                        alert("Product successfully listed on RentingDApp!");
-                                                        //window.location.reload(false);                                                    
+                                                        try {
+                                                            alert(JSON.stringify(values, null, 2));
+                                                            
+                                                            const categoryId = new URLSearchParams(this.props.location.search).get("id");
+                                                            const listDate = Date.now();
+                                                            //console.log(listDate);
+                                                            //alert(typeof(categoryId));
+                                                            if(categoryId === null)
+                                                                return;
+                                                            const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, ethers.utils.formatBytes32String(categoryId), listDate);
+                                                            product.wait();
+                                                            console.log(product);
+                                            
+                                                            setSubmitting(false);   
+                                                            alert("Product successfully listed on RentingDApp!");
+                                                            //window.location.reload(false);
+                                                        }  catch (error) {
+                                                            alert(error.message);
+                                                        }                                                  
                                                     }}
                                                 >
                                                     {({
@@ -151,8 +155,9 @@ class CategoryForm extends Component {
                                                                             <button className="btn btn-light" type="button">ES</button>
                                                                         </div>
                                                                     </div>
-                
-                                                                    {/*<h5>Upload Photos</h5>
+
+                                                                    <br/>
+                                                                    <h5>Upload Photos</h5>
                                                                     <p className='field-note-txt'>Minimum 4 photos to be uploaded</p>
                                                                     <div className='upload-img-container'>
                                                                         <div className='row'>
@@ -169,9 +174,8 @@ class CategoryForm extends Component {
                                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
                                                                         </div>
-                                                                        <div className='row'>
+                                                                        {/*<div className='row'>
                                                                             <div className='r-col-d-3 img-upload'> 
-                                                                                <input type='file' onChange="readURL(this);"/>
                                                                                 <img id="blah" src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
                                                                             <div className='r-col-d-3 img-upload'>
@@ -183,8 +187,9 @@ class CategoryForm extends Component {
                                                                             <div className='r-col-d-3 img-upload'>
                                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>*/}
+                                                                        </div>*/}
+                                                                        <input type='file' onChange="readURL(this);"/>
+                                                                    </div>
                 
                                                                     <div className='location-flex'>
                                                                         <div className="location-txt"> 

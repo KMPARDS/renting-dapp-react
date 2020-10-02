@@ -173,7 +173,8 @@ class Home extends Component {
                                             <button className="search-rent-btn position-relative">
                                                 <Link 
                                                     to={`/search?${queryString.stringify({
-                                                    category: this.state.categoryArr[this.state.currentCategory].cat,                                               
+                                                    category: this.state.categoryArr[this.state.currentCategory].cat,
+                                                    subCatergory: this.state.categoryArr[this.state.currentCategory].sub[this.state.currentSubCategory],                                               
                                                     id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + this.state.currentSubCategory
                                                     })}`}
                                                     className="search-rent-btn stretched-link"

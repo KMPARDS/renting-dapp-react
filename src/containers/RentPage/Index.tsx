@@ -5,7 +5,8 @@ import Images from "../../containers/Images/Image";
 import NavBar from "../../components/Header/NavBar";
 import Footer from "../../components/Footer/Index";
 import { Link } from "react-router-dom";
-import { Container, Row, Card, } from 'react-bootstrap';
+import { Card, Button, Container, Row, Form, InputGroup, Col, FormControl } from 'react-bootstrap';
+
 
 const queryString = require("query-string");
 
@@ -17,7 +18,7 @@ class RentPage extends Component {
     this.state = {
       makeBold: false,
       currentCategory: 0,
-
+      currentSubCategory: 0,
       //Follow this structure for adding any Categiry or Sub-Category
       categoryArr: [
         {
@@ -97,22 +98,13 @@ class RentPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        <div className="RentPage-wrapper-container mt100">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6 mx-auto mt40 mb40">
-              <Card >
-                <Card.Body>
-                <div className="table-category ">
-                  <div className="table-catg-details">
-                  <h4>
-                        <b>List your own products on RentingDApp</b>
-                      </h4> 
-                      <p style={{ color: "#E3583C", fontSize: 24 }}>
-                        <b>Select Category</b>
-                      </p>
-                    <div className="">
+        <div className='rental-hero-bgd'>
+          <div className='wrapper-container'>
+            <NavBar />
+              <div className='buy-main-container'>
+                <h4 className='hero-txt-style'>List you own Products on RentingDApp</h4>
+                <hr/>
+                    {/*<div className="">
                       <div style={{ display: "flex" }}>
                         <div style={{ flex: 1 }}>
                           <table style={{ width: "100%" }}>
@@ -120,9 +112,9 @@ class RentPage extends Component {
                               onMouseEnter={() => {
                                 this.setState({ currentCategory: 0 });
                               }}
-                                /*this.setState({ makeBold: !this.state.makeBold});
+                                this.setState({ makeBold: !this.state.makeBold});
                               }}
-                              className={`${this.state.makeBold ? "makeBold" : ""}`}*/
+                              className={`${this.state.makeBold ? "makeBold" : ""}`}
                             >
                               <td>Real Estate</td>
                             </tr>
@@ -182,25 +174,79 @@ class RentPage extends Component {
                                       {item}
                                     </Link>
                                   </td>
-                                  {/*<td>For Sale Houses & Appartments</td>*/}
                                 </tr>
                               ))
                             }
                           </table>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </div>*/}
+                <div className="main-rent-search">
+                  <Form>
+                    <Form.Row className="align-items-center">
+                      <Col xs="{auto}" className="my-1">
+                        <Form.Label className="mr-sm-2" htmlFor="inlineFormCustomSelect" srOnly>
+                          Preference
+                        </Form.Label>
+                        <p className="heading-txt-style">Select Category</p>
+                        <Form.Control
+                          as="select"
+                          className="mr-sm-2 search-field"
+                          id="inlineFormCustomSelect"
+                          onChange={(e) => {this.setState({currentCategory: e.target.value})}}
+                          custom
+                        >
+                          <option value={0}>Real Estate</option>
+                          <option value={1}>Vehicle</option>
+                          <option value={2}>Electronics & Appliances</option>
+                          <option value={3}>Mobiles</option>
+                          <option value={4}>Furniture</option>
+                          <option value={5}>Bikes</option>
+                        </Form.Control>
+                      </Col>
+                      <Col xs="{auto}" className="my-1">
+                        <Form.Label className="mr-sm-2" htmlFor="inlineFormCustomSelect" onChange={this.handleInputChange}  srOnly>
+                          Preference
+                        </Form.Label>
+                        <p className="heading-txt-style">Select Sub-Category</p>
+                        <Form.Control
+                          as="select"
+                          className="mr-sm-2 search-field"
+                          id="inlineFormCustomSelect"
+                          onChange={(e) => {this.setState({currentSubCategory: e.target.value})}}
+                          custom
+                        >
+                          {
+                            this.state.categoryArr[this.state.currentCategory].sub.map((item: React.ReactNode, i: string | number | readonly string[] | undefined) => (
+                              <option value={i}> {item} </option>
+                            ))
+                          }
+                        </Form.Control>
+                      </Col>  
+                    </Form.Row>
+                    <br/>
+                    <Form.Row>
+                      <Col xs="auto" className="my-1" style={{marginLeft: "258px"}}>
+                        <button className="search-rent-btn position-relative">
+                          <Link 
+                            to={`/form?${queryString.stringify({
+                            category: this.state.categoryArr[this.state.currentCategory].cat,
+                            sub: this.state.categoryArr[this.state.currentCategory].sub[this.state.currentSubCategory],                                               
+                            id: '' + this.state.categoryArr[this.state.currentCategory].id + '_' + this.state.currentSubCategory
+                            })}`}
+                            className="search-rent-btn stretched-link"
+                          >
+                            Proceed
+                          </Link>
+                        </button>
+                      </Col>
+                    </Form.Row>
+                  </Form>
                 </div>
-                 <div className="clearfix"></div>
-             
-                </Card.Body>
-              </Card>
-               
-             </div>
-            </div>
+              </div>
           </div>
         </div>
+
         <div className='footer-bgd'>
           <div className='wrapper-container'>
               <Footer />

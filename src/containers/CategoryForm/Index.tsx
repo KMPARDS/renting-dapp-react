@@ -9,7 +9,7 @@ import { Link, useLocation} from 'react-router-dom';
 
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Container, Row, Card,} from 'react-bootstrap';
+import { Container, Row, Card, Dropdown, DropdownButton, FormControl, InputGroup} from 'react-bootstrap';
 import ethers from 'ethers';
 
 const queryString = require('query-string');
@@ -21,9 +21,11 @@ class CategoryForm extends Component {
     constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
-
+            period: 0,
         };
     }
+
+
 
     render() {
         console.log(window.location.search);
@@ -55,7 +57,7 @@ class CategoryForm extends Component {
                                                             
                                                             const categoryId = new URLSearchParams(this.props.location.search).get("id");
                                                             const listDate = Date.now();
-                                                            //console.log(listDate);
+                                                            console.log(this.state.period);
                                                             //alert(typeof(categoryId));
                                                             if(categoryId === null)
                                                                 return;
@@ -91,6 +93,7 @@ class CategoryForm extends Component {
                                                                         onChange={handleChange}
                                                                         onBlur={handleBlur}
                                                                         value={values.title}
+                                                                        required
                                                                     />
                                                                     {/*errors.email && touched.email && errors.email*/} 
                                                                     <p className='field-note-txt'>Mention the key feature of your item(e.g brand,model,age type)</p>   
@@ -110,7 +113,30 @@ class CategoryForm extends Component {
                                                                     <p className='field-note-txt'>Mention condition,features and reason for renting</p>
                 
                                                                     <h5>Set payment details</h5>
-                
+
+                                                                    <label className='control-label'>Select period*</label>
+                                                                    <br/>
+                                                                    <>
+                                                                        <FormControl
+                                                                            placeholder="Select a period of rent"
+                                                                            as="select"
+                                                                            className="mr-sm-2 search-field"
+                                                                            id="inlineFormCustomSelect"
+                                                                            onChange={(e) => {
+                                                                                this.setState({period: e.target.value})
+                                                                            }}
+                                                                            custom
+                                                                        >
+                                                                            <option value={0}>Select a period for the rental price</option>
+                                                                            <option value={3600}>Hourly</option>
+                                                                            <option value={86400}>Daily</option>
+                                                                            <option value={2592000}>Monthly</option>
+                                                                            <option value={7776000}>Quaterly</option>
+                                                                            <option value={15552000}>Half-Yearly</option>
+                                                                            <option value={31104000}>Yearly</option>                                                                            
+                                                                        </FormControl>
+                                                                    </>
+                                                                    <br/>
                                                                     <label className='control-label'>Maximum rent*</label>
                                                                     <div className="input-group col-md-6">
                                                                         <input 
@@ -174,20 +200,6 @@ class CategoryForm extends Component {
                                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
                                                                         </div>
-                                                                        {/*<div className='row'>
-                                                                            <div className='r-col-d-3 img-upload'> 
-                                                                                <img id="blah" src={Images.path.fileUpload} className='upload-pic'/>
-                                                                            </div>
-                                                                            <div className='r-col-d-3 img-upload'>
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
-                                                                            </div>
-                                                                            <div className='r-col-d-3 img-upload'>
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
-                                                                            </div>
-                                                                            <div className='r-col-d-3 img-upload'>
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
-                                                                            </div>
-                                                                        </div>*/}
                                                                         <input type='file' onChange="readURL(this);"/>
                                                                     </div>
                 

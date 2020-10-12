@@ -1,16 +1,20 @@
 import { ethers } from 'ethers';
+import { solidityKeccak256 } from 'ethers/lib/utils';
 import { CustomWallet } from './custom-wallet';
 
-import { RentingDappManagerFactory } from './typechain/RentingDappManagerFactory';
+//import { RentingDappManagerFactory } from './typechain/RentingDappManagerFactory';
+import { es, CustomProvider } from 'eraswap-sdk';
+import { RentingDappManagerFactory } from 'eraswap-sdk/dist/typechain/ESN';
 
 const config = {
     ESN: {
-      rentingdappmanager: '0x4356f72990840336A9E23246E6F5d3b2f89eBae1',
-      kycdapp: '0xC4336494606203e3907539d5b462A5cb7853B3C6'
+      rentingdappmanager: es.addresses['development'].ESN.rentingDappManager,
+      kycdapp: es.addresses['development'].ESN.kycdapp
     },
 };
 
-window.provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_NODE_URL);
+//window.provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_NODE_URL);
+window.provider = new es.CustomProvider('testnet');
 
 window.rentingDappInstance = RentingDappManagerFactory.connect(config.ESN.rentingdappmanager, window.provider);
 

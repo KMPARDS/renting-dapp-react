@@ -14,6 +14,7 @@
     "@types/yup": "^0.29.6",
     "bootstrap": "^4.5.2",
     "bootstrap-sass": "^3.4.1",
+    "eraswap-sdk": "^1.0.6-commit.88934170",
     "ethers": "^5.0.14",
     "formik": "^2.1.4",
     "moment": "^2.27.0",

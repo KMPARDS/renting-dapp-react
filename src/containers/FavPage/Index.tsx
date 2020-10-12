@@ -12,7 +12,6 @@ import { Row, Col, Container, Button } from 'react-bootstrap';
 import Calendar from 'react-calendar';
 import Modal from 'react-bootstrap/Modal';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { ProductManagerFactory } from '../../ethereum/typechain/ProductManagerFactory';
 import { isAddress } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';
 

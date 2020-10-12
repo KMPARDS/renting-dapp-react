@@ -115,6 +115,7 @@ class Home extends Component {
                         <Header />
                         <div className='buy-main-container'>
                             <h4 className='hero-txt-style'>Rent & Lease anything Peer to Peer </h4>
+                            <br/>
                             <div className='main-rent-search'>
                                 {/* <div className='location-dropdown'>
                                 {this.state.showCountry ?(<CountryDropdown

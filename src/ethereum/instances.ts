@@ -8,13 +8,13 @@ import { RentingDappManagerFactory } from 'eraswap-sdk/dist/typechain/ESN';
 
 const config = {
     ESN: {
-      rentingdappmanager: es.addresses['development'].ESN.rentingDappManager,
-      kycdapp: es.addresses['development'].ESN.kycdapp
+      rentingdappmanager: es.addresses['production'].ESN.rentingDappManager,
+      // kycdapp: es.addresses['development'].ESN.kycdapp
     },
 };
 
 //window.provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_NODE_URL);
-window.provider = new es.CustomProvider('testnet');
+window.provider = new es.CustomProvider('mainnet');
 
 window.rentingDappInstance = RentingDappManagerFactory.connect(config.ESN.rentingdappmanager, window.provider);
 

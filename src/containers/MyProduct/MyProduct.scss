@@ -52,8 +52,8 @@
     border: none;
     background-color: #FF5D22;
     color: #ffffff;
-    width: 140px;
-    height: 30px;
+    width: 120px !important;
+    height: 30px !important;
     border-radius: 4px;
 }
 
@@ -61,7 +61,11 @@
     border: none;
     background-color: #FF5D22;
     color: #ffffff;
-    width: 140px;
-    height: 70px;
+    width: 140px !important;
+    height: 30px !important;
     border-radius: 4px;
+}
+
+.prd-flex{
+    display: flex;
 }

@@ -280,7 +280,7 @@ export default function MyProduct()
                                         </button>
                                         <hr/>
 
-                                        <div>
+                                        <div className="prd-flex">
                                             <input 
                                                 type="number" 
                                                 placeholder="Enter penalty amount"

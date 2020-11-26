@@ -145,6 +145,14 @@ class ListPage extends Component {
                 <div className='wrapper-container'>
                     <Footer />
                 </div>
+                <br/>
+            <br/>
+            <br/>
+            <div className='footer-bgd'>
+                <div className='wrapper-container'>
+                    <Footer />
+                </div>
+            </div>
             </div>
             </div>
 

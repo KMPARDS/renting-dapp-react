@@ -3,28 +3,12 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import NavMenu from "../NavMenu/Index";
 import Images from "../../containers/Images/Image";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavLink,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  ButtonGroup,
-} from "reactstrap";
 
-class Header extends Component {
 
-  constructor(props: Readonly<{}>) {
+
+class Header extends Component { 
+//@ts-ignore
+  constructor(props) {
     super(props);
     this.state = {
       showMenu: false,
@@ -174,7 +158,11 @@ class Header extends Component {
               </Link>
             </li>
             <li className="nav-item">
+<<<<<<< HEAD
               <Link className="nav-link" to="/myFav">
+=======
+              <a className="nav-link" href="/myCart">
+>>>>>>> 734ab227a37c4e5abd9644a50cf6e6e94aaa7d9a
                 {" "}
                 <i className="fa fa-heart" aria-hidden="true"></i>{" "}
               </Link>

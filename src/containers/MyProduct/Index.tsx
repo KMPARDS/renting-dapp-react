@@ -206,7 +206,7 @@ export default function MyProduct()
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
                                     <td style={{textAlign: "center"}}>
-                                        <div>
+                                        <div className="prd-flex">
                                             <input 
                                                 type="number" 
                                                 placeholder="Enter 1 if OK else 0"
@@ -280,7 +280,7 @@ export default function MyProduct()
                                         </button>
                                         <hr/>
 
-                                        <div>
+                                        <div className="prd-flex">
                                             <input 
                                                 type="number" 
                                                 placeholder="Enter penalty amount"

@@ -3,7 +3,6 @@ import './AllCategories.scss';
 import Images from '../../containers/Images/Image';
 import NavBar from '../../components/Header/NavBar';
 import SideBar from '../../components/SideBar/Index';
-import Responsive from '../../Responsive/Responsive.css';
 import ListPage from '../ListPage/Index';
 import Footer from '../../components/Footer/Index';
 import { Link,Route } from 'react-router-dom';
@@ -14,6 +13,7 @@ class AllCategories extends Component {
 	public state: any;
 	public props: any;
 
+    //@ts-ignore
     constructor(props) {
         super(props);
         this.state = {

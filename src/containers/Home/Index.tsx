@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Home.scss';
 import Header from '../../components/Header/Index';
-<<<<<<< HEAD
 import { Card, Button, Container, Row, Form, InputGroup, Col, FormControl } from 'react-bootstrap';
 import Images from '../../containers/Images/Image';
 import Responsive from '../../Responsive/Responsive.css';
@@ -11,27 +10,12 @@ import { Link } from 'react-router-dom';
 import CarouselPage from '../../components/Carousel/Index';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 const queryString = require("query-string");
-=======
-import { Card, Button, Container, Row } from 'react-bootstrap';
-import Images from '../Images/Image';
-import HomeCategory from '../../components/HomeCategory/Index';
-import Footer from '../../components/Footer/Index';
-import { Link } from 'react-router-dom';
-import CarouselPage  from '../../components/Carousel/Index';
-
->>>>>>> 734ab227a37c4e5abd9644a50cf6e6e94aaa7d9a
 
 class Home extends Component {
     public state: any;
 	public handleInputChange: any;
 
-<<<<<<< HEAD
     constructor(props: Readonly<{}>) {
-=======
-
-    //@ts-ignore
-    constructor(props) {
->>>>>>> 734ab227a37c4e5abd9644a50cf6e6e94aaa7d9a
         super(props);
         this.state = {
             country: '',
@@ -114,19 +98,11 @@ class Home extends Component {
         };
     }
     
-<<<<<<< HEAD
     selectCountry (val: any) {
         this.setState({ country: val ,showCountry:false});
       }
      
     selectRegion (val: any) {
-=======
-    selectCountry (val:string) {
-        this.setState({ country: val ,showCountry:false});
-      }
-     
-      selectRegion (val:string) {
->>>>>>> 734ab227a37c4e5abd9644a50cf6e6e94aaa7d9a
         this.setState({ region: val });
     }
 

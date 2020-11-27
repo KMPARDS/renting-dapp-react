@@ -257,7 +257,7 @@ export default function Product()
                                     <td style={{textAlign: "center"}}>{ele[0]}</td>
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
                                     <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
-                                    <td style={{textAlign: "center"}}>
+                                    <td>
                                         <div className="prd-flex">
                                             <input 
                                                 type="number" 

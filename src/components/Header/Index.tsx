@@ -158,11 +158,7 @@ class Header extends Component {
               </Link>
             </li>
             <li className="nav-item">
-<<<<<<< HEAD
               <Link className="nav-link" to="/myFav">
-=======
-              <a className="nav-link" href="/myCart">
->>>>>>> 734ab227a37c4e5abd9644a50cf6e6e94aaa7d9a
                 {" "}
                 <i className="fa fa-heart" aria-hidden="true"></i>{" "}
               </Link>

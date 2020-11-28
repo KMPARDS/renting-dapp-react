@@ -82,7 +82,7 @@ class ListPage extends Component {
                                 <p className='location-catg'>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
                                 <p className='location-catg' style={{marginBottom: '0px'}}>Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                 <i 
-                                    className="fa fa-heart" 
+                                    className="fa fa-heart-o" 
                                     aria-hidden="true" 
                                     onClick={() => {
                                         const address = ele[1];

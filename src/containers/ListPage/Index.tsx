@@ -45,6 +45,15 @@ class ListPage extends Component {
                 <br/>
                 <br/>
                 <div className='myListing-wrapper-container'>
+                <div className="list-btn-right">
+                    <Link
+                className="nav-link btn btn-outline-warning conn-wallet-btn"
+                to="/RentPage"
+              >
+               Add New Product on Rent
+              </Link>
+                        </div>
+                        <div className="list-box-mgn">
                     <div className="row">
                     {
                         this.state.allProduct.map(ele => {
@@ -137,6 +146,7 @@ class ListPage extends Component {
                         })
                     }    
                     </div>                
+                    </div>
                 </div>
                 <br/>
             <br/>
@@ -148,11 +158,6 @@ class ListPage extends Component {
                 <br/>
             <br/>
             <br/>
-            <div className='footer-bgd'>
-                <div className='wrapper-container'>
-                    <Footer />
-                </div>
-            </div>
             </div>
             </div>
 

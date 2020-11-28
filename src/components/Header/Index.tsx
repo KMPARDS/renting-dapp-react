@@ -36,6 +36,7 @@ class Header extends Component {
   };
 
   render() {
+    console.log("check window wallet",window.wallet)
     return (
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark  navbar-light bg-transparent black custom-menu ">
         <img className="rentDaap-Img" src={Images.path.logocolor} />
@@ -51,65 +52,7 @@ class Header extends Component {
         </button>
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
-            {/* <li className="nav-item dropdown has-megamenu">
-                    <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"> ALL CATEGORIES  </a>
-                      <div className="dropdown-menu megamenu" role="menu">
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                            <div className="col-megamenu">
-                                              <h6 className="title">Title Menu One</h6>
-                                              <ul className="list-unstyled megamenu-box">
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                              </ul>
-                                            </div>  
-                                        </div>
-                                        <div className="col-md-3">
-                                          <div className="col-megamenu">
-                                            <h6 className="title">Title Menu Two</h6>
-                                                <ul className="list-unstyled megamenu-box">
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                </ul>
-                                            </div>  
-                                        </div>
-                                        <div className="col-md-3">
-                                          <div className="col-megamenu">
-                                            <h6 className="title">Title Menu Three</h6>
-                                                <ul className="list-unstyled megamenu-box">
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                </ul>
-                                            </div>  
-                                        </div>    
-                                        <div className="col-md-3">
-                                          <div className="col-megamenu">
-                                            <h6 className="title">Title Menu Four</h6>
-                                                <ul className="list-unstyled megamenu-box">
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                </ul>
-                                            </div>  
-                                        </div>
-                                    </div>
-                        </div> 
-                  </li> */}
+            
           </ul>
 
           <ul className="navbar-nav ml-auto">
@@ -160,7 +103,8 @@ class Header extends Component {
             <li className="nav-item">
               <Link className="nav-link" to="/myFav">
                 {" "}
-                <i className="fa fa-heart" aria-hidden="true"></i>{" "}
+                <i className="fa fa-heart" aria-hidden="true"></i>
+                <i className="fa fa-heart-o" style={{color:'FF333F'}}></i>
               </Link>
             </li>
             <li className="nav-item">
@@ -168,12 +112,10 @@ class Header extends Component {
                 className="nav-link btn btn-outline-warning conn-wallet-btn"
                 to="/RentPage"
               >
-                {" "}
-                Rent{" "}
+                Rent
               </Link>
             </li>
             <li className="nav-item">
-              
               {window.wallet ? (
                 <Link
                 className="nav-link btn btn-outline-warning conn-wallet-btn"
@@ -182,8 +124,7 @@ class Header extends Component {
                   delete window.wallet;
                 }}
               >
-                {" "}
-                LOGOUT{" "}
+                LOGOUT
               </Link>
               ) : (
                 <a

@@ -4,9 +4,11 @@ import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import Images from '../../containers/Images/Image';
 //import Responsive from '../../Responsive/Responsive.css';
-import { Col, Container, Row, Card, Tab, Nav, Section, Button } from 'react-bootstrap';
-import {ethers} from 'ethers';
+import { Col, Container, Row, Card, Tab, Nav, Button, Alert } from 'react-bootstrap';
+import { ethers } from 'ethers';
 import { Link } from 'react-router-dom';
+
+
 
 
 class MyAccount extends Component {
@@ -23,8 +25,7 @@ class MyAccount extends Component {
     }
 
     getProduct = async () => {
-        if(window.wallet===undefined)
-        {
+        if (window.wallet === undefined) {
             alert("Wallet not loaded");
             return;
         }
@@ -39,28 +40,26 @@ class MyAccount extends Component {
 
     fetchData = async () => {
         var orders = [];
-        if(window.wallet===undefined)
-        {
+        if (window.wallet === undefined) {
             alert("Wallet not loaded");
             return;
         }
-        const userId = ''+window.wallet.address+'store';
-        orders = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
-        if(orders === null)
+        const userId = '' + window.wallet.address + 'store';
+        orders = (JSON.parse(localStorage.getItem(JSON.stringify(userId))));
+        if (orders === null)
             return;
-        this.setState({ ...this.state, allOrders: orders});
+        this.setState({ ...this.state, allOrders: orders });
     }
 
-    fetchBalance = async() => {
-        if(window.wallet===undefined)
-        {
+    fetchBalance = async () => {
+        if (window.wallet === undefined) {
             alert("Wallet not loaded");
             return;
         }
-        
+
         const balance = await window.provider.getBalance(window.wallet.address);
-        
-        this.setState({balance});
+
+        this.setState({ balance });
     }
 
     async componentDidMount() {
@@ -70,6 +69,8 @@ class MyAccount extends Component {
     }
 
     render() {
+        console.log('allOrders is', this.state.allOrders);
+        
         return (
             <div>
                 <NavBar />
@@ -103,30 +104,29 @@ class MyAccount extends Component {
                                     <Tab.Content>
                                         <Tab.Pane eventKey="first">
                                             <Row>
-                                                <Col lg={12} style={{textAlign: "center"}}>
+                                                <Col lg={12} style={{ textAlign: "center" }}>
                                                     {/*<Card className="text-center" >
                                                         <Card.Body>*/}
-                                                            <Card.Text>
-                                                                <img src={Images.path.defaultProfile} className="img-circle avatar" alt="User avatar" />
-                                                            </Card.Text>
+                                                    <Card.Text>
+                                                        <img src={Images.path.defaultProfile} className="img-circle avatar" alt="User avatar" />
+                                                    </Card.Text>
+                                                    <div className="upload-btn-wrapper">
+                                                        <button className="btn-photo">Change Photo</button>
+                                                        <input type="file" name="myfile" />
+                                                    </div>
+                                                    <br /><br />
 
-                                                            <Button variant="primary">Change Photo</Button>
-                                                            <br/><br/>
-                                                            
-                                                            <div className="yourwallet ">
-                                                                <h5 className="feature-head text-left"> Account address</h5>
-                                                                <div className="wallet-address">{window.wallet.address}</div>
-                                                             </div>
-                                                             <div className="yourwallet ">
-                                                                <h5 className="feature-head text-left">Balance</h5>
-                                                                <div className="wallet-address">{this.state.balance!==null ? ethers.utils.formatEther(this.state.balance) : "Loading..."} ES</div>
-                                                             </div>
-                                                             <div className="yourwallet ">
-                                                                <h5 className="feature-head text-left">KYC Level</h5>
-                                                              </div>
-                                                        {/*</Card.Body>
-
-                                                        </Card>*/}
+                                                    <div className="yourwallet ">
+                                                        <h5 className="feature-head text-left"> Account address</h5>
+                                                        <div className="wallet-address">{window.wallet.address}</div>
+                                                    </div>
+                                                    <div className="yourwallet ">
+                                                        <h5 className="feature-head text-left">Balance</h5>
+                                                        <div className="wallet-address">{this.state.balance !== null ? ethers.utils.formatEther(this.state.balance) : "Loading..."} ES</div>
+                                                    </div>
+                                                    <div className="yourwallet ">
+                                                        <h5 className="feature-head text-left">KYC Level</h5>
+                                                    </div>
                                                 </Col>
 
                                             </Row>
@@ -135,31 +135,37 @@ class MyAccount extends Component {
                                         <Tab.Pane eventKey="second">
                                             <Row>
                                                 {
+                                                    this.state.allOrders?.length ? (
                                                     this.state.allOrders.map((ele: React.ReactNode[]) => {
                                                         return <Col lg={4}>
-                                                                    <div className="card-category-container">
-                                                                        <div className="overflow">
-                                                                            <img className="catg-imgs" src="/static/media/itemOne.e8af2a1c.jpg" />
-                                                                        </div>
-                                                                        <div>
-                                                                            <p><Link className='stretched-link catg-body-txt' to={'/Product/'+ele.address}>{ele.title}</Link></p>
-                                                                        </div>
-                                                                        <p className="location-catg list-box-desc">Description: {ele.description}</p>
-                                                                        <div className="catg-body-txt">
-                                                                            <p>Address: {ele.location}</p>
-                                                                        </div>
-                                                                        <div className="catg-body-txt">
-                                                                            <p>Rent: {ele.rent} ES</p>
-                                                                        </div>
-                                                                        <p className="location-catg">Security Fee: {ele.security} ES</p>
-                                                                        <p className="location-catg">Cancellation Fee: {ele.cancellation} ES</p>
-                                                                        <br/>
-                                                                        <p className="location-catg">Booked on: {((new Date(Number(ele.bookingDate))).toString()).split("GMT+0530 (India Standard Time)")}</p> 
-                                                                        <p className="location-catg">Starts on: {((new Date(Number(ele.startDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>
-                                                                        <p className="location-catg">Ends on: {((new Date(Number(ele.endDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>                                                     
-                                                                    </div>
-                                                                </Col>
+                                                            <div className="card-category-container">
+                                                                <div className="overflow">
+                                                                    <img className="catg-imgs" src="/static/media/itemOne.e8af2a1c.jpg" />
+                                                                </div>
+                                                                <div>
+                                                                    <p><Link className='stretched-link catg-body-txt' to={'/Product/' + ele.address}>{ele.title}</Link></p>
+                                                                </div>
+                                                                <p className="location-catg list-box-desc">Description: {ele.description}</p>
+                                                                <div className="catg-body-txt">
+                                                                    <p>Address: {ele.location}</p>
+                                                                </div>
+                                                                <div className="catg-body-txt">
+                                                                    <p>Rent: {ele.rent} ES</p>
+                                                                </div>
+                                                                <p className="location-catg">Security Fee: {ele.security} ES</p>
+                                                                <p className="location-catg">Cancellation Fee: {ele.cancellation} ES</p>
+                                                                <br />
+                                                                <p className="location-catg">Booked on: {((new Date(Number(ele.bookingDate))).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                                                <p className="location-catg">Starts on: {((new Date(Number(ele.startDate) * 1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                                                <p className="location-catg">Ends on: {((new Date(Number(ele.endDate) * 1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                                            </div>
+                                                        </Col>
                                                     })
+                                                    ):(
+                                                        <Alert variant="secondary">
+                                                              You have 0 Listing in your account
+                                                            </Alert>
+                                                    )
                                                 }
 
                                             </Row>
@@ -167,14 +173,15 @@ class MyAccount extends Component {
                                         <Tab.Pane eventKey="third">
                                             <Row>
                                                 {
-                                                    this.state.allProduct.map((ele: React.ReactNode[]) => {
-                                                        return <Col lg={4}>
+                                                    this.state.allProduct?.length ? (
+                                                        this.state.allProduct.map((ele: React.ReactNode[]) => {
+                                                            return <Col lg={4}>
                                                                 <div className="card-category-container">
                                                                     <div className="overflow">
                                                                         <img className="catg-imgs" src="/static/media/itemOne.e8af2a1c.jpg" />
                                                                     </div>
                                                                     <div>
-                                                                        <p><Link className='stretched-link catg-body-txt' to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></p>
+                                                                        <p><Link className='stretched-link catg-body-txt' to={'/MyProduct/' + ele[1]}>{ele[2]}</Link></p>
                                                                     </div>
                                                                     <p className="location-catg list-box-desc">Description: {ele[3]}</p>
                                                                     <div className="catg-body-txt">
@@ -185,11 +192,16 @@ class MyAccount extends Component {
                                                                     </div>
                                                                     <p className="location-catg">Security Fee: {ethers.utils.formatEther(ele[6])} ES</p>
                                                                     <p className="location-catg">Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
-                                                                    <br/>
+                                                                    <br />
                                                                     <p className="location-catg">Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                                                 </div>
                                                             </Col>
-                                                    })
+                                                        })
+                                                    ) : (
+                                                            <Alert variant="secondary">
+                                                              You have 0 Listing in your account
+                                                            </Alert>
+                                                        )
                                                 }
                                             </Row>
                                         </Tab.Pane>

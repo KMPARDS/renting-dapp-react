@@ -88,4 +88,14 @@ border-radius: 10px;
 }
 .row.listing-border{
  margin-bottom: 20px;
+ margin-top: 50px;
+}
+
+.list-btn-right{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-link.btn.btn-outline-warning.conn-wallet-btn{
+ padding: 5px;
 }

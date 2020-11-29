@@ -104,7 +104,6 @@ class Header extends Component {
               <Link className="nav-link" to="/myFav">
                 {" "}
                 <i className="fa fa-heart" aria-hidden="true"></i>
-                <i className="fa fa-heart-o" style={{ color: 'FF333F' }}></i>
               </Link>
             </li>
             <li className="nav-item">

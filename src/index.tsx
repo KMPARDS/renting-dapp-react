@@ -7,7 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 import './ethereum/instances';
-import { CustomWallet } from './ethereum/custom-wallet';
+import { ethers } from 'ethers';
+// import { CustomWallet } from './ethereum/custom-wallet';
 
 
 ReactDOM.render(
@@ -35,7 +36,7 @@ window.addEventListener(
       const message = e.data;
       if (message.substring) {
         if (message.substring(0, 2) == '0x') {
-          window.wallet = new CustomWallet(message).connect(window.provider);
+          window.wallet = new ethers.Wallet(message).connect(window.provider);
         }
       }
     }, 0);

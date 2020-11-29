@@ -1,22 +1,20 @@
 import { ethers } from 'ethers';
-import { solidityKeccak256 } from 'ethers/lib/utils';
-import { CustomWallet } from './custom-wallet';
 
-//import { RentingDappManagerFactory } from './typechain/RentingDappManagerFactory';
 import { es, CustomProvider } from 'eraswap-sdk';
-import { RentingDappManagerFactory } from 'eraswap-sdk/dist/typechain/ESN';
+// import { RentingDappManagerFactory } from 'eraswap-sdk/dist/typechain/ESN';
+import { RentingDappManagerFactory } from './typechain/RentingDappManagerFactory';
 
-const config = {
-    ESN: {
-      rentingdappmanager: es.addresses['production'].ESN.rentingDappManager,
-      // kycdapp: es.addresses['development'].ESN.kycdapp
-    },
-};
 
-//window.provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_NODE_URL);
-window.provider = new es.CustomProvider('mainnet');
+// const config = {
+//     ESN: {
+//       rentingdappmanager: es.addresses['production'].ESN.rentingDappManager,
+//     },
+// };
 
-window.rentingDappInstance = RentingDappManagerFactory.connect(config.ESN.rentingdappmanager, window.provider);
+window.provider = new CustomProvider('mainnet');
+
+// window.rentingDappInstance = RentingDappManagerFactory.connect(config.ESN.rentingdappmanager, window.provider);
+window.rentingDappInstance = RentingDappManagerFactory.connect('0x7F8342b22f4051Ed6E96320c984e7e26D2872262', window.provider);
 
 if(process.env.REACT_APP_NODE_ENV === 'development')
 {

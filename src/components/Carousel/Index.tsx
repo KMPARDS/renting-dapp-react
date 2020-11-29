@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Carousel.scss';
 import Images from '../../containers/Images/Image';
 import { Col, Container, Row } from 'react-bootstrap';
-import Responsive from '../../Responsive/Responsive.css';
+// import Responsive from '../../Responsive/Responsive.css';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ethers from 'ethers';
@@ -13,7 +13,7 @@ class CarouselPage extends Component {
 	public state: any;
 	public props: any;
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       allProduct: [],
@@ -25,9 +25,22 @@ class CarouselPage extends Component {
     const logs = await window.rentingDappInstance.queryFilter(filter);
     const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
     const productAll = parseLogs.map(ele => ele.args);
-    console.log("All :",productAll)
-    this.setState({...this.state , allProduct : productAll})
-    return productAll;
+    
+    var displayProducts = [];
+
+        for(var i=0; i<productAll.length; i++)
+        {
+            var status = await window.rentingDappInstance.isAvailable(productAll[i][1]);
+            if(status === true)
+            {
+                displayProducts.push(productAll[i]);
+            }
+        }
+
+        console.log(displayProducts);
+
+        this.setState({...this.state , allProduct : displayProducts});
+        return displayProducts;
   }
 
   async componentDidMount() {
@@ -61,12 +74,13 @@ class CarouselPage extends Component {
         <Container>
           <Carousel
             responsive={responsive}
+            //@ts-ignore
             infiniteLoop
             deviceType={this.props.deviceType}
             useKeyboardArrows
           >                  
             {
-              this.state.allProduct.map(ele => {
+              this.state.allProduct.map((ele: any) => {
                 return <div className='card text-center'>
                           <div className='overflow'>
                             <img className='car-slider-img' src={Images.path.itemOne}/>

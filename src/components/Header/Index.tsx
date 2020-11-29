@@ -37,17 +37,20 @@ class Header extends Component {
 
   toggleMenu = () => {
     this.setState({
+      //@ts-ignore
       showMenu: !this.state.showMenu,
     });
   };
 
   toggleProfile = () => {
     this.setState({
+      //@ts-ignore
       profileMenu: !this.state.profileMenu,
     });
   };
 
   toggle = () => {
+    //@ts-ignore
     this.setState({ isOpen: !this.state.isOpen });
   };
 
@@ -67,65 +70,6 @@ class Header extends Component {
         </button>
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
-            {/* <li className="nav-item dropdown has-megamenu">
-                    <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"> ALL CATEGORIES  </a>
-                      <div className="dropdown-menu megamenu" role="menu">
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                            <div className="col-megamenu">
-                                              <h6 className="title">Title Menu One</h6>
-                                              <ul className="list-unstyled megamenu-box">
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                                  <li><a href="#">Custom Menu</a></li>
-                                              </ul>
-                                            </div>  
-                                        </div>
-                                        <div className="col-md-3">
-                                          <div className="col-megamenu">
-                                            <h6 className="title">Title Menu Two</h6>
-                                                <ul className="list-unstyled megamenu-box">
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                </ul>
-                                            </div>  
-                                        </div>
-                                        <div className="col-md-3">
-                                          <div className="col-megamenu">
-                                            <h6 className="title">Title Menu Three</h6>
-                                                <ul className="list-unstyled megamenu-box">
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                </ul>
-                                            </div>  
-                                        </div>    
-                                        <div className="col-md-3">
-                                          <div className="col-megamenu">
-                                            <h6 className="title">Title Menu Four</h6>
-                                                <ul className="list-unstyled megamenu-box">
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                    <li><a href="#">Custom Menu</a></li>
-                                                </ul>
-                                            </div>  
-                                        </div>
-                                    </div>
-                        </div> 
-                  </li> */}
           </ul>
 
           <ul className="navbar-nav ml-auto">
@@ -135,12 +79,7 @@ class Header extends Component {
                 Home{" "}
               </Link>{" "}
             </li>
-            {/*<li className="nav-item ">
-              {" "}
-              <Link className="nav-link catgry-texttwo" onClick={this.toggleMenu}>
-                All Categories{" "}
-              </Link>{" "}
-            </li>*/}
+
             <li className="nav-item ">
               {" "}
               <Link className="nav-link catgry-texttwo" to="/List">

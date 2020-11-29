@@ -17,24 +17,7 @@ import { BigNumber } from 'ethers';
 
 export default function FavPage() 
 {
-    const [modalState, setModalState] = useState({showModal: false});
-    const [deleteModalState, setDeleteModalState] = useState({showDeleteModal: false});
-    const [dateState, setDateState] = useState({startDate: '', endDate: ''});
     const [state, setState] = useState({allProduct: []});
-
-    const handleClose = () => {
-        setModalState({showModal: false});
-        setDeleteModalState({showDeleteModal: false});
-        setDateState({startDate: '', endDate: ''});
-    }
-
-    const onChangeStart = (e: any) => {
-        setDateState({...dateState,[e.target.name] : e.target.value});
-    }
-
-    const onChangeEnd = (e: any) => {
-        setDateState({...dateState,[e.target.name] : e.target.value});
-    }
 
     const fetchData = async () => {
         var products = [];
@@ -43,14 +26,29 @@ export default function FavPage()
             alert("Wallet not loaded");
             return;
         }
+        //@ts-ignore
         products = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
-        if(products === null)
+
+        var displayProducts = [];
+
+        for(var i=0;i<products.length; i++)
+        {
+            console.log(products[i].address);
+            var status = await window.rentingDappInstance.isAvailable(products[i].address);
+            console.log(status);
+            if(status === true)
+                displayProducts.push(products[i]);
+        }
+
+        if(displayProducts === null)
         {
             alert("No items in favourites");
             return;
         }
-        setState({allProduct: products});
-        //alert(state.allProduct.length);
+        //@ts-ignore
+        setState({allProduct: displayProducts});
+        
+        console.log(displayProducts);
     }
 
     useEffect(()=>{(async () =>
@@ -73,7 +71,7 @@ export default function FavPage()
                 <br/><br/>
                 <div className='myListing-wrapper-container'>
                     {                        
-                        state.allProduct.map((ele: React.ReactNode[]) => {
+                        state.allProduct.map((ele: any) => {
                             return <div className='row listing-border'>
                                 <div className='r-col-d-4'>
                                     <div className='section1-listing'>
@@ -96,23 +94,32 @@ export default function FavPage()
                                         <h5 className='desc-head'>Address</h5>
                                         <p className='desc-para'>{ele.location}</p>
 
-                                        <Link className='desc-head' onClick={() => {
+                                        <Button style={{color: "white"}} className='desc-head' onClick={() => {
                                             let arr = [];
+                                            //@ts-ignore
                                             arr = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
                                             for(var i=0; i<arr.length; i++)
                                             {
+                                                //@ts-ignore
                                                 if(arr[i].address === ele.address)
                                                 {
                                                     arr.splice(i, 1);
                                                     i--;
                                                 }
                                             }
+
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+
                                             localStorage.setItem(JSON.stringify(window.wallet.address), JSON.stringify(arr));
                                             alert("Product removed from favourites, refresh page");
                                             //window.location.reload(false);
                                         }}>
                                             Remove from Favourites
-                                        </Link>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -125,65 +132,7 @@ export default function FavPage()
                     <div className='wrapper-container'>
                         <Footer />
                     </div>
-                </div>
-
-                {/* Bootstrap Modal */}
-                <Modal size="lg" show={modalState.showModal} onHide={handleClose} className="date-modal-container" >
-                    <Modal.Header closeButton>
-
-                    </Modal.Header>
-                    <Modal.Body >
-                        <Row className="show-grid date-content">
-                            <Calendar
-                                onChange={onChangeStart}
-                                value={Date.parse(dateState.startDate)}
-                            />
-                            {console.log(dateState.startDate)}
-                            <Calendar
-                                onChange={onChangeEnd}
-                                value={Date.parse(dateState.endDate)}
-                            />
-                            <div className='show-dates'>
-                                <p className='date-catg-head'> Casa DE Rio</p>
-                                <div className="date-input-container">
-                                    <input type="text" className="form-control start-input" id="inputKey" placeholder="Start Date" value={dateState.startDate} />
-                                    <input type="text" className="form-control" id="inputValue" placeholder="End Date" value={dateState.endDate} />
-                                </div>
-                                <p className='green-date'> Available on the selected date</p>
-                                <p className='red-date'> Not Available on the selected date</p>
-                                <button className="date-proceed">Proceed</button>
-                            </div>
-                        </Row>
-
-                    </Modal.Body>
-                    <Modal.Footer>
-                    </Modal.Footer>
-                </Modal>
-
-                {/* Bootstrap Modal */}
-                <Modal 
-                    show={deleteModalState.showDeleteModal}
-                    onHide={handleClose}
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title> 
-                            <div className='rentDaap-header-logo'> 
-                                <img className='rentDaap-Img-modal'  src={Images.path.logocolor} />
-                            </div>
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body> <div className='listing-txt-modal'>Do You want to Delete this listing</div></Modal.Body>
-                    <Modal.Footer className='delete-footer'>
-                        <Button variant="secondary" className='delete-btn' onClick={() => setDeleteModalState({showDeleteModal: false})}>
-                            Yes
-                        </Button>
-                        <Button variant="primary" className='delete-btn' onClick={() => setDeleteModalState({showDeleteModal: false})}>
-                            No
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+                </div>                
             </div>
         )
 }

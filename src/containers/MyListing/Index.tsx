@@ -32,10 +32,23 @@ class MyListing extends Component {
         const filter = window.rentingDappInstance.filters.ProductDetails(window.wallet.address,null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
-        const productAll = parseLogs.map(ele => ele.args);
-        console.log("All :",productAll)
-        this.setState({...this.state , allProduct : productAll})
-        return productAll;
+        var productAll = parseLogs.map(ele => ele.args);
+
+        var displayProducts = [];
+
+        for(var i=0; i<productAll.length; i++)
+        {
+            var status = await window.rentingDappInstance.isAvailable(productAll[i][1]);
+            if(status === true)
+            {
+                displayProducts.push(productAll[i]);
+            }
+        }
+
+        console.log(displayProducts);
+
+        this.setState({...this.state , allProduct : displayProducts});
+        return displayProducts;
     }
 
     async componentDidMount() {
@@ -74,8 +87,11 @@ class MyListing extends Component {
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='stretched-link listing-head' to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></h5>
+                                        {/* @ts-ignore */}
                                         <div className='desc-para'>Rent: {ethers.utils.formatEther(ele[5])} ES</div>
+                                        {/* @ts-ignore */}
                                         <div className='desc-para'>Security Fee: {ethers.utils.formatEther(ele[6])} ES</div>
+                                        {/* @ts-ignore */}
                                         <div className='desc-para'>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</div><br/>
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele[3]}</p>

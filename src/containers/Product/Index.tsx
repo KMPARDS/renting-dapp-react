@@ -29,6 +29,7 @@ export default function Product()
     const [check, setCheck] = useState({initial: 0, final: 0});
     const [arrState, setarrState] = useState([]);
 
+    //@ts-ignore
     const {address} = useParams(); 
     //alert(address);
     const productInstance = ProductManagerFactory.connect(
@@ -55,7 +56,8 @@ export default function Product()
         const logs = await productInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => productInstance.interface.parseLog(log));
         const contractLogs = parseLogs.map(ele => ele.args);
-        console.log("All contracts:",contractLogs)
+        console.log("All contracts:",contractLogs);
+        //@ts-ignore
         setContracts({allContracts : contractLogs});
         //return contracts;
         console.log(contracts.allContracts);
@@ -86,7 +88,8 @@ export default function Product()
             alert("Wallet not loaded");
             return;
         }
-        const agreement = await productInstance.connect(window.wallet).createAgreement(0, renderTimeStamp(timestate.startTime), renderTimeStamp(timestate.endTime));
+        // const agreement = await productInstance.connect(window.wallet).createAgreement(0, renderTimeStamp(timestate.startTime), renderTimeStamp(timestate.endTime));
+        const agreement = await productInstance.connect(window.wallet).createAgreement(renderTimeStamp(timestate.startTime), renderTimeStamp(timestate.endTime));
         const contract = await agreement.wait();
         //console.log(agreement);
 
@@ -106,6 +109,7 @@ export default function Product()
         else
         {
             let arr = [];
+            //@ts-ignore
             arr = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
 
             arr.push(product);
@@ -160,9 +164,10 @@ export default function Product()
         else
         {
             let arr = [];
+            //@ts-ignore
             arr = ( JSON.parse(localStorage.getItem(JSON.stringify(user))) );
             let check = false;
-            arr.map(ob=> {
+            arr.map((ob: any)=> {
                 if(ob.title === product.title)
                 check = true;
             })

@@ -3,12 +3,12 @@ import './Home.scss';
 import Header from '../../components/Header/Index';
 import { Card, Button, Container, Row, Form, InputGroup, Col, FormControl } from 'react-bootstrap';
 import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
+// import Responsive from '../../Responsive/Responsive.css';
 import HomeCategory from '../../components/HomeCategory/Index';
 import Footer from '../../components/Footer/Index';
 import { Link } from 'react-router-dom';
 import CarouselPage from '../../components/Carousel/Index';
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+// import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 const queryString = require("query-string");
 
 class Home extends Component {
@@ -117,19 +117,9 @@ class Home extends Component {
                             <h4 className='hero-txt-style'>Rent & Lease anything Peer to Peer </h4>
                             <br/>
                             <div className='main-rent-search'>
-                                {/* <div className='location-dropdown'>
-                                {this.state.showCountry ?(<CountryDropdown
-                                   className='country-style'
-                                        value={this.state.country}
-                                        onChange={(val) => this.selectCountry(val)} />)
-                                        : <RegionDropdown
-                                       className='region-style'
-                                        country={this.state.country}
-                                        value={this.state.region}
-                                        onChange={(val) => this.selectRegion(val)} />}
-                                        </div> */}
                                 <Form>
                                     <Form.Row className="align-items-center">
+                                        {/* @ts-ignore */}
                                         <Col xs="{auto}" className="my-1">
                                             <Form.Label className="mr-sm-2" htmlFor="inlineFormCustomSelect" srOnly>
                                                 Preference
@@ -150,6 +140,7 @@ class Home extends Component {
                                             </Form.Control>
                                         </Col>
 
+                                        {/* @ts-ignore */}
                                         <Col xs="{auto}" className="my-1">
                                             <Form.Label className="mr-sm-2" htmlFor="inlineFormCustomSelect" onChange={this.handleInputChange}  srOnly>
                                                 Preference

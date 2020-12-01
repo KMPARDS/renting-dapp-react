@@ -45,23 +45,39 @@ class CategoryForm extends Component {
                                         <div className='table-catg-details'>
                                             <div className='r-col-d-12'>
                                                 <h5 className="mt20">Category</h5>
+                                                {/* @ts-ignore */}
                                                 <p className='category-select-txt'>{new URLSearchParams(this.props.location.search).get("category")} - {new URLSearchParams(this.props.location.search).get("sub")}</p>
 
                                                 <h5>Please fill in details of your product</h5>
                                                 <Formik
-                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0 }}
+                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0, incentive: 0 }}
                                                     
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         try {
                                                             alert(JSON.stringify(values, null, 2));
-                                                            
+                                                            if(window.wallet===undefined)
+                                                            {
+                                                                alert("Wallet not loaded");
+                                                                return;
+                                                            }
+                                                            //@ts-ignore
                                                             const categoryId = new URLSearchParams(this.props.location.search).get("id");
                                                             const listDate = Date.now();
                                                             console.log(this.state.period);
                                                             //alert(typeof(categoryId));
                                                             if(categoryId === null)
                                                                 return;
-                                                            const product = await window.rentingDappInstance.connect(window.wallet).addItem(values.title, values.address, ethers.utils.parseEther(String(values.maxrent)), ethers.utils.parseEther(String(values.security)), ethers.utils.parseEther(String(values.cancellation)), values.description, ethers.utils.formatBytes32String(categoryId), listDate);
+                                                            const product = await window.rentingDappInstance.connect(window.wallet).addItem(
+                                                                values.title, 
+                                                                values.address, 
+                                                                ethers.utils.parseEther(String(values.maxrent)), 
+                                                                ethers.utils.parseEther(String(values.security)), 
+                                                                ethers.utils.parseEther(String(values.cancellation)), 
+                                                                values.description, 
+                                                                ethers.utils.formatBytes32String(categoryId), 
+                                                                listDate, 
+                                                                values.incentive
+                                                            );
                                                             product.wait();
                                                             console.log(product);
                                             
@@ -181,6 +197,19 @@ class CategoryForm extends Component {
                                                                             <button className="btn btn-light" type="button">ES</button>
                                                                         </div>
                                                                     </div>
+                                                                    
+                                                                    <br/><br/>
+                                                                    <label className='control-label'>Incentive*</label>
+                                                                    <div className="input-group col-md-6">
+                                                                        <input 
+                                                                            className="form-control"
+                                                                            type="number"
+                                                                            name="incentive"
+                                                                            onChange={handleChange}
+                                                                            onBlur={handleBlur}
+                                                                            value={values.incentive}
+                                                                        />
+                                                                    </div>
 
                                                                     <br/>
                                                                     <h5>Upload Photos</h5>
@@ -200,6 +229,7 @@ class CategoryForm extends Component {
                                                                                 <img src={Images.path.fileUpload} className='upload-pic'/>
                                                                             </div>
                                                                         </div>
+                                                                        {/* @ts-ignore */}
                                                                         <input type='file' onChange="readURL(this);"/>
                                                                     </div>
                 

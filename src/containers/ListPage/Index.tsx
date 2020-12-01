@@ -24,10 +24,23 @@ class ListPage extends Component {
         const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
-        const productAll = parseLogs.map(ele => ele.args);
-        console.log("All :",productAll)
-        this.setState({...this.state , allProduct : productAll})
-        return productAll;
+        var productAll = parseLogs.map(ele => ele.args);
+        
+        var displayProducts = [];
+
+        for(var i=0; i<productAll.length; i++)
+        {
+            var status = await window.rentingDappInstance.isAvailable(productAll[i][1]);
+            if(status === true)
+            {
+                displayProducts.push(productAll[i]);
+            }
+        }
+
+        console.log(displayProducts);
+
+        this.setState({...this.state , allProduct : displayProducts});
+        return displayProducts;
     }
 
     async componentDidMount() {
@@ -56,7 +69,7 @@ class ListPage extends Component {
                         <div className="list-box-mgn">
                     <div className="row">
                     {
-                        this.state.allProduct.map(ele => {
+                        this.state.allProduct.map((ele: any) => {
                         return <div className='r-col-d-4 position-relative'>
                             <div className='card-category-container'>
 
@@ -106,9 +119,10 @@ class ListPage extends Component {
                                         else
                                         {
                                             let arr = [];
+                                            //@ts-ignore
                                             arr = ( JSON.parse(localStorage.getItem(JSON.stringify(user))) );
                                             let check = false;
-                                            arr.map(ob=> {
+                                            arr.map((ob: any)=> {
                                                 if(ob.title === product.title)
                                                 check = true;
                                             })

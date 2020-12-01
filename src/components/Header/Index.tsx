@@ -21,17 +21,20 @@ class Header extends Component {
 
   toggleMenu = () => {
     this.setState({
+      //@ts-ignore
       showMenu: !this.state.showMenu,
     });
   };
 
   toggleProfile = () => {
     this.setState({
+      //@ts-ignore
       profileMenu: !this.state.profileMenu,
     });
   };
 
   toggle = () => {
+    //@ts-ignore
     this.setState({ isOpen: !this.state.isOpen });
   };
 
@@ -54,6 +57,8 @@ class Header extends Component {
           <ul className="navbar-nav">
 
           </ul>
+
+
          
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
@@ -62,12 +67,7 @@ class Header extends Component {
                 Home{" "}
               </Link>{" "}
             </li>
-            {/*<li className="nav-item ">
-              {" "}
-              <Link className="nav-link catgry-texttwo" onClick={this.toggleMenu}>
-                All Categories{" "}
-              </Link>{" "}
-            </li>*/}
+
             <li className="nav-item ">
               {" "}
               <Link className="nav-link catgry-texttwo" to="/List">

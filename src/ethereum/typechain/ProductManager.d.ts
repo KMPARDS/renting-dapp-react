@@ -36,6 +36,7 @@ interface ProductManagerInterface extends ethers.utils.Interface {
     "getBookedDates()": FunctionFragment;
     "getDiscounts()": FunctionFragment;
     "getNumberOfRents()": FunctionFragment;
+    "images()": FunctionFragment;
     "incentive()": FunctionFragment;
     "isAuthorised(address)": FunctionFragment;
     "isRentValid(address)": FunctionFragment;
@@ -106,6 +107,7 @@ interface ProductManagerInterface extends ethers.utils.Interface {
     functionFragment: "getNumberOfRents",
     values?: undefined
   ): string;
+  encodeFunctionData(functionFragment: "images", values?: undefined): string;
   encodeFunctionData(functionFragment: "incentive", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "isAuthorised",
@@ -187,6 +189,7 @@ interface ProductManagerInterface extends ethers.utils.Interface {
     functionFragment: "getNumberOfRents",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "images", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "incentive", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isAuthorised",
@@ -410,6 +413,18 @@ export class ProductManager extends Contract {
       overrides?: CallOverrides
     ): Promise<{
       0: BigNumber;
+    }>;
+
+    images(
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "images()"(
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
     }>;
 
     incentive(
@@ -701,6 +716,10 @@ export class ProductManager extends Contract {
 
   "getNumberOfRents()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+  images(overrides?: CallOverrides): Promise<string>;
+
+  "images()"(overrides?: CallOverrides): Promise<string>;
+
   incentive(overrides?: CallOverrides): Promise<BigNumber>;
 
   "incentive()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -885,6 +904,10 @@ export class ProductManager extends Contract {
     getNumberOfRents(overrides?: CallOverrides): Promise<BigNumber>;
 
     "getNumberOfRents()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    images(overrides?: CallOverrides): Promise<string>;
+
+    "images()"(overrides?: CallOverrides): Promise<string>;
 
     incentive(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1105,6 +1128,10 @@ export class ProductManager extends Contract {
 
     "getNumberOfRents()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    images(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "images()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     incentive(overrides?: CallOverrides): Promise<BigNumber>;
 
     "incentive()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1305,6 +1332,10 @@ export class ProductManager extends Contract {
     "getNumberOfRents()"(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    images(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "images()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     incentive(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

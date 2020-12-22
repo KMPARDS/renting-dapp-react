@@ -23,22 +23,26 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
 interface RentingDappManagerInterface extends ethers.utils.Interface {
   functions: {
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint256)": FunctionFragment;
+    "Admin(address)": FunctionFragment;
+    "Owner()": FunctionFragment;
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint8,string)": FunctionFragment;
     "dayswappers()": FunctionFragment;
-    "isAuthorised(address)": FunctionFragment;
+    "isAdmin(address)": FunctionFragment;
     "isAvailable(address)": FunctionFragment;
     "items(uint256)": FunctionFragment;
     "kycDapp()": FunctionFragment;
     "nrtManager()": FunctionFragment;
     "owner()": FunctionFragment;
-    "payRewards(address,uint256,uint256)": FunctionFragment;
+    "payRewards(address,address,uint256,uint256)": FunctionFragment;
     "prepaidEs()": FunctionFragment;
+    "raiseDispute(address,address,string)": FunctionFragment;
     "randomnessManager()": FunctionFragment;
     "removeItem(address)": FunctionFragment;
     "resolveAddress(bytes32)": FunctionFragment;
     "resolveAddressStrict(bytes32)": FunctionFragment;
     "resolveUsername(address)": FunctionFragment;
     "resolveUsernameStrict(address)": FunctionFragment;
+    "setAdmin(address,bool)": FunctionFragment;
     "setKycDapp(address)": FunctionFragment;
     "timeallyClub()": FunctionFragment;
     "timeallyManager()": FunctionFragment;
@@ -47,6 +51,8 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
     "validatorManager()": FunctionFragment;
   };
 
+  encodeFunctionData(functionFragment: "Admin", values: [string]): string;
+  encodeFunctionData(functionFragment: "Owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "addItem",
     values: [
@@ -58,17 +64,15 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
       string,
       BytesLike,
       BigNumberish,
-      BigNumberish
+      BigNumberish,
+      string
     ]
   ): string;
   encodeFunctionData(
     functionFragment: "dayswappers",
     values?: undefined
   ): string;
-  encodeFunctionData(
-    functionFragment: "isAuthorised",
-    values: [string]
-  ): string;
+  encodeFunctionData(functionFragment: "isAdmin", values: [string]): string;
   encodeFunctionData(functionFragment: "isAvailable", values: [string]): string;
   encodeFunctionData(functionFragment: "items", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "kycDapp", values?: undefined): string;
@@ -79,9 +83,13 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "payRewards",
-    values: [string, BigNumberish, BigNumberish]
+    values: [string, string, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "prepaidEs", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "raiseDispute",
+    values: [string, string, string]
+  ): string;
   encodeFunctionData(
     functionFragment: "randomnessManager",
     values?: undefined
@@ -102,6 +110,10 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "resolveUsernameStrict",
     values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setAdmin",
+    values: [string, boolean]
   ): string;
   encodeFunctionData(functionFragment: "setKycDapp", values: [string]): string;
   encodeFunctionData(
@@ -125,15 +137,14 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
     values?: undefined
   ): string;
 
+  decodeFunctionResult(functionFragment: "Admin", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "Owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "addItem", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "dayswappers",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "isAuthorised",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "isAdmin", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isAvailable",
     data: BytesLike
@@ -144,6 +155,10 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "payRewards", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "prepaidEs", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "raiseDispute",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "randomnessManager",
     data: BytesLike
@@ -165,6 +180,7 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
     functionFragment: "resolveUsernameStrict",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "setAdmin", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setKycDapp", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "timeallyClub",
@@ -188,10 +204,12 @@ interface RentingDappManagerInterface extends ethers.utils.Interface {
   ): Result;
 
   events: {
+    "Dispute(address,address,string)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
-    "ProductDetails(address,address,string,string,string,uint256,uint256,uint256,bytes32,uint48)": EventFragment;
+    "ProductDetails(address,address,string,string,string,uint256,uint256,uint256,bytes32,uint48,string)": EventFragment;
   };
 
+  getEvent(nameOrSignatureOrTopic: "Dispute"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ProductDetails"): EventFragment;
 }
@@ -210,6 +228,32 @@ export class RentingDappManager extends Contract {
   interface: RentingDappManagerInterface;
 
   functions: {
+    Admin(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    "Admin(address)"(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    Owner(
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
+    "Owner()"(
+      overrides?: CallOverrides
+    ): Promise<{
+      0: string;
+    }>;
+
     addItem(
       _name: string,
       _location: string,
@@ -220,10 +264,11 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint256)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint8,string)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -233,6 +278,7 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -248,15 +294,15 @@ export class RentingDappManager extends Contract {
       0: string;
     }>;
 
-    isAuthorised(
-      arg0: string,
+    isAdmin(
+      user: string,
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
     }>;
 
-    "isAuthorised(address)"(
-      arg0: string,
+    "isAdmin(address)"(
+      user: string,
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
@@ -333,16 +379,18 @@ export class RentingDappManager extends Contract {
     }>;
 
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
@@ -357,6 +405,20 @@ export class RentingDappManager extends Contract {
     ): Promise<{
       0: string;
     }>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
 
     randomnessManager(
       overrides?: CallOverrides
@@ -436,6 +498,18 @@ export class RentingDappManager extends Contract {
       0: string;
     }>;
 
+    setAdmin(
+      user: string,
+      status: boolean,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "setAdmin(address,bool)"(
+      user: string,
+      status: boolean,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
     setKycDapp(
       _kycDapp: string,
       overrides?: Overrides
@@ -511,6 +585,14 @@ export class RentingDappManager extends Contract {
     }>;
   };
 
+  Admin(arg0: string, overrides?: CallOverrides): Promise<boolean>;
+
+  "Admin(address)"(arg0: string, overrides?: CallOverrides): Promise<boolean>;
+
+  Owner(overrides?: CallOverrides): Promise<string>;
+
+  "Owner()"(overrides?: CallOverrides): Promise<string>;
+
   addItem(
     _name: string,
     _location: string,
@@ -521,10 +603,11 @@ export class RentingDappManager extends Contract {
     _categoryId: BytesLike,
     _listDate: BigNumberish,
     _incentive: BigNumberish,
+    image: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint256)"(
+  "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint8,string)"(
     _name: string,
     _location: string,
     _maxRent: BigNumberish,
@@ -534,6 +617,7 @@ export class RentingDappManager extends Contract {
     _categoryId: BytesLike,
     _listDate: BigNumberish,
     _incentive: BigNumberish,
+    image: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -541,12 +625,9 @@ export class RentingDappManager extends Contract {
 
   "dayswappers()"(overrides?: CallOverrides): Promise<string>;
 
-  isAuthorised(arg0: string, overrides?: CallOverrides): Promise<boolean>;
+  isAdmin(user: string, overrides?: CallOverrides): Promise<boolean>;
 
-  "isAuthorised(address)"(
-    arg0: string,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
+  "isAdmin(address)"(user: string, overrides?: CallOverrides): Promise<boolean>;
 
   isAvailable(arg0: string, overrides?: CallOverrides): Promise<boolean>;
 
@@ -581,22 +662,38 @@ export class RentingDappManager extends Contract {
   "owner()"(overrides?: CallOverrides): Promise<string>;
 
   payRewards(
-    _networker: string,
-    _treeAmount: BigNumberish,
-    _introducerAmount: BigNumberish,
+    _buyer: string,
+    _seller: string,
+    _value: BigNumberish,
+    _distribute: BigNumberish,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
-  "payRewards(address,uint256,uint256)"(
-    _networker: string,
-    _treeAmount: BigNumberish,
-    _introducerAmount: BigNumberish,
+  "payRewards(address,address,uint256,uint256)"(
+    _buyer: string,
+    _seller: string,
+    _value: BigNumberish,
+    _distribute: BigNumberish,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
   prepaidEs(overrides?: CallOverrides): Promise<string>;
 
   "prepaidEs()"(overrides?: CallOverrides): Promise<string>;
+
+  raiseDispute(
+    _product: string,
+    _rent: string,
+    _details: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "raiseDispute(address,address,string)"(
+    _product: string,
+    _rent: string,
+    _details: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
 
   randomnessManager(overrides?: CallOverrides): Promise<string>;
 
@@ -649,6 +746,18 @@ export class RentingDappManager extends Contract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  setAdmin(
+    user: string,
+    status: boolean,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "setAdmin(address,bool)"(
+    user: string,
+    status: boolean,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
   setKycDapp(
     _kycDapp: string,
     overrides?: Overrides
@@ -692,6 +801,14 @@ export class RentingDappManager extends Contract {
   "validatorManager()"(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
+    Admin(arg0: string, overrides?: CallOverrides): Promise<boolean>;
+
+    "Admin(address)"(arg0: string, overrides?: CallOverrides): Promise<boolean>;
+
+    Owner(overrides?: CallOverrides): Promise<string>;
+
+    "Owner()"(overrides?: CallOverrides): Promise<string>;
+
     addItem(
       _name: string,
       _location: string,
@@ -702,10 +819,11 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint256)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint8,string)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -715,6 +833,7 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -722,10 +841,10 @@ export class RentingDappManager extends Contract {
 
     "dayswappers()"(overrides?: CallOverrides): Promise<string>;
 
-    isAuthorised(arg0: string, overrides?: CallOverrides): Promise<boolean>;
+    isAdmin(user: string, overrides?: CallOverrides): Promise<boolean>;
 
-    "isAuthorised(address)"(
-      arg0: string,
+    "isAdmin(address)"(
+      user: string,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
@@ -762,22 +881,38 @@ export class RentingDappManager extends Contract {
     "owner()"(overrides?: CallOverrides): Promise<string>;
 
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
     prepaidEs(overrides?: CallOverrides): Promise<string>;
 
     "prepaidEs()"(overrides?: CallOverrides): Promise<string>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     randomnessManager(overrides?: CallOverrides): Promise<string>;
 
@@ -830,6 +965,18 @@ export class RentingDappManager extends Contract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    setAdmin(
+      user: string,
+      status: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "setAdmin(address,bool)"(
+      user: string,
+      status: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     setKycDapp(_kycDapp: string, overrides?: CallOverrides): Promise<void>;
 
     "setKycDapp(address)"(
@@ -871,6 +1018,12 @@ export class RentingDappManager extends Contract {
   };
 
   filters: {
+    Dispute(
+      _product: string | null,
+      _rentAgreement: string | null,
+      Details: null
+    ): EventFilter;
+
     OwnershipTransferred(
       previousOwner: string | null,
       newOwner: string | null
@@ -886,11 +1039,23 @@ export class RentingDappManager extends Contract {
       _security: null,
       _cancellationFee: null,
       _categoryId: BytesLike | null,
-      _listDate: null
+      _listDate: null,
+      image: null
     ): EventFilter;
   };
 
   estimateGas: {
+    Admin(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "Admin(address)"(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    Owner(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "Owner()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     addItem(
       _name: string,
       _location: string,
@@ -901,10 +1066,11 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint256)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint8,string)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -914,6 +1080,7 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -921,10 +1088,10 @@ export class RentingDappManager extends Contract {
 
     "dayswappers()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    isAuthorised(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+    isAdmin(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    "isAuthorised(address)"(
-      arg0: string,
+    "isAdmin(address)"(
+      user: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -961,22 +1128,38 @@ export class RentingDappManager extends Contract {
     "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
     prepaidEs(overrides?: CallOverrides): Promise<BigNumber>;
 
     "prepaidEs()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
 
     randomnessManager(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1029,6 +1212,18 @@ export class RentingDappManager extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    setAdmin(
+      user: string,
+      status: boolean,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "setAdmin(address,bool)"(
+      user: string,
+      status: boolean,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
     setKycDapp(_kycDapp: string, overrides?: Overrides): Promise<BigNumber>;
 
     "setKycDapp(address)"(
@@ -1072,6 +1267,20 @@ export class RentingDappManager extends Contract {
   };
 
   populateTransaction: {
+    Admin(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "Admin(address)"(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    Owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "Owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     addItem(
       _name: string,
       _location: string,
@@ -1082,10 +1291,11 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint256)"(
+    "addItem(string,string,uint256,uint256,uint256,string,bytes32,uint48,uint8,string)"(
       _name: string,
       _location: string,
       _maxRent: BigNumberish,
@@ -1095,6 +1305,7 @@ export class RentingDappManager extends Contract {
       _categoryId: BytesLike,
       _listDate: BigNumberish,
       _incentive: BigNumberish,
+      image: string,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -1102,13 +1313,13 @@ export class RentingDappManager extends Contract {
 
     "dayswappers()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    isAuthorised(
-      arg0: string,
+    isAdmin(
+      user: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "isAuthorised(address)"(
-      arg0: string,
+    "isAdmin(address)"(
+      user: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1151,22 +1362,38 @@ export class RentingDappManager extends Contract {
     "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
     prepaidEs(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "prepaidEs()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
 
     randomnessManager(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -1222,6 +1449,18 @@ export class RentingDappManager extends Contract {
     "resolveUsernameStrict(address)"(
       _wallet: string,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    setAdmin(
+      user: string,
+      status: boolean,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "setAdmin(address,bool)"(
+      user: string,
+      status: boolean,
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setKycDapp(

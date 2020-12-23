@@ -65,7 +65,7 @@ class ListPage extends Component {
                             <div className='card-category-container'>
 
                                 <div className='overflow'>
-                                    <img className='catg-imgs' src={Images.path.itemOne} />
+                                    <img className='catg-imgs' src={(ele[10].split(','))[0]} />
                                 </div>
 
                                 <div>

@@ -21,7 +21,7 @@ import {useMapState} from '../../MapState';
 
 export default function Product() 
 {
-    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: ''})
+    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: '',images:''})
     const [timestate, settimestate] = useState({startTime: '', endTime: ''})
     const [modalstate, setmodalstate] = useState({showModal: false}); 
     const [dateState, setDateState] = useState([['','']]);
@@ -40,12 +40,13 @@ export default function Product()
     const fetchData = async () => {
         const title = await productInstance.lessorName();
         const location = await productInstance.location();
+        const images = await productInstance.images();
         const description = await productInstance.description();
         const maxRent = ethers.utils.formatEther(await productInstance.maxRent());
         const security = ethers.utils.formatEther(await productInstance.security());
         const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
 
-        setstate({title, location, description, maxRent, security, cancellation});
+        setstate({title, location, description, maxRent, security, cancellation,images});
 
         if(window.wallet===undefined)
         {
@@ -219,7 +220,7 @@ export default function Product()
                 {/* Portfolio Item Row */}
                 <div className="row">
                     <div className="col-md-8">
-                        <img className="img-fluid" src={Images.path.rlTwo} alt="" />
+                        <img className="img-fluid" src={(state.images.split(','))[0]} alt="" />
                     </div>
                     <div className="col-md-4">
                         <h3 className="my-3 catg-body-txt">Product Description</h3>

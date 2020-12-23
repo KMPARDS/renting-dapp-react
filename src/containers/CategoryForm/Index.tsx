@@ -77,7 +77,8 @@ class CategoryForm extends Component {
                                                                 ethers.utils.formatBytes32String(categoryId), 
                                                                 listDate, 
                                                                 values.incentive,
-                                                                values.images.toString()
+                                                                values.images.toString(),
+                                                                {gasLimit: 5000000}
                                                             );
                                                             product.wait();
                                                             console.log(product);

@@ -50,7 +50,7 @@ class CategoryForm extends Component {
 
                                                 <h5>Please fill in details of your product</h5>
                                                 <Formik
-                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0, incentive: 0 }}
+                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0, incentive: 0,images:[Images.path.fileUpload,Images.path.fileUpload,Images.path.fileUpload,Images.path.fileUpload] }}
                                                     
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         try {
@@ -76,7 +76,9 @@ class CategoryForm extends Component {
                                                                 values.description, 
                                                                 ethers.utils.formatBytes32String(categoryId), 
                                                                 listDate, 
-                                                                values.incentive
+                                                                values.incentive,
+                                                                values.images.toString(),
+                                                                {gasLimit: 5000000}
                                                             );
                                                             product.wait();
                                                             console.log(product);
@@ -217,20 +219,52 @@ class CategoryForm extends Component {
                                                                     <div className='upload-img-container'>
                                                                         <div className='row'>
                                                                             <div className='r-col-d-3 img-upload'> 
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                                <img src={values.images[0]} className='upload-pic'/>
                                                                             </div>
                                                                             <div className='r-col-d-3 img-upload'>
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                                <img src={values.images[1]} className='upload-pic'/>
                                                                             </div>
                                                                             <div className='r-col-d-3 img-upload'>
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                                <img src={values.images[2]} className='upload-pic'/>
                                                                             </div>
                                                                             <div className='r-col-d-3 img-upload'>
-                                                                                <img src={Images.path.fileUpload} className='upload-pic'/>
+                                                                                <img src={values.images[3]} className='upload-pic'/>
                                                                             </div>
                                                                         </div>
                                                                         {/* @ts-ignore */}
-                                                                        <input type='file' onChange="readURL(this);"/>
+                                                                        <input 
+                                                                            className="form-control"
+                                                                            type="text"
+                                                                            name="images[0]"
+                                                                            onChange={handleChange}
+                                                                            onBlur={handleBlur}
+                                                                            value={values.images[0]}
+                                                                        />
+                                                                        <input 
+                                                                            className="form-control"
+                                                                            type="text"
+                                                                            name="images[1]"
+                                                                            onChange={handleChange}
+                                                                            onBlur={handleBlur}
+                                                                            value={values.images[1]}
+                                                                        />
+                                                                        <input 
+                                                                            className="form-control"
+                                                                            type="text"
+                                                                            name="images[2]"
+                                                                            onChange={handleChange}
+                                                                            onBlur={handleBlur}
+                                                                            value={values.images[2]}
+                                                                        />
+                                                                        <input 
+                                                                            className="form-control"
+                                                                            type="text"
+                                                                            name="images[3]"
+                                                                            onChange={handleChange}
+                                                                            onBlur={handleBlur}
+                                                                            value={values.images[3]}
+                                                                        />
+                                                                        
                                                                     </div>
                 
                                                                     <div className='location-flex'>

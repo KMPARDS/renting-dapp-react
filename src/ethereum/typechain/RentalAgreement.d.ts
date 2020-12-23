@@ -45,6 +45,7 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     "payingRent()": FunctionFragment;
     "possibleRents(uint256)": FunctionFragment;
     "productManager()": FunctionFragment;
+    "resolveDispute(uint256)": FunctionFragment;
     "security()": FunctionFragment;
     "state()": FunctionFragment;
     "terminateNormally()": FunctionFragment;
@@ -112,6 +113,10 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
     functionFragment: "productManager",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "resolveDispute",
+    values: [BigNumberish]
+  ): string;
   encodeFunctionData(functionFragment: "security", values?: undefined): string;
   encodeFunctionData(functionFragment: "state", values?: undefined): string;
   encodeFunctionData(
@@ -173,6 +178,10 @@ interface RentalAgreementInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "productManager",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "resolveDispute",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "security", data: BytesLike): Result;
@@ -449,6 +458,16 @@ export class RentalAgreement extends Contract {
       0: string;
     }>;
 
+    resolveDispute(
+      additionalCharges: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "resolveDispute(uint256)"(
+      additionalCharges: BigNumberish,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
     security(
       overrides?: CallOverrides
     ): Promise<{
@@ -626,6 +645,16 @@ export class RentalAgreement extends Contract {
 
   "productManager()"(overrides?: CallOverrides): Promise<string>;
 
+  resolveDispute(
+    additionalCharges: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "resolveDispute(uint256)"(
+    additionalCharges: BigNumberish,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
   security(overrides?: CallOverrides): Promise<BigNumber>;
 
   "security()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -785,6 +814,16 @@ export class RentalAgreement extends Contract {
 
     "productManager()"(overrides?: CallOverrides): Promise<string>;
 
+    resolveDispute(
+      additionalCharges: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "resolveDispute(uint256)"(
+      additionalCharges: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     security(overrides?: CallOverrides): Promise<BigNumber>;
 
     "security()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -943,6 +982,16 @@ export class RentalAgreement extends Contract {
 
     "productManager()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    resolveDispute(
+      additionalCharges: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "resolveDispute(uint256)"(
+      additionalCharges: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
     security(overrides?: CallOverrides): Promise<BigNumber>;
 
     "security()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1097,6 +1146,16 @@ export class RentalAgreement extends Contract {
 
     "productManager()"(
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    resolveDispute(
+      additionalCharges: BigNumberish,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "resolveDispute(uint256)"(
+      additionalCharges: BigNumberish,
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     security(overrides?: CallOverrides): Promise<PopulatedTransaction>;

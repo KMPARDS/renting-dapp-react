@@ -21,7 +21,7 @@ class ListPage extends Component {
     }
 
     getProduct = async () => {
-        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null,null);
+        const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null,null,null);
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         var productAll = parseLogs.map(ele => ele.args);
@@ -65,7 +65,7 @@ class ListPage extends Component {
                             <div className='card-category-container'>
 
                                 <div className='overflow'>
-                                    <img className='catg-imgs' src={Images.path.itemOne} />
+                                    <img className='catg-imgs' src={(ele[10].split(','))[0]} />
                                 </div>
 
                                 <div>

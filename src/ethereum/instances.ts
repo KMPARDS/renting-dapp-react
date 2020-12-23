@@ -14,7 +14,7 @@ import { RentingDappManagerFactory } from './typechain/RentingDappManagerFactory
 window.provider = new CustomProvider('mainnet');
 
 // window.rentingDappInstance = RentingDappManagerFactory.connect(config.ESN.rentingdappmanager, window.provider);
-window.rentingDappInstance = RentingDappManagerFactory.connect('0xd09cD710a4D845feEa4942ebE16bA04d519e553C', window.provider);
+window.rentingDappInstance = RentingDappManagerFactory.connect('0xFAdf532B997F499E5eccB17A48EeBe8cb6e7A6BC', window.provider);
 
 if(process.env.REACT_APP_NODE_ENV === 'development')
 {

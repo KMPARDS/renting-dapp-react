@@ -13,6 +13,7 @@ import {
 import {
   Contract,
   ContractTransaction,
+  Overrides,
   PayableOverrides,
   CallOverrides,
 } from "@ethersproject/contracts";
@@ -22,15 +23,27 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
 interface IRentingDappManagerInterface extends ethers.utils.Interface {
   functions: {
-    "payRewards(address,uint256,uint256)": FunctionFragment;
+    "isAdmin(address)": FunctionFragment;
+    "payRewards(address,address,uint256,uint256)": FunctionFragment;
+    "raiseDispute(address,address,string)": FunctionFragment;
   };
 
+  encodeFunctionData(functionFragment: "isAdmin", values: [string]): string;
   encodeFunctionData(
     functionFragment: "payRewards",
-    values: [string, BigNumberish, BigNumberish]
+    values: [string, string, BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "raiseDispute",
+    values: [string, string, string]
   ): string;
 
+  decodeFunctionResult(functionFragment: "isAdmin", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "payRewards", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "raiseDispute",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -49,47 +62,120 @@ export class IRentingDappManager extends Contract {
   interface: IRentingDappManagerInterface;
 
   functions: {
+    isAdmin(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
+    "isAdmin(address)"(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<{
+      0: boolean;
+    }>;
+
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
+    ): Promise<ContractTransaction>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
 
+  isAdmin(user: string, overrides?: CallOverrides): Promise<boolean>;
+
+  "isAdmin(address)"(user: string, overrides?: CallOverrides): Promise<boolean>;
+
   payRewards(
-    _networker: string,
-    _treeAmount: BigNumberish,
-    _introducerAmount: BigNumberish,
+    _buyer: string,
+    _seller: string,
+    _value: BigNumberish,
+    _distribute: BigNumberish,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
-  "payRewards(address,uint256,uint256)"(
-    _networker: string,
-    _treeAmount: BigNumberish,
-    _introducerAmount: BigNumberish,
+  "payRewards(address,address,uint256,uint256)"(
+    _buyer: string,
+    _seller: string,
+    _value: BigNumberish,
+    _distribute: BigNumberish,
     overrides?: PayableOverrides
+  ): Promise<ContractTransaction>;
+
+  raiseDispute(
+    _product: string,
+    _rent: string,
+    _details: string,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "raiseDispute(address,address,string)"(
+    _product: string,
+    _rent: string,
+    _details: string,
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    isAdmin(user: string, overrides?: CallOverrides): Promise<boolean>;
+
+    "isAdmin(address)"(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -97,34 +183,83 @@ export class IRentingDappManager extends Contract {
   filters: {};
 
   estimateGas: {
+    isAdmin(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "isAdmin(address)"(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
+    ): Promise<BigNumber>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
+    isAdmin(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "isAdmin(address)"(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     payRewards(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
-    "payRewards(address,uint256,uint256)"(
-      _networker: string,
-      _treeAmount: BigNumberish,
-      _introducerAmount: BigNumberish,
+    "payRewards(address,address,uint256,uint256)"(
+      _buyer: string,
+      _seller: string,
+      _value: BigNumberish,
+      _distribute: BigNumberish,
       overrides?: PayableOverrides
+    ): Promise<PopulatedTransaction>;
+
+    raiseDispute(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "raiseDispute(address,address,string)"(
+      _product: string,
+      _rent: string,
+      _details: string,
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };
 }

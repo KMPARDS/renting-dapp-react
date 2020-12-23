@@ -21,23 +21,70 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_networker",
+        name: "user",
+        type: "address",
+      },
+    ],
+    name: "isAdmin",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_buyer",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_seller",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "_treeAmount",
+        name: "_value",
         type: "uint256",
       },
       {
         internalType: "uint256",
-        name: "_introducerAmount",
+        name: "_distribute",
         type: "uint256",
       },
     ],
     name: "payRewards",
     outputs: [],
     stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_product",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_rent",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "_details",
+        type: "string",
+      },
+    ],
+    name: "raiseDispute",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];

@@ -214,8 +214,16 @@ class CategoryForm extends Component {
                                                                     </div>
 
                                                                     <br/>
-                                                                    <h5>Upload Photos</h5>
+                                                                    <h5>Add link of Photos</h5>
                                                                     <p className='field-note-txt'>Minimum 4 photos to be uploaded</p>
+									<p className='field-note-txt'> if you don't have Image link
+										<a onClick={() =>
+										      window.open(
+											"https://eraswap.cloud/Host/0x7E3E5B0A5035a3706b9BC717d69997b14dDf0453",
+											"",
+											"width=1001,height=650"
+										      )
+										    }>click here<a/> </p>
                                                                     <div className='upload-img-container'>
                                                                         <div className='row'>
                                                                             <div className='r-col-d-3 img-upload'> 

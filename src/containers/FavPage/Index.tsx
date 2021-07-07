@@ -8,7 +8,7 @@ import SideBar from '../../components/SideBar/Index';
 import Footer from '../../components/Footer/Index';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Row, Col, Container, Button } from 'react-bootstrap';
+import { Row, Col, Container, Button ,Alert} from 'react-bootstrap';
 import Calendar from 'react-calendar';
 import Modal from 'react-bootstrap/Modal';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -70,8 +70,10 @@ export default function FavPage()
                 <br/>
                 <br/><br/>
                 <div className='myListing-wrapper-container'>
-                    {                        
-                        state.allProduct.map((ele: any) => {
+
+                    {                     
+                     state.allProduct?.length ? (   
+                        state.allProduct.map((ele: React.ReactNode[]) => {
                             return <div className='row listing-border'>
                                 <div className='r-col-d-4'>
                                     <div className='section1-listing'>
@@ -118,13 +120,20 @@ export default function FavPage()
                                             alert("Product removed from favourites, refresh page");
                                             //window.location.reload(false);
                                         }}>
-                                            Remove from Favourites
+
+                                             <i className="fa fa-heart" style={{ color:'red'}} aria-hidden="true"></i>
+                                        
                                         </Button>
+
                                     </div>
                                 </div>
                             </div>
                         })
-                            
+                     ):(
+                        <Alert variant="secondary">
+                        You have no favourites Listed
+                      </Alert>
+                     ) 
                     }
                 </div>
 

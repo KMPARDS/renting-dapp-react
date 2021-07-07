@@ -58,6 +58,15 @@ class ListPage extends Component {
                 <br/>
                 <br/>
                 <div className='myListing-wrapper-container'>
+                <div className="list-btn-right">
+                    <Link
+                className="nav-link btn btn-outline-warning conn-wallet-btn"
+                to="/RentPage"
+              >
+               Add New Product on Rent
+              </Link>
+                        </div>
+                        <div className="list-box-mgn">
                     <div className="row">
                     {
                         this.state.allProduct.map((ele: any) => {
@@ -86,7 +95,7 @@ class ListPage extends Component {
                                 <p className='location-catg'>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
                                 <p className='location-catg' style={{marginBottom: '0px'}}>Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                 <i 
-                                    className="fa fa-heart" 
+                                    className="fa fa-heart-o" 
                                     aria-hidden="true" 
                                     onClick={() => {
                                         const address = ele[1];
@@ -151,6 +160,7 @@ class ListPage extends Component {
                         })
                     }    
                     </div>                
+                    </div>
                 </div>
                 <br/>
             <br/>
@@ -162,11 +172,6 @@ class ListPage extends Component {
                 <br/>
             <br/>
             <br/>
-            <div className='footer-bgd'>
-                <div className='wrapper-container'>
-                    <Footer />
-                </div>
-            </div>
             </div>
             </div>
 

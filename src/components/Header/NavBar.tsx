@@ -3,20 +3,26 @@ import "./NavBar.scss";
 import NavMenu from "../NavMenu/Index";
 import Images from "../../containers/Images/Image";
 import { Link } from "react-router-dom";
-
+import copy from 'copy-to-clipboard';
 
 class NavBar extends Component {
-	public state: any;
-	public setState: any;
+ 
+ 
+  public state: any;
+  public setState: any;
+ 
 
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       showMenu: false,
       isOpen: false,
+      addressCopied: '',
     };
     this.toggleMenu = this.toggleMenu.bind(this);
   }
+
+ 
   toggleMenu = () => {
     this.setState({ showMenu: !this.state.showMenu });
   };
@@ -25,9 +31,13 @@ class NavBar extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+
+
   render() {
+    console.log('hgdfhs',this.state.addressCopied)
     return (
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark  navbar-light black custom-menu ">
+     
         <img className="rentDaap-Img" src={Images.path.logocolor} />
         <button
           className="navbar-toggler"
@@ -40,6 +50,7 @@ class NavBar extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="main_nav">
+          
           <ul className="navbar-nav">
             {/* <li className="nav-item dropdown has-megamenu">
                     <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"> ALL CATEGORIES  </a>
@@ -101,7 +112,6 @@ class NavBar extends Component {
                         </div> 
                   </li> */}
           </ul>
-
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               {" "}
@@ -164,17 +174,14 @@ class NavBar extends Component {
             </li>
             <li className="nav-item">
               {window.wallet ? (
-                  <Link
+                <Link
                   className="nav-link btn btn-outline-warning conn-wallet-btn"
-                  to="/#"
-                  onClick={() => {
-                    delete window.wallet;
-                  }}
+                  to=""
                 >
-                  {" "}
-                  LOGOUT{" "}
+               Connected To: {window.wallet?.address.slice(0, 6)}....{window.wallet?.address.slice(38)}
                 </Link>
-                ) : (
+                
+              ) : (
                   <a
                     className="nav-link btn btn-outline-warning conn-wallet-btn"
                     href="https://eraswap.life/"
@@ -183,7 +190,7 @@ class NavBar extends Component {
                     {" "}
                     CONNECT TO WALLET{" "}
                   </a>
-              )}
+                )}
             </li>
           </ul>
         </div>

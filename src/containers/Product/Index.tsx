@@ -214,11 +214,11 @@ export default function Product()
                 {/* Portfolio Item Heading */}
                 <div className="row">
                     <h1 className="my-4 catg-body-txt">{state.title}</h1>
-                    <i className="fa fa-heart" aria-hidden="true" onClick={handleFav} style={{marginTop: '30px', marginLeft: '30px', color: 'red', fontSize: '35px'}}></i>
+                    <i className="fa fa-heart" aria-hidden="true" onClick={handleFav} style={{marginTop: '30px', marginLeft: '60px', color: 'red', fontSize: '35px'}}></i>
                 </div>
                 
                 {/* Portfolio Item Row */}
-                <div className="row">
+                <div className="row prd-dt-box">
                     <div className="col-md-8">
                         <img className="img-fluid" src={(state.images.split(','))[0]} alt="" />
                     </div>
@@ -247,7 +247,7 @@ export default function Product()
                 </div>
                 <br/><br/>
                 
-                <div className="row">
+                <div className="row prod-margin">
                     <table className='table'>
                         <tr>
                             <th style={{textAlign: "center"}}>Contract Address</th>

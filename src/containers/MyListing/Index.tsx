@@ -5,7 +5,7 @@ import Images from '../Images/Image';
 import NavBar from '../../components/Header/NavBar';
 import Footer from '../../components/Footer/Index';
 import Modal from 'react-bootstrap/Modal';
-import { Button } from 'react-bootstrap';
+import { Button , Alert} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -72,10 +72,20 @@ class MyListing extends Component {
                 <br/>
                 <br/>
                 <br/>
+               
                 <div className='myListing-wrapper-container'>
+                <div className="list-btn-right">
+                    <Link
+                className="nav-link btn btn-outline-warning conn-wallet-btn"
+                to="/RentPage"
+              >
+               Add New Product on Rent
+              </Link>
+                        </div>
                     {
+                        this.state.allProduct?.length ?(
                         this.state.allProduct.map((ele: React.ReactNode[]) => {
-                            return <div className='row listing-border position-relative'>
+                            return <div className='row listing-border'>
                                 <div className='r-col-d-4'>
                                     <div className='section1-listing'>
                                         <img className='listing-main-img' src={Images.path.rlTwo} />
@@ -106,6 +116,11 @@ class MyListing extends Component {
                                 </div>
                             </div>
                         })
+                        ):(
+                            <Alert variant="secondary">
+                            You have 0 Listing in your account
+                          </Alert>
+                        )
                     }
                 </div>
                

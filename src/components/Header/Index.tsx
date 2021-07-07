@@ -6,8 +6,8 @@ import Images from "../../containers/Images/Image";
 
 
 
-class Header extends Component { 
-//@ts-ignore
+class Header extends Component {
+  //@ts-ignore
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +39,7 @@ class Header extends Component {
   };
 
   render() {
+    console.log("check window wallet", window.wallet)
     return (
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark  navbar-light bg-transparent black custom-menu ">
         <img className="rentDaap-Img" src={Images.path.logocolor} />
@@ -54,10 +55,13 @@ class Header extends Component {
         </button>
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
+
           </ul>
 
+
+         
           <ul className="navbar-nav ml-auto">
-          <li className="nav-item active">
+            <li className="nav-item active">
               {" "}
               <Link className="nav-link" to="/#">
                 Home{" "}
@@ -99,7 +103,7 @@ class Header extends Component {
             <li className="nav-item">
               <Link className="nav-link" to="/myFav">
                 {" "}
-                <i className="fa fa-heart" aria-hidden="true"></i>{" "}
+                <i className="fa fa-heart" aria-hidden="true"></i>
               </Link>
             </li>
             <li className="nav-item">
@@ -107,34 +111,43 @@ class Header extends Component {
                 className="nav-link btn btn-outline-warning conn-wallet-btn"
                 to="/RentPage"
               >
-                {" "}
-                Rent{" "}
+                Rent
               </Link>
             </li>
             <li className="nav-item">
-              
               {window.wallet ? (
                 <Link
-                className="nav-link btn btn-outline-warning conn-wallet-btn"
-                to="/#"
-                onClick={() => {
-                  delete window.wallet;
-                }}
-              >
-                {" "}
-                LOGOUT{" "}
-              </Link>
-              ) : (
-                <a
                   className="nav-link btn btn-outline-warning conn-wallet-btn"
-                  href="https://eraswap.life/"
-                  target="_blank"
+                  to=""
                 >
-                  {" "}
-                  CONNECT TO WALLET{" "}
-                </a>
+               Connected To: {window.wallet?.address.slice(0, 6)}....{window.wallet?.address.slice(38)}
+                </Link>
+              ):(
+                ''
               )}
-              
+                </li>
+            <li className="nav-item">
+              {window.wallet ? (
+                <Link
+                  className="nav-link btn btn-outline-warning conn-wallet-btn"
+                  to="/#"
+                  onClick={() => {
+                    delete window.wallet;
+                  }}
+                >
+                  LOGOUT
+                </Link>
+              ) : (
+                  <a
+                    className="nav-link btn btn-outline-warning conn-wallet-btn"
+                    href="https://eraswap.life/"
+                    target="_blank"
+                  >
+                    {" "}
+                  CONNECT TO WALLET{" "}
+                  </a>
+                )}
+
             </li>
           </ul>
         </div>

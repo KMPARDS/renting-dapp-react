@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './Home.scss';
-import Header from '../../components/Header/Index';
-import { Card, Button, Container, Row, Form, InputGroup, Col, FormControl } from 'react-bootstrap';
-import Images from '../../containers/Images/Image';
-// import Responsive from '../../Responsive/Responsive.css';
-import HomeCategory from '../../components/HomeCategory/Index';
-import Footer from '../../components/Footer/Index';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CarouselPage from '../../components/Carousel/Index';
+import Footer from '../../components/Footer/Index';
+import Header from '../../components/Header/Index';
+// import Responsive from '../../Responsive/Responsive.css';
+import HomeCategory from '../../components/HomeCategory/Index';
+import Images from '../../containers/Images/Image';
+import './Home.scss';
 // import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 const queryString = require("query-string");
 
@@ -58,7 +58,7 @@ class Home extends Component {
                 },
                 {
                   id: 4,
-                  cat: "Mobiles",
+                  cat: "Mobiles & Electronics",
                   sub: [
                     "Smart Phones: Android",
                     "Smart Phones: iPhone",
@@ -114,7 +114,7 @@ class Home extends Component {
                     <div className='wrapper-container'>
                         <Header />
                         <div className='buy-main-container'>
-                            <h4 className='hero-txt-style'>Rent & Lease anything Peer to Peer </h4>
+                            <h4 className='hero-txt-style'>Rent &amp; Lease anything Peer to Peer </h4>
                             <br/>
                             <div className='main-rent-search'>
                                 <Form>
@@ -134,7 +134,7 @@ class Home extends Component {
                                                 <option value={0}>Real Estate</option>
                                                 <option value={1}>Vehicle</option>
                                                 <option value={2}>Electronics & Appliances</option>
-                                                <option value={3}>Mobiles</option>
+                                                <option value={3}>Mobiles </option>
                                                 <option value={4}>Furniture</option>
                                                 <option value={5}>Bikes</option>
                                             </Form.Control>
@@ -215,30 +215,39 @@ class Home extends Component {
                                     </div>
                                 </div>
                                 </Col>
-                            </Row>
-                            <Row className="mt40">
-                                <Col lg={4} >
-                                   <div className='better-container mb20'>
-                                        <div className='Img-container'>
-                                            <img className='box-Img2-style' src={Images.path.centralWhite} />
-                                        </div>
-                                        <div className='box-utility'>
-                                            <h5 className='utility-title'>No central Authority</h5>
-                                            <p className='util-content'>With the implementation of blockchain,Rental DAap offers Decentralised which means no central authority has control over your  data, nor you will be chargedadditional middlemen charges on your transaction.</p>
-                                        </div>
-                                    </div>  
-                                </Col>
-                                <Col lg={4}>
+                        </Row>
+                        
+                        <Row className="mt40 rent">
+                        <Col lg={4}>
                                     <div className='better-container mb20'>
                                         <div className='Img-container'>
                                             <img className='box-Img2-style' src={Images.path.centralWhite} />
                                         </div>
                                         <div className='box-utility'>
                                             <h5 className='utility-title'>No central Authority</h5>
-                                            <p className='util-content'>With the implementation of blockchain,Rental DAap offers Decentralised which means no central authority has control over your  data, nor you will be chargedadditional middlemen charges on your transaction.</p>
+                                            <p className='util-content'>With the implementation of Era Swap Network
+                                                Blockchain, RentingDapp Smart Contract insures middlemen free Peer to Peer Exchange
+                                                &amp; Stores No personal data.
+                                             </p>
                                         </div>
                                     </div>
                                 </Col>
+                                <Col lg={4} >
+                                   <div className='better-container mb20'>
+                                        <div className='Img-container'>
+                                            <img className='box-Img2-style' src={Images.path.transWhite} />
+                                        </div>
+                                        <div className='box-utility'>
+                                            <h5 className='utility-title'>PEER-TO-PEER</h5>
+                                            <p className='util-content'>
+                                               Exchange your Product &amp; Services in peer-to-peer mode using Smart Contracts and Era Swap
+                                               Blockchain, without any multi-layer middlemen charges. Right Place for you to rent and
+                                               lease in a P2P Environment
+                                            </p>
+                                        </div>
+                                    </div>  
+                                </Col>
+
                                 <Col lg={4}>
                                     <div className='better-container mb20'>
                                         <div className='Img-container'>
@@ -246,7 +255,9 @@ class Home extends Component {
                                         </div>
                                         <div className='box-utility'>
                                             <h5 className='utility-title'>  Rent & Book Anything</h5>
-                                            <p className='util-content'>Rental DAap has been powered on Smart Contract to offer a predefined set of rules ,meansyou can Rent,Book,List from A to Z using Era Swap Utility, on a single decentralised platform.</p>
+                                            <p className='util-content'>you can rent and book anything using EraSwap
+                                                    (ES) Utility Token. ES is a decentralized utility Token used on multiple Dapp&#39;s in EraSwap
+                                                  Eco System (eraswap.life)</p>
                                         </div>
                                     </div>
                                 </Col>

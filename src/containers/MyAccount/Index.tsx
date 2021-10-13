@@ -1,12 +1,12 @@
+import { ethers } from 'ethers';
 import React, { Component } from 'react';
-import './MyAccount.scss';
-import NavBar from '../../components/Header/NavBar';
-import Footer from '../../components/Footer/Index';
-import Images from '../../containers/Images/Image';
 //import Responsive from '../../Responsive/Responsive.css';
-import { Col, Container, Row, Card, Tab, Nav, Section, Button } from 'react-bootstrap';
-import {ethers} from 'ethers';
+import { Button, Card, Col, Container, Nav, Row, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Index';
+import NavBar from '../../components/Header/NavBar';
+import Images from '../../containers/Images/Image';
+import './MyAccount.scss';
 
 
 class MyAccount extends Component {
@@ -74,7 +74,7 @@ class MyAccount extends Component {
             <div>
                 <NavBar />
 
-                <section className="mt100 pdt20">
+                <section className="mt100 pdt20 my-account">
                     <Container >
                         <Row>
                             <Col lg={12}>

@@ -1,3 +1,9 @@
+.chat-dropdown a {
+    line-height: 1;
+    padding: 5px 0;
+    text-decoration: underline;
+    color: rgb(36, 84, 241) !important;
+}
 
 .chat-img{
     width:20px;
@@ -125,3 +131,11 @@ nav ul{
     display: block;
     }
  }
+
+
+
+ .chat-dropdown {
+   line-height: 1.6;
+   position: absolute;    
+   border-radius: 10px;
+}

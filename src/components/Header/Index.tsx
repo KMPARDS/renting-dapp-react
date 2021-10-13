@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import "./Header.scss";
 import { Link } from "react-router-dom";
-import NavMenu from "../NavMenu/Index";
 import Images from "../../containers/Images/Image";
-
-
+import "./Header.scss";
 
 class Header extends Component { 
 //@ts-ignore
@@ -14,6 +11,7 @@ class Header extends Component {
       showMenu: false,
       profileMenu: false,
       isOpen: false,
+      
     };
     //this.toggleMenu = this.toggleMenu.bind(this);
     //this.toggleProfile = this.toggleProfile.bind(this);
@@ -38,6 +36,7 @@ class Header extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+
   render() {
     return (
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark  navbar-light bg-transparent black custom-menu ">
@@ -58,7 +57,6 @@ class Header extends Component {
 
           <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
-              {" "}
               <Link className="nav-link" to="/#">
                 Home{" "}
               </Link>{" "}
@@ -68,9 +66,10 @@ class Header extends Component {
               {" "}
               <Link className="nav-link catgry-texttwo" to="/List">
                 {" "}
-                Product list{" "}
+                Listed Products{" "}
               </Link>{" "}
             </li>
+
             <li className="nav-item ">
               {" "}
               <Link className="nav-link catgry-texttwo" to="/MyListing">
@@ -78,16 +77,17 @@ class Header extends Component {
                 My Listings{" "}
               </Link>{" "}
             </li>
+            
             <li className="nav-item">
-              <Link className="nav-link" to="#">
-                {" "}
-                <i className="fa fa-comment-o" aria-hidden="true"></i>{" "}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#">
-                {" "}
-                <i className="fa fa-bell-o" aria-hidden="true"></i>{" "}
+              <Link className="nav-link position-relative" to="#">
+                <i className="fa fa-comment-o" onClick={this.toggle} aria-hidden="true"></i>{" "}
+
+                <div className={`chat-dropdown ${!this.state.isOpen ? 'd-none' : ''}`} >
+                  <div className="alert alert-warning" role="alert" >You can chat with your peers (Lesser/ Lessee Wallet) on
+                    Swappers Wall Chat. Find your peers on SwappersWall <a target='_blank' href='https://swapperswall.com/' >https://swapperswall.com/#</a>
+                  </div>
+                </div>
+
               </Link>
             </li>
             <li className="nav-item">

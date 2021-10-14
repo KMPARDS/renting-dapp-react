@@ -28,16 +28,6 @@
     border-radius: 4px;
 }
 
-.select-discount{
-    margin-left: 10px;
-    //border: none;
-    //background-color: #189114;
-    //color: #ffffff;
-    width: 120px;
-    height: 30px;
-    border-radius: 4px;
-}
-
 .listing-delete{
     margin-left: 20px;
     border: none;
@@ -69,4 +59,81 @@
 .prd-flex{
     display: flex;
     width: 100%;
+}
+
+.my-product{
+  .product-title {
+    color: #FF5D22;
+  }  
+  .product-title:not(:first-child){
+    font-size: 1.2rem !important;  
+    color: #3e3e51;
+  }
+  .desc-para {
+    color: #575656;
+    font-weight: normal;
+    margin-bottom: 4px;
+  }
+  img{
+    border: 7px solid white;
+    border-radius: 19px;
+    box-shadow: 1px 1px 6px 1px #b0b0b05e;
+    max-height: 390px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .inp-btn {
+    background: white;
+    width: fit-content;
+    padding: 9px 11px;
+    margin-bottom: 1rem;
+    box-shadow: 0px 1px 4px 0px #0000003d;
+    border-radius: 7px;
+
+    input {
+        border: 1px solid #0000001c;
+        outline: none;
+        padding: 2px 9px;
+        border-radius: 5px;
+    }
+  }
+  .table tr th{
+    border: 1px solid rgb(88, 88, 88);  
+  }
+
+  .table{
+    table-layout: fixed;  
+  }
+
+  .table tr td{
+    word-wrap: break-word;
+  }
+
+  .table td {
+    padding: 7px !important
+   }
+
+   .table tr td {
+    padding: 13px !important;
+
+  }
+
+  .table tr td:first-child {
+    color: black;
+    font-weight: 500;
+    width: 25%;
+  }
+
+  .table tr:nth-child(odd){
+    background: #a6a6a61c;
+  }
+  .alert-info{
+    width: fit-content;
+    word-wrap: anywhere;
+  }
+  .alert-msg {
+    font-size: 14px;
+    margin-top: -.8rem;
+    color: rgb(114, 114, 114);
+}
 }

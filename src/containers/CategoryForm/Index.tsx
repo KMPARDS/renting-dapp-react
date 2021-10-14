@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import './CategoryForm.scss';
-import Images from '../../containers/Images/Image';
-import NavBar from '../../components/Header/NavBar';
-import Footer from '../../components/Footer/Index';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationArrow,faImage} from '@fortawesome/free-solid-svg-icons'
-import { Link, useLocation} from 'react-router-dom';
-
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { Container, Row, Card, Dropdown, DropdownButton, FormControl, InputGroup} from 'react-bootstrap';
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ethers from 'ethers';
+import { Formik } from 'formik';
+import React, { Component } from 'react';
+import { Card, FormControl } from 'react-bootstrap';
+import Footer from '../../components/Footer/Index';
+import NavBar from '../../components/Header/NavBar';
+import Images from '../../containers/Images/Image';
+import './CategoryForm.scss';
+
 
 const queryString = require('query-string');
 
@@ -39,7 +37,7 @@ class CategoryForm extends Component {
                 <div className="RentPage-wrapper-container mt100">
                     <div className="container">
                         <div className="row">
-                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6 mx-auto mt40 mb40">
+                            <div className="col-12 col-sm-10 col-md-8 col-xl-7 mx-auto mt40 mb40">
                                 <Card >
                                     <Card.Body>
                                         <div className='table-catg-details'>
@@ -54,7 +52,7 @@ class CategoryForm extends Component {
                                                     
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         try {
-                                                            alert(JSON.stringify(values, null, 2));
+                                                            window.confirm(JSON.stringify(values, null, 2));
                                                             if(window.wallet===undefined)
                                                             {
                                                                 alert("Wallet not loaded");
@@ -86,8 +84,8 @@ class CategoryForm extends Component {
                                                             setSubmitting(false);   
                                                             alert("Product successfully listed on RentingDApp!");
                                                             //window.location.reload(false);
-                                                        }  catch (error) {
-                                                            alert(error.message);
+                                                        }  catch (e) {
+                                                            alert(e.message);
                                                         }                                                  
                                                     }}
                                                 >
@@ -105,7 +103,7 @@ class CategoryForm extends Component {
                                                                 <div>
                                                                     <label className='control-label'>Title *</label>
                                                                     <input
-                                                                        className="form-control form-control-lg"
+                                                                        className="form-control form-control-md"
                                                                         type="text"
                                                                         name="title"
                                                                         onChange={handleChange}
@@ -128,7 +126,9 @@ class CategoryForm extends Component {
                                                                         data-error='Write your message'
                                                                         required
                                                                     />
-                                                                    <p className='field-note-txt'>Mention condition,features and reason for renting</p>
+                                                                    <p className='field-note-txt'>
+                                                                      Renting DApp is a decentralized application and doesn’t support any mediation between Lessor & Lessee of renting events. Please Mention condition, features and reason for renting & do your own due diligence by contacting lessor or lessee before leasing In or Out. Renting DApp is a middleman free platform, encourages sharing of Email & Direct Contact Numbers for better communication.
+                                                                    </p>
                 
                                                                     <h5>Set payment details</h5>
 
@@ -200,7 +200,10 @@ class CategoryForm extends Component {
                                                                         </div>
                                                                     </div>
                                                                     
-                                                                    <br/><br/>
+                                                                <br /><br />
+                                                                    <div className="alert alert-secondary" role="alert" >
+                                                                      While listing a product in Lessor/ Sellers Acc Add a note below "Incentives* "option with * mark" is the % Number of ES, Lessor would like to announce as give away to community (Introducer & DaySwappers) for referring & promoting on actuals"
+                                                                    </div>
                                                                     <label className='control-label'>Incentive*</label>
                                                                     <div className="input-group col-md-6">
                                                                         <input 
@@ -210,20 +213,32 @@ class CategoryForm extends Component {
                                                                             onChange={handleChange}
                                                                             onBlur={handleBlur}
                                                                             value={values.incentive}
+                                                                            min='1'
+                                                                            max='15'
                                                                         />
                                                                     </div>
-
+                                                                    
+                                                                
                                                                     <br/>
+                                                                    <br/>
+                                                                    
+                                                                    <div className='alert-secondary alert' >
+                                                                      Upload Images of your Event Or paste Upload EraSwap.Cloud Link
+                                                                    </div>
+
                                                                     <h5>Add link of Photos</h5>
                                                                     <p className='field-note-txt'>Minimum 4 photos to be uploaded</p>
-									<p className='field-note-txt'> if you don't have Image link
-										<a onClick={() =>
-										      window.open(
-											"https://eraswap.cloud/Host/0x7E3E5B0A5035a3706b9BC717d69997b14dDf0453",
-											"",
-											"width=1001,height=650"
-										      )
-										    }>click here<a/> </p>
+									
+                                                                    <p className='field-note-txt'> if you don't have Image link
+                                                                   
+                                                                    <a onClick={() =>
+                                                                        window.open(
+                                                                        "https://eraswap.cloud/Host/0x7E3E5B0A5035a3706b9BC717d69997b14dDf0453",
+                                                                        "",
+                                                                        "width=1001,height=650")
+                                                                    }
+                                                                        className='ms-2' 
+                                                                    >click here</a> </p>
                                                                     <div className='upload-img-container'>
                                                                         <div className='row'>
                                                                             <div className='r-col-d-3 img-upload'> 
@@ -275,6 +290,9 @@ class CategoryForm extends Component {
                                                                         
                                                                     </div>
                 
+                                                                    <br/>        
+                                                                    <br/>        
+                                                                
                                                                     <div className='location-flex'>
                                                                         <div className="location-txt"> 
                                                                             <h5>Specify Your Location</h5>    
@@ -320,8 +338,6 @@ class CategoryForm extends Component {
                 </div>
             </div>
 
-
-            
         );
     }
 }

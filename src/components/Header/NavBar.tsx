@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./NavBar.scss";
-import NavMenu from "../NavMenu/Index";
-import Images from "../../containers/Images/Image";
 import { Link } from "react-router-dom";
+import Images from "../../containers/Images/Image";
+import "./NavBar.scss";
 
 
 class NavBar extends Component {
@@ -118,14 +117,12 @@ class NavBar extends Component {
             <li className="nav-item ">
               {" "}
               <Link className="nav-link catgry-texttwo" to="/List">
-                {" "}
-                Product list{" "}
+                Listed Products
               </Link>{" "}
             </li>
             <li className="nav-item ">
               {" "}
               <Link className="nav-link catgry-texttwo" to="/MyListing">
-                {" "}
                 My Listings{" "}
               </Link>{" "}
             </li>

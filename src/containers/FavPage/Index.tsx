@@ -1,19 +1,12 @@
-import React, { Component, useState, useEffect } from 'react';
-import './FavPage.scss';
-import '../CategoryDetail/CategoryDetail.scss';
-import Images from '../../containers/Images/Image';
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Index';
 //import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
-import SideBar from '../../components/SideBar/Index';
-import Footer from '../../components/Footer/Index';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Row, Col, Container, Button } from 'react-bootstrap';
-import Calendar from 'react-calendar';
-import Modal from 'react-bootstrap/Modal';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { isAddress } from 'ethers/lib/utils';
-import { BigNumber } from 'ethers';
+import Images from '../../containers/Images/Image';
+import '../CategoryDetail/CategoryDetail.scss';
+import './FavPage.scss';
 
 export default function FavPage() 
 {
@@ -21,17 +14,17 @@ export default function FavPage()
 
     const fetchData = async () => {
         var products = [];
-        if(window.wallet===undefined)
+        if(window.wallet === undefined)
         {
             alert("Wallet not loaded");
             return;
         }
         //@ts-ignore
         products = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
-
+         
         var displayProducts = [];
 
-        for(var i=0;i<products.length; i++)
+        for(var i=0;i < products.length; i++)
         {
             console.log(products[i].address);
             var status = await window.rentingDappInstance.isAvailable(products[i].address);
@@ -61,6 +54,10 @@ export default function FavPage()
     const handleRemove = () => {
         alert('Hi');
     }
+
+
+    console.log(state.allProduct)
+
     return (
             <div>
                 <NavBar />
@@ -81,6 +78,7 @@ export default function FavPage()
                                         <img className='listing-small-img' src={Images.path.rlTwo} />
                                     </div>
                                 </div>
+                                
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='listing-head' to={'/Product/'+ele.address}>{ele.title}</Link></h5>
@@ -110,8 +108,8 @@ export default function FavPage()
 
                                             if(window.wallet===undefined)
                                             {
-                                                alert("Wallet not loaded");
-                                                return;
+                                              alert("Wallet not loaded");
+                                              return;
                                             }
 
                                             localStorage.setItem(JSON.stringify(window.wallet.address), JSON.stringify(arr));
@@ -124,7 +122,6 @@ export default function FavPage()
                                 </div>
                             </div>
                         })
-                            
                     }
                 </div>
 

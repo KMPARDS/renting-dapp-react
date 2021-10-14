@@ -1,21 +1,13 @@
-import React, { Component, useState, useEffect } from 'react';
-import Images from '../Images/Image';
-import './MyProduct.scss';
-//import Responsive from '../../Responsive/Responsive.css';
-import NavBar from '../../components/Header/NavBar';
-import Footer from '../../components/Footer/Index';
-import Modal from 'react-bootstrap/Modal';
-import {  Button} from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ethers from 'ethers';
-
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Footer from '../../components/Footer/Index';
+import NavBar from '../../components/Header/NavBar';
 import { ProductManagerFactory } from '../../ethereum/typechain/ProductManagerFactory';
 import { RentalAgreementFactory } from '../../ethereum/typechain/RentalAgreementFactory';
-import { boolean } from 'yup';
-import { render } from '@testing-library/react';
-import { RentalAgreement } from '../../ethereum/typechain/RentalAgreement';
+import Images from '../Images/Image';
+import './MyProduct.scss';
+
 
 export default function MyProduct() 
 {
@@ -143,176 +135,191 @@ export default function MyProduct()
             <br/>
             <br/>
             <div className="container">
-                {/* Portfolio Item Heading */}
-                <h1 className="my-4 catg-body-txt">{state.title}</h1>
+
                 {/* Portfolio Item Row */}
-                <div className="row">
-                    <div className="col-md-8">
+                <div className="row mt-4 my-product">
+                    <div className="col-md-6">
                         <img className="img-fluid" src={Images.path.rlTwo} alt="" />
+
+                        <div className="alert alert-warning mt-4" role="alert" >
+                           Renting Dapp platform is a middlemen/ Admin free platform &amp; it doesn't restrict users to exchange their Contact Details & Coordinates. Renting Dapp is a free Platform & it doesn't gain any benefits if it is used more or less by users. Before submitting any disagreement on renting dapp lessor & lessee should communicate & resolve mutually. In case of submission of disagreement then the Security Fee amount cannot be recovered.
+                           Chat with lessor on Swappers wall chat (on Lessee/ Sellers Page)
+                        </div>
                     </div>
-                    <div className="col-md-4">
-                        <h3 className="my-3 catg-body-txt">Product Description</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">{state.description}</h6>
+                    <div className="col-md-6">
+                        {/* Portfolio Item Heading */}
+                        <h4 className="mb-3 product-title">{state.title}</h4>
 
-                        <h3 className="my-3 catg-body-txt">Payment Info</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">Rent: {state.maxRent} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Security Fee: {state.security} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Cancellation Fee: {state.cancellation} ES</h6>
-                        <h6 className="my-3 catg-body-txt desc-para">Available Discounts: Loading...</h6>
+                        <h4 className="mt-4  product-title">Product Description</h4>
+                        <h6 className="desc-para">{state.description}</h6>
 
-                        <h3 className="my-3 catg-body-txt">Pick Up Address</h3>
-                        <h6 className="my-3 catg-body-txt desc-para">{state.location}</h6>
+                        <h4 className="mt-4 product-title">Payment Info</h4>
+                        <h6 className="desc-para">Rent: {state.maxRent} ES</h6>
+                        <h6 className="desc-para">Security Fee: {state.security} ES</h6>
+                        <h6 className="desc-para">Cancellation Fee: {state.cancellation} ES</h6>
+                        <h6 className="desc-para">Available Discounts: Loading...</h6>
+
+                        <h4 className="mt-4 product-title">Pick Up Address</h4>
+                        <h6 className="desc-para">{state.location}</h6>
                         <hr/>
 
                         <button className="listing-get-discounts" onClick={handleDiscounts}>Get Discounts</button>
                         <button className="listing-delete" onClick={handleDelete}>Delete this listing</button>
                         <br/><br/>
 
-                        <input
-                            className="select-discount"
-                            type="number"
-                            placeholder="Select discount"
-                            name='added'
-                            onChange={handleChange}
-                            value={discountState.added}
-                        />
-                        <button className="listing-add-discount" onClick={handleAdd}>Add Discount</button>
-                        <br/><br/>
+                        <div className='inp-btn' >
+                            <input
+                                className="select-discount"
+                                type="number"
+                                placeholder="Select discount"
+                                name='added'
+                                onChange={handleChange}
+                                value={discountState.added}
+                            />
+                            <button className="listing-add-discount" onClick={handleAdd}>Add Discount</button>                          
+                        </div>
 
-                        <input
-                            className="select-discount"
-                            type="number"
-                            placeholder="Select discount"
-                            name='removed'
-                            onChange={handleChange}
-                            value={discountState.removed}
-                        />
-                        <button className="listing-remove-discount" onClick={handleRemove}>Remove Discount</button>
+                        <div className='inp-btn' >
+                            <input
+                                className="select-discount"
+                                type="number"
+                                placeholder="Select discount"
+                                name='removed'
+                                onChange={handleChange}
+                                value={discountState.removed}
+                            />
+                            <button className="listing-remove-discount" onClick={handleRemove}>Remove Discount</button>                            
+                        </div>
+
                     </div>
                 </div>
                 <br/><br/>
-                <div className="row">
-                    <table className='table'>
-                        <tr>
-                            <th style={{textAlign: "center"}}>Contract Address</th>
-                            <th style={{textAlign: "center"}}>Lessee</th>
-                            <th style={{textAlign: "center"}}>Start Date</th>
-                            <th style={{textAlign: "center"}}>End Date</th>
-                            <th style={{textAlign: "center"}}>Buttons</th>
-                        </tr>
-                        {
-                            contracts.allContracts.map(ele => (
-                                <tr>
-                                    <td style={{textAlign: "center"}}>{ele[2]}</td>
-                                    <td style={{textAlign: "center"}}>{ele[1]}</td>
-                                    <td style={{textAlign: "center"}}>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
-                                    <td style={{textAlign: "center"}}>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>
-                                    <td>
-                                        <div className="prd-flex">
-                                            <input 
-                                                type="number" 
-                                                placeholder="Enter 1 if OK else 0"
-                                                style={{width: '160px'}}
-                                                name='initial'
-                                                onChange={handleChecks}
-                                                value={check.initial}                                           
-                                            />
-                                            <button className="listing-rent-small" onClick={async () => {
-                                                const agreementInstance = RentalAgreementFactory.connect(
-                                                    ele[2],
-                                                    window.wallet ?? window.provider
-                                                );
-                                                if(window.wallet===undefined)
-                                                {
-                                                    alert("Wallet not loaded");
-                                                    return;
-                                                }
-                                                const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
-                                                console.log(checkInitial);
-                                                alert("Initial check by Lessor done");
-                                            }}>
-                                                Initial Lessor
-                                            </button>
-                                        </div>
-                                        <hr/>
 
-                                        <div>
-                                            <input 
-                                                type="number" 
-                                                placeholder="Enter 1 if OK else 0"
-                                                style={{width: '160px'}}
-                                                name='final'
-                                                onChange={handleChecks}
-                                                value={check.final}                                           
-                                            />
-                                            <button className="listing-rent-small" onClick={async () => {
-                                                const agreementInstance = RentalAgreementFactory.connect(
-                                                    ele[2],
-                                                    window.wallet ?? window.provider
-                                                );
-                                                if(window.wallet===undefined)
-                                                {
-                                                    alert("Wallet not loaded");
-                                                    return;
-                                                }
-                                                const checkFinal = await agreementInstance.connect(window.wallet).finalCheckByLessor(check.final);
-                                                console.log(checkFinal);
-                                                alert("Final check by Lessor done");
-                                            }}>
-                                                Final Lessor
-                                            </button>
-                                        </div>
-                                        <hr/>
+                <div className='row my-product' >
+                {
+                contracts.allContracts.map(ele => (
+                  <table className='table' >           
+                     <tr>
+                       <td>Contract Orders Received</td>       
+                       <td><div className='alert-info alert mb-0 p-1 px-2' >{ele[2]}</div></td>       
+                     </tr>    
+    
+                     <tr >
+                       <td>Lessee</td>       
+                       <td>
+                          <div className='alert-info alert mb-0 p-1 px-2' >{ele[1]}</div>
+                       </td>       
+                     </tr>    
+    
+                     <tr>
+                       <td>Start Date</td>       
+                       <td>{((new Date(Number(ele[3])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>       
+                     </tr>    
+    
+                     <tr>
+                       <td>End Date</td>       
+                       <td>{((new Date(Number(ele[4])*1000)).toString()).split("GMT+0530 (India Standard Time)")}</td>       
+                     </tr>
+    
+                     <tr>
+                       <td>Respond to Orders</td>       
+                       <td>
+                          <div>
+                            <div className="inp-btn">
+                               <input 
+                                    type="number" 
+                                    placeholder="Enter 1 if OK else 0"
+                                    style={{width: '160px'}}
+                                    name='initial'
+                                    onChange={handleChecks}
+                                    value={check.initial}                                           
+                                />
+                                <button className="listing-rent-small" onClick={async () => {
+                                    const agreementInstance = RentalAgreementFactory.connect(ele[2],window.wallet ?? window.provider);
+                                      if(window.wallet===undefined)
+                                        {
+                                          alert("Wallet not loaded");
+                                          return;
+                                        }
+                                        
+                                      const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
+                                      console.log(checkInitial);
+                                      alert("Initial check by Lessor done");
+                                }}> Initial Lessor </button>
+                            </div>
+                            <div className='alert-msg' >*To Accept  Contract Submit 1 &amp; To Reject Contract Submit 0</div>
+                            
+                                    <hr className='my-2' />
+                                    
+                            <div className="inp-btn">
+                               <input 
+                                   type="number" 
+                                   placeholder="Enter 1 if OK else 0"
+                                   style={{width: '160px'}}
+                                   name='final'
+                                   onChange={handleChecks}
+                                   value={check.final}                                           
+                               />
+                               <button className="listing-rent-small" onClick={async () => {
+                                  const agreementInstance = RentalAgreementFactory.connect(ele[2],window.wallet ?? window.provider);
+                                    if(window.wallet===undefined){
+                                      alert("Wallet not loaded");
+                                      return;}
+                                      
+                                      const checkFinal = await agreementInstance.connect(window.wallet).finalCheckByLessor(check.final);
+                                      console.log(checkFinal);
+                                      alert("Final check by Lessor done");
+                               }}>Final Lessor</button>
+                            </div>
+                            <div className='alert-msg' >*When You Submit 1 Your Deposit Fee (If Any) will be deducted & will be Deposited to Contract</div>
+                            <div className='alert-msg mt-0' >*Submit 1 to Mark end of your Service</div>
+                            
+                            <hr className='my-2' />
 
-                                        <button className="listing-rent-big" onClick={async () => {
-                                            const agreementInstance = RentalAgreementFactory.connect(
-                                                ele[2],
-                                                window.wallet ?? window.provider
-                                            );
-                                            if(window.wallet===undefined)
-                                            {
-                                                alert("Wallet not loaded");
-                                                return;
-                                            }
-                                            const terminate = await agreementInstance.connect(window.wallet).terminateNormally();
-                                            console.log(terminate);
-                                            alert("Terminated normally");
-                                        }}>
-                                            Terminate Normally
-                                        </button>
-                                        <hr/>
+                            <div className="inp-btn">        
+                              <button className="listing-rent-big" onClick={async () => {
+                                const agreementInstance = RentalAgreementFactory.connect(ele[2],window.wallet ?? window.provider);
+                                   if(window.wallet===undefined){
+                                      alert("Wallet not loaded");
+                                      return;}
+                                   
+                                   const terminate = await agreementInstance.connect(window.wallet).terminateNormally();
+                                   console.log(terminate);
+                                   alert("Terminated normally");
+                              }}>Terminate Normally</button>    
+                            </div>
+                            <div className='alert-msg' >*If there are no damages/ penalty from Security Fees then submit Terminate Normally</div>
 
-                                        <div className="prd-flex">
-                                            <input 
-                                                type="number" 
-                                                placeholder="Enter penalty amount"
-                                                style={{width: '160px'}}
-                                                name='penalty'
-                                                onChange={handlePenalty}
-                                                value={terminate.penalty}                                           
-                                            />
-                                            <button className="listing-rent-big" onClick={async () => {
-                                                const agreementInstance = RentalAgreementFactory.connect(
-                                                    ele[2],
-                                                    window.wallet ?? window.provider
-                                                );
-                                                if(window.wallet===undefined)
-                                                {
-                                                    alert("Wallet not loaded");
-                                                    return;
-                                                }
-                                                const penalty = await agreementInstance.connect(window.wallet).terminateWithAdditionalCharges(ethers.utils.parseEther(String(terminate.penalty)));
-                                                console.log(penalty);
-                                                alert("Contract terminated with penalty");
-                                            }}>
-                                                Terminate with penalty
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </table>
+                            <hr className='my-2' />
+
+                            <div className="inp-btn">
+                                <input 
+                                   type="number" 
+                                   placeholder="Enter penalty amount"
+                                   style={{width: '160px'}}
+                                   name='penalty'
+                                   onChange={handlePenalty}
+                                   value={terminate.penalty}                                           
+                                />
+                                <button className="listing-rent-big" onClick={async () => {
+                                    const agreementInstance = RentalAgreementFactory.connect(ele[2],window.wallet ?? window.provider);
+                                    if(window.wallet===undefined){
+                                        alert("Wallet not loaded");
+                                        return;}
+                                    
+                                    const penalty = await agreementInstance.connect(window.wallet).terminateWithAdditionalCharges(ethers.utils.parseEther(String(terminate.penalty)));
+                                    console.log(penalty);
+                                    alert("Contract terminated with penalty");
+                                }}>Terminate with penalty</button>
+                            </div>
+                            <div className='alert-msg' >*Submit Penalty Amount here. Penalty amount cannot be greater than Security Fees. If the lessee agrees with the penalty Fee then you shall receive it in your wallet, but if lessee disagrees with the penalty fee then you will not receive any Penalty Imposed, & the Security Fee will be burnt</div>
+ 
+                          </div>
+                       </td>       
+                     </tr>
+                   </table>    
+                  ))
+                 }
                 </div>
 
             </div>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './HomeCategory.scss';
-import { Col, Button, Container, Row } from 'react-bootstrap';
-import Images from '../../containers/Images/Image';
-import Responsive from '../../Responsive/Responsive.css';
+import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Images from '../../containers/Images/Image';
+import './HomeCategory.scss';
 
 
 class HomeCategory extends Component {
@@ -24,7 +23,11 @@ class HomeCategory extends Component {
                         <div className='rent-desc-container'>
                             <div className='desc-text'>
                                 <h4 className='better-txt-style'>Top Categories</h4>
-                                <h5 className='sub-better-txt'>We provide full service at every step, and get better results for lower fees</h5>
+                                <h5 className='sub-better-txt'>
+                                     Renting Dapp is a smart contract which allows
+                                    peers to exchange Using Era Swap Blockchain Network, to meet their renting or leasing
+                                    requirements.   
+                                </h5>
                             </div>
                         </div>
 
@@ -62,10 +65,10 @@ class HomeCategory extends Component {
                     </Col>
                     <Col lg={4}>
                         <div className='category-three-box mb20'>
-                            <div className='hover-category'> Mobiles</div>
+                            <div className='hover-category'> Mobiles & Electronics</div>
                             <img className='box-Img-three' src={Images.path.mobile} />
                             <div className='rentCategory-text'>
-                                Mobiles
+                                Mobiles & Electronics
                                     </div>
                         </div>
                     </Col>

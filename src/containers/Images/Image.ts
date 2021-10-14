@@ -28,11 +28,7 @@ const path = {
     comingsoon: require("../../assets/Images/comingSoon.png"),
     defaultProfile: require("../../assets/Images/defaultProfile.jpeg"),
 
- 
 
-
-
-    
     //Icons
     profilewhite: require("../../assets/Icons/profilewhite.png"),
     Nortificationwhite: require("../../assets/Icons/Nortificationwhite.png"),
@@ -51,7 +47,6 @@ const path = {
     instagram: require("../../assets/Icons/instagram.png"),
     twitter: require("../../assets/Icons/twitter.png"),
     youtube: require("../../assets/Icons/youtube.png"),
-   
 
 };
 export default {

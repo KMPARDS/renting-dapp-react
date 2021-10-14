@@ -16,19 +16,7 @@
    .catg-fav{
        display: flex;
    }
-   .catg-body-txt{
-    display: flex;
-    justify-content: space-between;
-    color: #FF5D22;
-    margin: 10px 10px 0px 10px;
-    min-height: 25px;
-    line-height: 1.5em;
-    overflow: hidden;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-weight: 600;
-   }
+
    .location-catg{
     color:#A7A7A7;
     margin-left: 10px;
@@ -58,4 +46,8 @@
 .avatar{
     height: 200px;
     width: 200px;
+    border-radius: 10px;
+}
+.my-account .mb20 .flex-column .nav-item  a{
+  padding: .6rem .8rem;  
 }

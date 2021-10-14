@@ -1,35 +1,33 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Switch, 
+  Switch
 } from 'react-router-dom';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
-
-//Pages
-import Home from './containers/Home/Index';
+import './App.css';
+import ComingSoon from './components/ComingSoon/ComingSoon';
 import AllCategories from './containers/AllCategories/Index';
 import categoryDetail from './containers/CategoryDetail/Index';
-import FavPage from './containers/FavPage/Index';
-import ListPage from './containers/ListPage/Index';
-import ChatPage from './containers/ChatPage/Index';
-import RentalPage from './containers/RentPage/Index';
-import MyListing from './containers/MyListing/Index';
 import CategoryForm from './containers/CategoryForm/Index';
-import ComingSoon from './components/ComingSoon/ComingSoon';
-import Product from './containers/Product/Index';
-import MyProduct from './containers/MyProduct/Index';
+import ChatPage from './containers/ChatPage/Index';
+import FavPage from './containers/FavPage/Index';
+// import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+//Pages
+import Home from './containers/Home/Index';
+import ListPage from './containers/ListPage/Index';
 import MyAccount from './containers/MyAccount/Index';
-import {MapProvider} from './MapState';
+import MyListing from './containers/MyListing/Index';
+import MyProduct from './containers/MyProduct/Index';
+import Product from './containers/Product/Index';
 // import {
 //   categoryArray,
 //   subCategoryArray,
 // } from './env.js';
 import RentPage from './containers/RentPage/Index';
 import SearchedProducts from './containers/SearchedProducts/Index';
+import { MapProvider } from './MapState';
+
 
 function App() {
   return (
@@ -52,8 +50,6 @@ function App() {
                 <Route exact path="/MyAccount" component={MyAccount} />
                 <Route path="/Product/:address" exact component={Product} />
                 <Route path="/MyProduct/:address" exact component={MyProduct} />
-
-                
 
 
                 {/* category and subcategory routing */}

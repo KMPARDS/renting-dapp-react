@@ -38,15 +38,14 @@ class CategoryForm extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-sm-10 col-md-8 col-xl-7 mx-auto mt40 mb40">
+                                <h5 className="mt20">Category</h5>
+                                <p className='category-select-txt'>{new URLSearchParams(this.props.location.search).get("category")} - {new URLSearchParams(this.props.location.search).get("sub")}</p>
+                                <h5>Please fill in details of your product</h5>
+
                                 <Card >
                                     <Card.Body>
                                         <div className='table-catg-details'>
                                             <div className='r-col-d-12'>
-                                                <h5 className="mt20">Category</h5>
-                                                {/* @ts-ignore */}
-                                                <p className='category-select-txt'>{new URLSearchParams(this.props.location.search).get("category")} - {new URLSearchParams(this.props.location.search).get("sub")}</p>
-
-                                                <h5>Please fill in details of your product</h5>
                                                 <Formik
                                                     initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0, incentive: 0,images:[Images.path.fileUpload,Images.path.fileUpload,Images.path.fileUpload,Images.path.fileUpload] }}
                                                     
@@ -201,10 +200,10 @@ class CategoryForm extends Component {
                                                                     </div>
                                                                     
                                                                 <br /><br />
-                                                                    <div className="alert alert-secondary" role="alert" >
-                                                                      While listing a product in Lessor/ Sellers Acc Add a note below "Incentives* "option with * mark" is the % Number of ES, Lessor would like to announce as give away to community (Introducer & DaySwappers) for referring & promoting on actuals"
-                                                                    </div>
-                                                                    <label className='control-label'>Incentive*</label>
+                                                                    <label className='control-label'>Incentive* <strong>(%)</strong></label>
+                                                                     <p className='field-note-txt' >
+                                                                      *is the % Number of ES, Lessor would like to announce as give away to community (Introducer &amp; DaySwappers) for referring &amp; promoting on actuals
+                                                                     </p>
                                                                     <div className="input-group col-md-6">
                                                                         <input 
                                                                             className="form-control"
@@ -212,12 +211,12 @@ class CategoryForm extends Component {
                                                                             name="incentive"
                                                                             onChange={handleChange}
                                                                             onBlur={handleBlur}
-                                                                            value={values.incentive}
+                                                                            value={values.incentive > 15 || values.incentive < 0 ? values.incentive = 15 : values.incentive}
                                                                             min='1'
                                                                             max='15'
                                                                         />
                                                                     </div>
-                                                                    
+                                                                    <p className='field-note-txt'>Cannot be more than <strong>15%</strong></p>
                                                                 
                                                                     <br/>
                                                                     <br/>
@@ -238,7 +237,7 @@ class CategoryForm extends Component {
                                                                         "width=1001,height=650")
                                                                     }
                                                                         className='ms-2' 
-                                                                    >click here</a> </p>
+                                                                    > click here</a> </p>
                                                                     <div className='upload-img-container'>
                                                                         <div className='row'>
                                                                             <div className='r-col-d-3 img-upload'> 

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Images from "../../containers/Images/Image";
 import "./Header.scss";
 
-class Header extends Component { 
+class Header extends Component {
+  public state: any;
+  
 //@ts-ignore
   constructor(props) {
     super(props);

@@ -6,7 +6,7 @@ import "./NavBar.scss";
 
 class NavBar extends Component {
 	public state: any;
-	public setState: any;
+	// public setState: any;
 
   constructor(props: Readonly<{}>) {
     super(props);
@@ -21,6 +21,7 @@ class NavBar extends Component {
   };
 
   toggle = () => {
+    //@ts-ignore
     this.setState({ isOpen: !this.state.isOpen });
   };
 
@@ -127,15 +128,15 @@ class NavBar extends Component {
               </Link>{" "}
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
-                {" "}
-                <i className="fa fa-comment-o" aria-hidden="true"></i>{" "}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#">
-                {" "}
-                <i className="fa fa-bell-o" aria-hidden="true"></i>{" "}
+              <Link className="nav-link position-relative" to="#">
+                <i className="fa fa-comment-o" onClick={this.toggle} aria-hidden="true"></i>{" "}
+
+                <div className={`chat-dropdown ${!this.state.isOpen ? 'd-none' : ''}`} >
+                  <div className="alert alert-warning" role="alert" >You can chat with your peers (Lesser/ Lessee Wallet) on
+                    Swappers Wall Chat. Find your peers on SwappersWall <a target='_blank' href='https://swapperswall.com/' >https://swapperswall.com/#</a>
+                  </div>
+                </div>
+
               </Link>
             </li>
             <li className="nav-item">

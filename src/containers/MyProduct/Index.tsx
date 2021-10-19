@@ -143,7 +143,7 @@ export default function MyProduct()
 
                         <div className="alert alert-warning mt-4" role="alert" >
                            Renting Dapp platform is a middlemen/ Admin free platform &amp; it doesn't restrict users to exchange their Contact Details & Coordinates. Renting Dapp is a free Platform & it doesn't gain any benefits if it is used more or less by users. Before submitting any disagreement on renting dapp lessor & lessee should communicate & resolve mutually. In case of submission of disagreement then the Security Fee amount cannot be recovered.
-                           Chat with lessor on Swappers wall chat (on Lessee/ Sellers Page)
+                           Chat with lessor on Swappers wall chat (on Lessee/Sellers Page)
                         </div>
                     </div>
                     <div className="col-md-6">

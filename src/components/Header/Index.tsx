@@ -80,17 +80,16 @@ class Header extends Component {
               </Link>{" "}
             </li>
             
-            <li className="nav-item">
-              <Link className="nav-link position-relative" to="#">
+            <li className="nav-item position-relative">
+              <Link className="nav-link" to="#">
                 <i className="fa fa-comment-o" onClick={this.toggle} aria-hidden="true"></i>{" "}
+              </Link>
 
                 <div className={`chat-dropdown ${!this.state.isOpen ? 'd-none' : ''}`} >
                   <div className="alert alert-warning" role="alert" >You can chat with your peers (Lesser/ Lessee Wallet) on
                     Swappers Wall Chat. Find your peers on SwappersWall <a target='_blank' href='https://swapperswall.com/' >https://swapperswall.com/#</a>
                   </div>
                 </div>
-
-              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/MyAccount">

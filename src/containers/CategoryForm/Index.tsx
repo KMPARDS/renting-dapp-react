@@ -23,8 +23,6 @@ class CategoryForm extends Component {
         };
     }
 
-
-
     render() {
         console.log(window.location.search);
         const parsed = queryString.parse(window.location.search);
@@ -51,9 +49,9 @@ class CategoryForm extends Component {
                                                     
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         try {
-                                                            window.confirm(JSON.stringify(values, null, 2));
-                                                            if(window.wallet===undefined)
-                                                            {
+                                                            alert(JSON.stringify(values, null, 2));
+
+                                                            if(window.wallet===undefined){
                                                                 alert("Wallet not loaded");
                                                                 return;
                                                             }
@@ -226,7 +224,7 @@ class CategoryForm extends Component {
                                                                     </div>
 
                                                                     <h5>Add link of Photos</h5>
-                                                                    <p className='field-note-txt'>Minimum 4 photos to be uploaded</p>
+                                                                    <p className='field-note-txt'>Maximum 4 photos to be uploaded</p>
 									
                                                                     <p className='field-note-txt'> if you don't have Image link
                                                                    
@@ -254,14 +252,17 @@ class CategoryForm extends Component {
                                                                             </div>
                                                                         </div>
                                                                         {/* @ts-ignore */}
+                                                                    
                                                                         <input 
                                                                             className="form-control"
                                                                             type="text"
                                                                             name="images[0]"
+                                                                            placeholder='Paste era-swap cloud link'
                                                                             onChange={handleChange}
                                                                             onBlur={handleBlur}
                                                                             value={values.images[0]}
                                                                         />
+                                                                    
                                                                         <input 
                                                                             className="form-control"
                                                                             type="text"

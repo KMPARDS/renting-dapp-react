@@ -116,7 +116,7 @@ export default function FavPage()
                                             alert("Product removed from favourites, refresh page");
                                             //window.location.reload(false);
                                         }}>
-                                            Remove from Favourites
+                                            Remove from Favourite
                                         </Button>
                                     </div>
                                 </div>

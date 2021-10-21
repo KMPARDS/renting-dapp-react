@@ -11,7 +11,7 @@ class ListPage extends Component {
     constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
-          allProduct: [],
+            allProduct: [],
         }
     }
 
@@ -20,8 +20,10 @@ class ListPage extends Component {
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         var productAll = parseLogs.map(ele => ele.args);
-        let products = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
-        
+        let products = (JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))));
+
+        console.log(parseLogs)
+
         var displayProducts = [];
 
         for(var i=0; i<productAll.length; i++)
@@ -29,14 +31,12 @@ class ListPage extends Component {
           var status = await window.rentingDappInstance.isAvailable(productAll[i][1]);
           if(status === true)
           {
-            console.log(parseLogs)
             displayProducts.push(productAll[i]);
           }
         }
 
-        console.log(this.state.allProduct);
- 
         this.setState({...this.state , allProduct : displayProducts});
+
 
         return displayProducts;
 
@@ -44,7 +44,6 @@ class ListPage extends Component {
 
     async componentDidMount() {
         this.getProduct()
-
     }
 
     render() {
@@ -53,10 +52,15 @@ class ListPage extends Component {
                 <NavBar />
                 <br/>
                 <br/>
-                <br/>
+                <br />
                 <br/>
                 <br/>
                 <div className='myListing-wrapper-container'>
+                    <div className='list-header' >
+                      <p className='point-1' >Lessor is defined as a peer who receives <strong>Era Swap</strong> in exchange for the usage of its Asset or Service.</p>  
+                      <p className='point-2' >Lessee is defined as a peer who pays <strong>Era Swap</strong> in exchange to lessor for the use of the asset and service.</p>  
+                    </div>
+
                     <div className="row">
                     {
                         this.state.allProduct.map((ele: any) => {
@@ -78,7 +82,66 @@ class ListPage extends Component {
                                     <p> <strong> Rent: </strong> {ethers.utils.formatEther(ele[5])} ES</p>
                                     <p> <strong> Security Fee: </strong> {ethers.utils.formatEther(ele[6])} ES</p>
                                     <p> <strong> Cancellation Fee: </strong> {ethers.utils.formatEther(ele[7])} ES</p>
-                                    <p style={{marginBottom: '1rem'}}> <strong> Listed on: </strong> {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                    <p style={{marginBottom: '2rem'}}> <strong> Listed on: </strong> {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                
+                                    <i 
+                                        aria-hidden="true" 
+                                        onClick={() => {
+                                            const address = ele[1];
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+
+                                            const product = {address: address, title: ele[2], rent: ethers.utils.formatEther(ele[5]), security: ethers.utils.formatEther(ele[6]), cancellation: ethers.utils.formatEther(ele[7]), description: ele[3], location: ele[4]};        
+                                            const user = window.wallet.address;
+                                            
+                                            //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");
+                                            if(localStorage.getItem(JSON.stringify(user)) === null)
+                                            {
+                                                let val = [];
+                                                val.push(product);
+                                                localStorage.setItem(JSON.stringify(user), JSON.stringify(val));
+                                                alert("Added to favourites");
+                                            }
+                                            else
+                                            {
+                                                let arr = [];
+                                                //@ts-ignore
+                                                arr = ( JSON.parse(localStorage.getItem(JSON.stringify(user))) );
+                                                let check = false;
+                                                arr.map((ob: any)=> {
+                                                    if(ob.title === product.title)
+                                                    check = true;
+                                                })
+                                                if(check === false)
+                                                {
+                                                    arr.push(product);
+                                                    localStorage.setItem(JSON.stringify(user), JSON.stringify(arr));
+                                                    alert("Added to favourites");
+                                                }
+                                                else
+                                                {
+                                                    alert("Already added to favourites list");
+                                                    for(var i=0; i<arr.length; i++)
+                                                    {
+                                                        if(arr[i].address === product.address)
+                                                        {
+                                                            arr.splice(i, 1);
+                                                            i--;
+                                                        }
+                                                    }
+                                                    console.log(arr);
+                                                    localStorage.setItem(JSON.stringify(user), JSON.stringify(arr));
+                                                    alert("Therefore removed from favourites");
+                                                }
+                                            }
+
+                                        }}
+                                        className={`fa fa-heart favourite-icon `}
+                                    >                                    
+                                    </i>
                                 </div>
                                 
                             </div>

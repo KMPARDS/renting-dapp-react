@@ -1,15 +1,13 @@
+import ethers from 'ethers';
 import React, { Component } from 'react';
-import './MyListing.scss';
-import Images from '../Images/Image';
+import { Button } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Index';
 //import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
-import Footer from '../../components/Footer/Index';
-import Modal from 'react-bootstrap/Modal';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import ethers from 'ethers'
+import Images from '../Images/Image';
+import './MyListing.scss';
 
 class MyListing extends Component {
 	public state: any;
@@ -47,7 +45,10 @@ class MyListing extends Component {
 
         console.log(displayProducts);
 
-        this.setState({...this.state , allProduct : displayProducts});
+        this.setState({ ...this.state, allProduct: displayProducts });
+        
+        console.log(this.state.allProduct)
+
         return displayProducts;
     }
 
@@ -75,13 +76,17 @@ class MyListing extends Component {
                 <div className='myListing-wrapper-container'>
                     {
                         this.state.allProduct.map((ele: React.ReactNode[]) => {
-                            return <div className='row listing-border position-relative'>
-                                <div className='r-col-d-4'>
+                            const hello = ele[10];
+                            const ArrImg = hello?.split(",")
+
+                           return  <div className='row listing-border position-relative'>
+                               <div className='r-col-d-4'>
+
                                     <div className='section1-listing'>
-                                        <img className='listing-main-img' src={Images.path.rlTwo} />
-                                        <img className='listing-small-img' src={Images.path.rlTwo} />
-                                        <img className='listing-small-img' src={Images.path.rlTwo} />
-                                        <img className='listing-small-img' src={Images.path.rlTwo} />
+                                        <img className='listing-main-img' src={ArrImg[0]} />
+                                        <img className='listing-small-img' src={ArrImg[1]} />
+                                        <img className='listing-small-img' src={ArrImg[2]} />
+                                        <img className='listing-small-img' src={ArrImg[3]} />
                                     </div>
                                 </div>
                                 <div className='r-col-d-8'>

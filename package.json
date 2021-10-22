@@ -32,6 +32,7 @@
     "react-modal-bootstrap": "^1.1.1",
     "react-moment": "^0.9.7",
     "react-multi-carousel": "^2.5.3",
+    "react-responsive-carousel": "^3.2.21",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "reactstrap": "^8.4.1",

@@ -235,6 +235,8 @@ export default function Product()
                         <h6 className="my-3 catg-body-txt desc-para">End Time: <input className="form-control" type="datetime-local" name="endTime" value ={timestate.endTime} onChange={handleChange} placeholder="Finised Time" /></h6>
                         <button className='listing-rent-now' onClick={handleRent}>Rent Now</button>
                         <button onClick={handleDates} className='listing-booked-dates'>Check Booked Dates</button>
+
+                        <div className='alert alert-secondary alert-product' >Transfer advance rent to <strong>RentinDapp</strong> contract and  Request to check availability of asset or services to Lessor. You may choose to contact Lessor.</div>
                     </div>
                 </div>
                 <br/><br/>
@@ -288,9 +290,14 @@ export default function Product()
                                       const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
                                       console.log(checkInitial);
                                       alert("Initial check by Lessor done");
-                                }}> Initial Lessor </button>
-                            </div>
+                                }}> Initial Lessee </button>
 
+                               
+                            </div>
+                                <div className='alert-msg alert-msg-product' >
+                                    Post "<strong>Rent Now</strong>" request by lessee now lessor shall confirm if asset or service is available and dates matching to lessee requirement.
+                                    Post Initial lessor availability confirmation lessee should input “<strong>1</strong>” if satisfied with product condition and availability else “<strong>0</strong>”. Lessee input of “<strong>1</strong>” shall initiate peer to peer exchange. *When You Submit 1 Your Deposit Fee (If Any) will be deducted & will be Deposited to Contract
+                                </div>
                                <hr className='my-2' />
                                     
                             <div className="inp-btn">
@@ -312,6 +319,10 @@ export default function Product()
                                  </button>
                             </div>
                                     
+                            <div className='alert-msg alert-msg-product' >
+                              You can cancel only before time of lease or service begins paying cancelation charges mentioned in listing by Lessor.
+                            </div>
+                                
                             <hr className='my-2' />
 
                             <div className="inp-btn">        
@@ -331,6 +342,10 @@ export default function Product()
                                 }}> Pay Rent </button>  
                             </div>
                                     
+                            <div className='alert-msg alert-msg-product' >
+                              This confirmation by Lessee will confirm transfer of funds to Lessor. Once rent paid is not returnable.
+                            </div>
+                                
                             <hr className='my-2' />
 
                             <div className="inp-btn">
@@ -360,12 +375,19 @@ export default function Product()
                                     Final Lessee
                                 </button>
                           </div>
+                          
+                          <div className='alert-msg alert-msg-product' > This step confirms mutual closure of Peer-to-peer with all dues. If there is a damage or additional payable which both parties should agree and this is proposed by Lessor. If lessor and Lessee don’t agree to terminate peer to peer normally then both parties will be losing any deposited ES as security or ES receivable from this peer-to-peer.  </div>
                        </td>       
                      </tr>
                    </table>    
                   ))
                  }
                 </div>
+
+                <div className='alert alert-success m-auto mt-3' style={{width:'fit-content'}}  >
+                   Happy dispute free peer-to-peer Renting.
+                </div>
+
                 {/* /.row */}
                 {/*Related Projects Row 
                 <h3 className="my-4">Related Products</h3>

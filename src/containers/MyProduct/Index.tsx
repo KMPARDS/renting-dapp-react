@@ -1,17 +1,18 @@
 import ethers from 'ethers';
 import React, { useEffect, useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Index';
 import NavBar from '../../components/Header/NavBar';
 import { ProductManagerFactory } from '../../ethereum/typechain/ProductManagerFactory';
 import { RentalAgreementFactory } from '../../ethereum/typechain/RentalAgreementFactory';
-import Images from '../Images/Image';
 import './MyProduct.scss';
 
 
 export default function MyProduct() 
 {
-    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: ''})
+    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: '',picture:[]})
     const [discountState, setDiscountState] = useState({added: 0, removed: 0});
     const [contracts, setContracts] = useState({allContracts: []});
     const [check, setCheck] = useState({initial: 0, final: 0});
@@ -23,16 +24,20 @@ export default function MyProduct()
         address,
         window.wallet ?? window.provider
     );
-
     const fetchData = async () => {
         const title = await productInstance.lessorName();
         const location = await productInstance.location();
         const description = await productInstance.description();
+        const images = await productInstance.images();
         const maxRent = ethers.utils.formatEther(await productInstance.maxRent());
         const security = ethers.utils.formatEther(await productInstance.security());
         const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
 
-        setstate({title, location, description, maxRent, security, cancellation});
+        const imgArray = images?.split(",")
+
+        setstate({title, location, description, maxRent, security, cancellation,picture:[...imgArray]});
+
+
 
         if(window.wallet===undefined)
         {
@@ -139,8 +144,17 @@ export default function MyProduct()
                 {/* Portfolio Item Row */}
                 <div className="row mt-4 my-product">
                     <div className="col-md-6">
-                        <img className="img-fluid" src={Images.path.rlTwo} alt="" />
 
+                        <div className='slider-product' >
+                             <Carousel>
+                                <div><img className="img-fluid" src={state.picture[0]} alt="" /></div>    
+                                <div><img className="img-fluid" src={state.picture[1]} alt="" /></div>    
+                                <div><img className="img-fluid" src={state.picture[2]} alt="" /></div>    
+                                <div><img className="img-fluid" src={state.picture[3]} alt="" /></div>    
+                             </Carousel>                            
+                        </div>
+
+                        
                         <div className="alert alert-warning mt-4" role="alert" >
                            Renting Dapp platform is a middlemen/ Admin free platform &amp; it doesn't restrict users to exchange their Contact Details & Coordinates. Renting Dapp is a free Platform & it doesn't gain any benefits if it is used more or less by users. Before submitting any disagreement on renting dapp lessor & lessee should communicate & resolve mutually. In case of submission of disagreement then the Security Fee amount cannot be recovered.
                            Chat with lessor on Swappers wall chat (on Lessee/Sellers Page)
@@ -271,8 +285,7 @@ export default function MyProduct()
                                       alert("Final check by Lessor done");
                                }}>Final Lessor</button>
                             </div>
-                            <div className='alert-msg' >*When You Submit 1 Your Deposit Fee (If Any) will be deducted & will be Deposited to Contract</div>
-                            <div className='alert-msg mt-0' >*Submit 1 to Mark end of your Service</div>
+                            <div className='alert-msg' >*Submit 1 to Mark end of your Service</div>
                             
                             <hr className='my-2' />
 
@@ -288,7 +301,7 @@ export default function MyProduct()
                                    alert("Terminated normally");
                               }}>Terminate Normally</button>    
                             </div>
-                            <div className='alert-msg' >*If there are no damages/ penalty from Security Fees then submit Terminate Normally</div>
+                            <div className='alert-msg' >*If there are no damages/ penalty from Security Fees then submit <strong>Terminate Normally</strong>. If you don’t terminate normally & lessee doesn’t accept penalty offered then receivable rent cannot be credited and lessee deposit will not be released till you <strong>Terminate Normally</strong></div>
 
                             <hr className='my-2' />
 

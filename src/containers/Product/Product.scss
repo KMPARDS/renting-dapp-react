@@ -10,7 +10,6 @@
 }
 
 .listing-rent-now{
-    margin-left: 10px;
     border: none;
     background-color: #FF5D22;
     color: #ffffff;
@@ -20,7 +19,7 @@
 }
 
 .listing-booked-dates{
-    margin-left: 55px;
+    margin-left: 14px;
     border: none;
     background-color: #189114;
     color: #ffffff;
@@ -41,4 +40,13 @@
 .prd-flex{
     display: flex;
     width: 100%;
+}
+.alert-product {
+    font-size: 14px;
+    padding: 6px;
+    margin-top: .9rem;
+}
+.alert-msg-product {
+    margin-top: -8px;
+    line-height: 1.4;
 }

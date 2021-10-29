@@ -157,4 +157,18 @@
   .carousel.carousel-slider{
     border-radius: 10px;
   }
+
+  .carousel > .thumbs-wrapper.axis-vertical ul li{
+    height:65px;
+  }
+
+  .carousel > .thumbs-wrapper.axis-vertical ul li img{
+    object-fit: contain;
+    height: 100%;
+  }
+
+  .carousel .slide img{
+    object-fit: contain;
+  }
 }
+

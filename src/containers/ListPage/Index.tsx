@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Index';
 import NavBar from '../../components/Header/NavBar';
+import Image from '../Images/Image';
 import './ListPage.scss';
 
 class ListPage extends Component {
@@ -20,7 +21,7 @@ class ListPage extends Component {
         const logs = await window.rentingDappInstance.queryFilter(filter);
         const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
         var productAll = parseLogs.map(ele => ele.args);
-        let products = (JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))));
+        // let products = (JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))));
 
         console.log(parseLogs)
 
@@ -64,11 +65,15 @@ class ListPage extends Component {
                     <div className="row">
                     {
                         this.state.allProduct.map((ele: any) => {
+                            const strArray = ele[10]
+                            const imgArray = strArray.replace(/\[|\]/g,"").split(',')
+                            const image = imgArray[0].replace(/['"]+/g, '')
+
                         return <div className='r-col-d-4 position-relative'>
                             <div className='card-category-container'>
 
                                 <div className='overflow'>
-                                    <img className='catg-imgs' src={(ele[10].split(','))[0]} />
+                                    <img className='catg-imgs' src={image ? image : Image.path.noPreview} />
                                 </div>
                                 
                                 <div className='card-category-body' >
@@ -94,7 +99,7 @@ class ListPage extends Component {
                                                 return;
                                             }
 
-                                            const product = {address: address, title: ele[2], rent: ethers.utils.formatEther(ele[5]), security: ethers.utils.formatEther(ele[6]), cancellation: ethers.utils.formatEther(ele[7]), description: ele[3], location: ele[4]};        
+                                            const product = {address: address, title: ele[2], rent: ethers.utils.formatEther(ele[5]), security: ethers.utils.formatEther(ele[6]), cancellation: ethers.utils.formatEther(ele[7]), description: ele[3], location: ele[4],images:strArray};        
                                             const user = window.wallet.address;
                                             
                                             //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");

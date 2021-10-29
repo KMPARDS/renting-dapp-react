@@ -1,21 +1,21 @@
 .card-category-container{
     border: none !important;
     margin-bottom: 20px;
-    box-shadow: 0px 3px 10px rgba(125, 125, 125, 0.18);
+    box-shadow: 2px 1px 10px rgb(221, 221, 221);
     border-radius: 14px;
     overflow: hidden;
     position: relative;
 
     .overflow{
        width: 100%;
-       height: 205px;
+       height: 250px;
        padding: 11px;
        overflow: hidden;
     }
     .catg-imgs{
         width: 100%;
         height: 100%;
-        object-fit: content;
+        object-fit: cover !important;
         border-radius: 14px;
     }
     .favourite-icon {
@@ -60,10 +60,10 @@
     }
 
 }
-    [class*="r-col-"] {
-        display: flex;
-        margin-bottom: 1rem;
-    }
+[class*="r-col-"] {
+    display: flex;
+    margin-bottom: 1rem;
+}
 
     
 .list-header .point-1,.list-header .point-2 {

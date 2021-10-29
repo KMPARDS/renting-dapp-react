@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Index';
 //import Responsive from '../../Responsive/Responsive.css';
 import NavBar from '../../components/Header/NavBar';
-import Images from '../../containers/Images/Image';
 import '../CategoryDetail/CategoryDetail.scss';
 import './FavPage.scss';
 
@@ -21,16 +20,16 @@ export default function FavPage()
         }
         //@ts-ignore
         products = ( JSON.parse(localStorage.getItem(JSON.stringify(window.wallet.address))) );
-         
+
         var displayProducts = [];
 
-        for(var i=0;i < products.length; i++)
+        for(var i=0;i < products?.length; i++)
         {
             console.log(products[i].address);
             var status = await window.rentingDappInstance.isAvailable(products[i].address);
             console.log(status);
             if(status === true)
-                displayProducts.push(products[i]);
+            displayProducts.push(products[i]);
         }
 
         if(displayProducts === null)
@@ -41,7 +40,6 @@ export default function FavPage()
         //@ts-ignore
         setState({allProduct: displayProducts});
         
-        console.log(displayProducts);
     }
 
     useEffect(()=>{(async () =>
@@ -52,11 +50,10 @@ export default function FavPage()
     },[])
 
     const handleRemove = () => {
-        alert('Hi');
+       alert('Hi');
     }
 
-
-    console.log(state.allProduct)
+    console.log(state)
 
     return (
             <div>
@@ -69,16 +66,19 @@ export default function FavPage()
                 <div className='myListing-wrapper-container'>
                     {                        
                         state.allProduct.map((ele: any) => {
+                            const strArray = ele?.images
+                            const imgArray = strArray.replace(/\[|\]/g,"").split(',')
+
                             return <div className='row listing-border'>
                                 <div className='r-col-d-4'>
                                     <div className='section1-listing'>
-                                        <img className='listing-main-img' src={Images.path.rlTwo} />
-                                        <img className='listing-small-img' src={Images.path.rlTwo} />
-                                        <img className='listing-small-img' src={Images.path.rlTwo} />
-                                        <img className='listing-small-img' src={Images.path.rlTwo} />
+                                        <img className='listing-main-img' src={ imgArray[0].replace(/['"]+/g, '')} />
+                                        <img className='listing-small-img' src={ imgArray[1].replace(/['"]+/g, '')} />
+                                        <img className='listing-small-img' src={ imgArray[2].replace(/['"]+/g, '')} />
+                                        <img className='listing-small-img' src={ imgArray[3].replace(/['"]+/g, '')} />
                                     </div>
                                 </div>
-                                
+   
                                 <div className='r-col-d-8'>
                                     <div className='section2-listing'>
                                         <h5><Link className='listing-head' to={'/Product/'+ele.address}>{ele.title}</Link></h5>

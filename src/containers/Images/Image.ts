@@ -13,7 +13,6 @@ const path = {
     mobile: require("../../assets/Images/mobile.jpg"),
     itemOne: require("../../assets/Images/itemOne.jpg"),
     itemTwo: require("../../assets/Images/itemTwo.jpg"),
-    boxDesc: require("../../assets/Images/boxDesc.png"),
     rentcolor: require("../../assets/Images/rentcolor.png"),
     colorTransfer: require("../../assets/Images/colorTransfer.png"),
     Cart: require("../../assets/Images/Cart.png"),
@@ -47,6 +46,7 @@ const path = {
     instagram: require("../../assets/Icons/instagram.png"),
     twitter: require("../../assets/Icons/twitter.png"),
     youtube: require("../../assets/Icons/youtube.png"),
+    noPreview: require("../../assets/Images/no-preview.jpg"),
 
 };
 export default {

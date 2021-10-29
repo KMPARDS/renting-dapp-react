@@ -6,12 +6,11 @@ import React, { Component } from 'react';
 import { Card, FormControl } from 'react-bootstrap';
 import Footer from '../../components/Footer/Index';
 import NavBar from '../../components/Header/NavBar';
-import Images from '../../containers/Images/Image';
 import './CategoryForm.scss';
 
 
 const queryString = require('query-string');
-
+const initialImg = 'https://hi-theme.com/static/blog/no-preview.jpg'
 
 class CategoryForm extends Component {
 	public state: any;
@@ -45,7 +44,7 @@ class CategoryForm extends Component {
                                         <div className='table-catg-details'>
                                             <div className='r-col-d-12'>
                                                 <Formik
-                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0, incentive: 0,images:[Images.path.fileUpload,Images.path.fileUpload,Images.path.fileUpload,Images.path.fileUpload] }}
+                                                    initialValues={{ title: '', description: '', address: '', maxrent: 0, security: 0, cancellation: 0, incentive: 0,images:[initialImg,initialImg,initialImg,initialImg] }}
                                                     
                                                     onSubmit={async (values, { setSubmitting }) => { 
                                                         try {

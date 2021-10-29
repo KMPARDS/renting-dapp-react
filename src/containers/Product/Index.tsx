@@ -2,6 +2,7 @@ import ethers from 'ethers';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
+import { Carousel } from 'react-responsive-carousel';
 import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Index';
 //import Responsive from '../../Responsive/Responsive.css';
@@ -10,7 +11,6 @@ import { ProductManagerFactory } from '../../ethereum/typechain/ProductManagerFa
 import { RentalAgreementFactory } from '../../ethereum/typechain/RentalAgreementFactory';
 import Images from '../Images/Image';
 import './Product.scss';
-
 
 export default function Product() 
 {
@@ -39,7 +39,10 @@ export default function Product()
         const security = ethers.utils.formatEther(await productInstance.security());
         const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
 
-        setstate({title, location, description, maxRent, security, cancellation,images});
+        const imgArray = images?.replace(/\[|\]/g, "").split(',')
+        const parseImages = [imgArray[0]?.replace(/['"]+/g, ''),imgArray[1]?.replace(/['"]+/g, ''),imgArray[2]?.replace(/['"]+/g, ''),imgArray[3]?.replace(/['"]+/g, '')]
+
+        setstate({title, location, description, maxRent, security, cancellation,images:parseImages});
 
         if(window.wallet===undefined)
         {
@@ -90,7 +93,7 @@ export default function Product()
         const parseLogs = (contract.logs).map((log) => productInstance.interface.parseLog(log));
         console.log(parseLogs[0].args);
         const currentDate = Date.now();
-        const product = {address: address, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location, bookingDate: currentDate, startDate: renderTimeStamp(timestate.startTime), endDate: renderTimeStamp(timestate.endTime)};        
+        const product = {address: address,images:state.images, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location, bookingDate: currentDate, startDate: renderTimeStamp(timestate.startTime), endDate: renderTimeStamp(timestate.endTime)};        
         const userId = ''+window.wallet.address+'store';
         
         //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");
@@ -113,6 +116,8 @@ export default function Product()
         alert("Rented");
     }
 
+    console.log(state)
+
     const handleClose = () => {
         setmodalstate({
             showModal: false,
@@ -130,23 +135,21 @@ export default function Product()
 
         //@ts-ignore
         setDateState(parseDate);
-        setmodalstate({
-            showModal: true,
-        })
+        setmodalstate({showModal: true})
         //alert("Dates already booked: " + parseDate);
         console.log(booked);
     }
     
-    const handleFav = () => {
+    function handleFav(){
         if(window.wallet===undefined)
         {
             alert("Wallet not loaded");
             return;
         }
 
-        const product = {address: address, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location};        
+        const product = {address: address,images:state.images, title: state.title, rent: state.maxRent, security: state.security, cancellation: state.cancellation, description: state.description, location: state.location};        
         const user = window.wallet.address;
-        
+    
         //console.log( (localStorage.getItem(JSON.stringify(user))) === null ? "True" : "False");
         if(localStorage.getItem(JSON.stringify(user)) === null)
         {
@@ -187,8 +190,7 @@ export default function Product()
                 alert("Therefore removed from favourites");
             }
         }
-       
-        //localStorage.removeItem(JSON.stringify(user));
+
     }
      
     const handleChange= (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -210,12 +212,23 @@ export default function Product()
                 {/* Portfolio Item Row */}
                 <div className="row my-product">
                     <div className="col-md-6">
-                        <img className="img-fluid w-100" src={(state.images.split(','))[0]} alt="" />
+                        {/* <img className="img-fluid w-100" src={(state.images.split(','))[0]} alt="" /> */}
+                        <Carousel>
+                            <div><img className="img-fluid" src={state.images[0]} alt="" /></div>    
+                            <div><img className="img-fluid" src={state.images[1]} alt="" /></div>    
+                            <div><img className="img-fluid" src={state.images[2]} alt="" /></div>    
+                            <div><img className="img-fluid" src={state.images[3]} alt="" /></div>
+                        </Carousel>   
                     </div>
 
                     <div className="col-md-6">
                         {/* Portfolio Item Heading */}
-                        <h4 className="mb-3 product-title">{state.title}</h4>
+                        <div className='mb-3 d-flex align-items-center justify-content-between' >
+                            <h4 className="product-title">{state.title}</h4>
+    
+                            <i className="fa fa-heart ml-2 title-heart" aria-hidden="true" onClick={handleFav} ></i>
+                        </div>
+                        
 
                         <h4 className="mt-4  product-title">Product Description</h4>
                         <h6 className="desc-para">{state.description}</h6>

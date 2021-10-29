@@ -76,17 +76,22 @@ class MyListing extends Component {
                 <div className='myListing-wrapper-container'>
                     {
                         this.state.allProduct.map((ele: React.ReactNode[]) => {
-                            const hello = ele[10];
-                            const ArrImg = hello?.split(",")
+                            const strArray = ele[10]
+                            const imgArray = strArray?.replace(/\[|\]/g, "").split(',')
+                            
+                            const imageOne = imgArray[0].replace(/['"]+/g, '')
+                            const imageTwo = imgArray[1].replace(/['"]+/g, '')
+                            const imageThree = imgArray[2].replace(/['"]+/g, '')
+                            const imageFour = imgArray[3].replace(/['"]+/g, '')
 
                            return  <div className='row listing-border position-relative'>
                                <div className='r-col-d-4'>
 
                                     <div className='section1-listing'>
-                                        <img className='listing-main-img' src={ArrImg[0]} />
-                                        <img className='listing-small-img' src={ArrImg[1]} />
-                                        <img className='listing-small-img' src={ArrImg[2]} />
-                                        <img className='listing-small-img' src={ArrImg[3]} />
+                                        <img className='listing-main-img' src={imageOne} />
+                                        <img className='listing-small-img' src={imageTwo} />
+                                        <img className='listing-small-img' src={imageThree} />
+                                        <img className='listing-small-img' src={imageFour} />
                                     </div>
                                 </div>
                                 <div className='r-col-d-8'>

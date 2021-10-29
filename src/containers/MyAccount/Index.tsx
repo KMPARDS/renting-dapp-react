@@ -46,6 +46,9 @@ class MyAccount extends Component {
         }
         const userId = ''+window.wallet.address+'store';
         orders = ( JSON.parse(localStorage.getItem(JSON.stringify(userId))) );
+
+        console.log(orders)
+
         if(orders === null)
             return;
         this.setState({ ...this.state, allOrders: orders});
@@ -136,27 +139,27 @@ class MyAccount extends Component {
                                             <Row>
                                                 {
                                                     this.state.allOrders.map((ele: React.ReactNode[]) => {
-                                                        return <Col lg={4}>
+                                                        return <Col lg={6}>
                                                                     <div className="card-category-container">
                                                                         <div className="overflow">
-                                                                            <img className="catg-imgs" src="/static/media/itemOne.e8af2a1c.jpg" />
+                                                                            <img className="catg-imgs" src={ele?.images ? ele.images[0] : Images.path.noPreview} />
                                                                         </div>
-                                                                        <div>
-                                                                            <p><Link className='stretched-link catg-body-txt' to={'/Product/'+ele.address}>{ele.title}</Link></p>
-                                                                        </div>
-                                                                        <p className="location-catg list-box-desc">Description: {ele.description}</p>
-                                                                        <div className="catg-body-txt">
-                                                                            <p>Address: {ele.location}</p>
-                                                                        </div>
-                                                                        <div className="catg-body-txt">
-                                                                            <p>Rent: {ele.rent} ES</p>
-                                                                        </div>
-                                                                        <p className="location-catg">Security Fee: {ele.security} ES</p>
-                                                                        <p className="location-catg">Cancellation Fee: {ele.cancellation} ES</p>
-                                                                        <br/>
-                                                                        <p className="location-catg">Booked on: {((new Date(Number(ele.bookingDate))).toString()).split("GMT+0530 (India Standard Time)")}</p> 
-                                                                        <p className="location-catg">Starts on: {((new Date(Number(ele.startDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>
-                                                                        <p className="location-catg">Ends on: {((new Date(Number(ele.endDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>                                                     
+
+                                                                        <div className='card-category-body' >
+                                                                            <div className='title' ><p> <Link to={'/Product/'+ele.address}> {ele.title}</Link></p></div>
+
+                                                                            <p className='desc my-3' > <strong> Description: </strong> {ele.description}</p>
+                                                                            
+                                                                            <p> <strong> Address: </strong> {ele.location}</p>
+                                                                            <p> <strong>Rent:</strong> {ele.rent} ES</p>
+                                                                            <p> <strong> Security Fee: </strong> {ele.security} ES</p>
+                                                                            <p> <strong> Cancellation Fee: </strong> {ele.cancellation} ES</p>
+                                                                            <br/>
+                                                                            <p className='mb-2' > <strong> Booked on: </strong> {((new Date(Number(ele.bookingDate))).toString()).split("GMT+0530 (India Standard Time)")}</p> 
+                                                                            <p className='mb-2' > <strong> Starts on: </strong> {((new Date(Number(ele.startDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>
+                                                                            <p className='mb-2' > <strong> Ends on: </strong> {((new Date(Number(ele.endDate)*1000)).toString()).split("GMT+0530 (India Standard Time)")}</p>                                                                            
+                                                                        </div>    
+                                                 
                                                                     </div>
                                                                 </Col>
                                                     })
@@ -164,29 +167,35 @@ class MyAccount extends Component {
 
                                             </Row>
                                         </Tab.Pane>
+
+
                                         <Tab.Pane eventKey="third">
                                             <Row>
                                                 {
                                                     this.state.allProduct.map((ele: React.ReactNode[]) => {
-                                                        return <Col lg={4}>
+                                                        const strArray = ele[10]
+                                                        const imgArray = strArray.replace(/\[|\]/g,"").split(',')
+                                                        const image = imgArray[0].replace(/['"]+/g, '')
+
+                                                        return <Col lg={6}>
                                                                 <div className="card-category-container">
                                                                     <div className="overflow">
-                                                                        <img className="catg-imgs" src="/static/media/itemOne.e8af2a1c.jpg" />
+                                                                        <img className="catg-imgs" src={image ? image : Images.path.noPreview} />
                                                                     </div>
-                                                                    <div>
-                                                                        <p><Link className='stretched-link catg-body-txt' to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></p>
+
+                                                                    <div className='card-category-body' >
+                                                                        <div className='title'  ><p><Link to={'/MyProduct/'+ele[1]}>{ele[2]}</Link></p></div>
+
+                                                                        <p className='desc my-3' > <strong>Description:</strong> {ele[3]}</p>
+
+                                                                        <p> <strong> Address: </strong> {ele[4]}</p>
+                                                                        <p> <strong> Rent: </strong> {ethers.utils.formatEther(ele[5])} ES</p>
+                                                                        <p> <strong> Security Fee: </strong> {ethers.utils.formatEther(ele[6])} ES</p>
+                                                                        <p> <strong> Cancellation Fee: </strong> {ethers.utils.formatEther(ele[7])} ES</p>
+                                                                        <br/>
+                                                                        <p> <strong> Listed on: </strong> {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>                                                                        
                                                                     </div>
-                                                                    <p className="location-catg list-box-desc">Description: {ele[3]}</p>
-                                                                    <div className="catg-body-txt">
-                                                                        <p>Address: {ele[4]}</p>
-                                                                    </div>
-                                                                    <div className="catg-body-txt">
-                                                                        <p>Rent: {ethers.utils.formatEther(ele[5])} ES</p>
-                                                                    </div>
-                                                                    <p className="location-catg">Security Fee: {ethers.utils.formatEther(ele[6])} ES</p>
-                                                                    <p className="location-catg">Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</p>
-                                                                    <br/>
-                                                                    <p className="location-catg">Listed on: {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
+
                                                                 </div>
                                                             </Col>
                                                     })

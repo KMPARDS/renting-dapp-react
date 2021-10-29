@@ -50,3 +50,22 @@
     margin-top: -8px;
     line-height: 1.4;
 }
+
+.row.my-product .carousel .thumbs-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.row.my-product .carousel .thumbs-wrapper ul li {
+  height: 60px !important;
+}
+.row.my-product .carousel .thumbs-wrapper ul li img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.carousel .slide img {
+    object-fit: contain;
+}
+.title-heart{
+  cursor:pointer;  
+}

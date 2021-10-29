@@ -51,3 +51,9 @@
 .my-account .mb20 .flex-column .nav-item  a{
   padding: .6rem .8rem;  
 }
+.my-account{
+    [class*="col-lg-6"] {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+}

@@ -26,7 +26,7 @@ const path = {
     fileUpload: require("../../assets/Images/fileUpload.png"),
     comingsoon: require("../../assets/Images/comingSoon.png"),
     defaultProfile: require("../../assets/Images/defaultProfile.jpeg"),
-
+    noPreview:require("../../assets/Images/noPreview.png"),
 
     //Icons
     profilewhite: require("../../assets/Icons/profilewhite.png"),

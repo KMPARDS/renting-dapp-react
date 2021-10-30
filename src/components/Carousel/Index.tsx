@@ -1,13 +1,12 @@
+import ethers from 'ethers';
 import React, { Component } from 'react';
-import './Carousel.scss';
-import Images from '../../containers/Images/Image';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 // import Responsive from '../../Responsive/Responsive.css';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ethers from 'ethers';
-import {Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import Images from '../../containers/Images/Image';
+import './Carousel.scss';
 
 class CarouselPage extends Component {
 	public state: any;
@@ -21,6 +20,7 @@ class CarouselPage extends Component {
   }
    
   getProduct = async () => {
+    // @ts-ignore
     const filter = window.rentingDappInstance.filters.ProductDetails(null,null,null,null,null,null,null,null,null,null);
     const logs = await window.rentingDappInstance.queryFilter(filter);
     const parseLogs = logs.map((log) => window.rentingDappInstance.interface.parseLog(log));
@@ -81,9 +81,14 @@ class CarouselPage extends Component {
           >                  
             {
               this.state.allProduct.map((ele: any) => {
+                const strArray = ele[10]
+                const imgArray = strArray.replace(/\[|\]/g,"").split(',')
+                const image = imgArray[0].replace(/['"]+/g, '')
+
+
                 return <div className='card text-center'>
                           <div className='overflow'>
-                            <img className='car-slider-img' src={Images.path.itemOne}/>
+                            <img className='car-slider-img' src={image ? image : Images.path.noPreview}/>
                           </div>
                           <div className='card-body text-dark'>
                             <h5 className='card-title'>{ele[2]}</h5>

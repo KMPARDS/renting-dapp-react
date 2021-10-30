@@ -293,16 +293,20 @@ export default function Product()
                                     value={check.initial}                                           
                                 />
                                 <button className="listing-rent-small" onClick={async () => {
-                                    const agreementInstance = RentalAgreementFactory.connect(ele[2],window.wallet ?? window.provider);
-                                      if(window.wallet===undefined)
-                                        {
-                                          alert("Wallet not loaded");
-                                          return;
-                                        }
-                                        
-                                      const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessor(check.initial);
-                                      console.log(checkInitial);
-                                      alert("Initial check by Lessor done");
+                                    const agreementInstance = RentalAgreementFactory.connect(
+                                        ele[2],
+                                        window.wallet ?? window.provider
+                                    );
+                                    if(window.wallet===undefined)
+                                    {
+                                      alert("Wallet not loaded");
+                                      return;
+                                    }
+                                                
+                                    const checkInitial = await agreementInstance.connect(window.wallet).initialCheckByLessee( check.initial, {value: ele[6]} );
+
+                                    console.log(checkInitial);
+                                    alert("Initial check by Lessee done");
                                 }}> Initial Lessee </button>
 
                                
@@ -314,20 +318,20 @@ export default function Product()
                                <hr className='my-2' />
                                     
                             <div className="inp-btn">
-                                 <button className="listing-rent-small" onClick={async () => {
-                                     const agreementInstance = RentalAgreementFactory.connect(
-                                        ele[2],
-                                        window.wallet ?? window.provider
-                                     );
-                                     if(window.wallet===undefined)
-                                     {
-                                       alert("Wallet not loaded");
-                                       return;
-                                     }
-                                     const cancelRent = await agreementInstance.connect(window.wallet).cancelRent({value: ele[7]});
-                                     console.log(cancelRent);
-                                     alert(ethers.utils.formatEther(ele[7])+" ES rent paid as cencellation charge");
-                                 }}>
+                                    <button className="listing-rent-small" onClick={async () => {
+                                            const agreementInstance = RentalAgreementFactory.connect(
+                                                ele[2],
+                                                window.wallet ?? window.provider
+                                            );
+                                            if(window.wallet===undefined)
+                                            {
+                                                alert("Wallet not loaded");
+                                                return;
+                                            }
+                                            const cancelRent = await agreementInstance.connect(window.wallet).cancelRent({value: ele[7]});
+                                            console.log(cancelRent);
+                                            alert(ethers.utils.formatEther(ele[7])+" ES rent paid as cencellation charge");
+                                     }}>
                                      Cancel Rent
                                  </button>
                             </div>

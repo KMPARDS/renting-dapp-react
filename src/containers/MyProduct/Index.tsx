@@ -11,8 +11,9 @@ import './MyProduct.scss';
 
 export default function MyProduct() 
 {
-    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: '',images:''})
+    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: '',images:'',incentive:''})
     const [discountState, setDiscountState] = useState({added: 0, removed: 0});
+    const [discount, setDiscount] = useState('loading...');
     const [contracts, setContracts] = useState({allContracts: []});
     const [check, setCheck] = useState({initial: 0, final: 0});
     const [terminate, setTerminate] = useState({penalty: 0});
@@ -31,11 +32,13 @@ export default function MyProduct()
         const maxRent = ethers.utils.formatEther(await productInstance.maxRent());
         const security = ethers.utils.formatEther(await productInstance.security());
         const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
+        const incentive = ethers.utils.formatEther(await productInstance.incentive()).split('0').slice(-1)[0] 
 
+        // GET IMAGE ===========================================
         const imgArray = images?.replace(/\[|\]/g, "").split(',')
         const parseImages = [imgArray[0]?.replace(/['"]+/g, ''),imgArray[1]?.replace(/['"]+/g, ''),imgArray[2]?.replace(/['"]+/g, ''),imgArray[3]?.replace(/['"]+/g, '')]
 
-        setstate({title, location, description, maxRent, security, cancellation,images:parseImages});
+        setstate({title, location, description, maxRent, security, cancellation,images:parseImages,incentive});
 
         if(window.wallet===undefined)
         {
@@ -49,7 +52,7 @@ export default function MyProduct()
         console.log("All contracts:",contractLogs);
         //@ts-ignore
         setContracts({allContracts : contractLogs});
-        //return contracts;
+        // return contracts;
     }
 
     useEffect(()=>{(async () =>
@@ -76,8 +79,8 @@ export default function MyProduct()
 
     async function handleDiscounts()
     {
-        const discounts = await productInstance.getDiscounts();
-        alert("Available discounts: " + discounts);
+        const discounts = await productInstance.getDiscounts(); 
+        alert("Available discounts : " + discounts);
     }
 
     async function handleAdd()
@@ -114,20 +117,6 @@ export default function MyProduct()
         alert("Listing deleted");
     }
 
-    /*const getProduct = async () => {
-        if(window.wallet===undefined)
-        {
-            alert("Wallet not loaded");
-            return;
-        }
-        const filter = productInstance.filters.NewRentalContract(window.wallet.address,null,null,null,null,null,null,null,null,null);
-        const logs = await productInstance.queryFilter(filter);
-        const parseLogs = logs.map((log) => productInstance.interface.parseLog(log));
-        const contracts = parseLogs.map(ele => ele.args);
-        console.log("All contracts:",contracts)
-        setContracts({allContracts : contracts});
-        //return contracts;
-    }*/
 
     return (
         <div>
@@ -169,7 +158,8 @@ export default function MyProduct()
                         <h6 className="desc-para">Rent: {state.maxRent} ES</h6>
                         <h6 className="desc-para">Security Fee: {state.security} ES</h6>
                         <h6 className="desc-para">Cancellation Fee: {state.cancellation} ES</h6>
-                        <h6 className="desc-para">Available Discounts: Loading...</h6>
+                        <h6 className="desc-para">Available Discounts : Loading...</h6>
+                        <h6 className="desc-para">Promotional Incentive Offered : <strong>{state.incentive} %</strong> </h6>
 
                         <h4 className="mt-4 product-title">Pick Up Address</h4>
                         <h6 className="desc-para">{state.location}</h6>
@@ -188,7 +178,7 @@ export default function MyProduct()
                                 onChange={handleChange}
                                 value={discountState.added}
                             />
-                            <button className="listing-add-discount" onClick={handleAdd}>Add Discount</button>                          
+                            <button className="listing-add-discount" onClick={handleAdd}>Add Discount in %</button>                          
                         </div>
 
                         <div className='inp-btn' >

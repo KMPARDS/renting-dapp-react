@@ -197,6 +197,7 @@ class Home extends Component {
                 </div>
                 <section className='homeCateg-bgd '>
                     <Container>
+                        <p className='homeCateg-subtitle mt-3' >Scroll towards right to view latest listing</p>
                         <Row>
                             <Col lg={12}> <CarouselPage /></Col>
                         </Row>

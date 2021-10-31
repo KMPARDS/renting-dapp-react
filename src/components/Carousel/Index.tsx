@@ -80,7 +80,7 @@ class CarouselPage extends Component {
             useKeyboardArrows
           >                  
             {
-              this.state.allProduct.map((ele: any) => {
+              this.state.allProduct.reverse().map((ele: any) => {
                 const strArray = ele[10]
                 const imgArray = strArray.replace(/\[|\]/g,"").split(',')
                 const image = imgArray[0].replace(/['"]+/g, '')

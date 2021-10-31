@@ -17,7 +17,7 @@ class MyListing extends Component {
         super(props);
         this.state = {
             showModal: false,
-            allProduct: [],
+            allProduct: []
         };
     }
 
@@ -34,6 +34,7 @@ class MyListing extends Component {
 
         var displayProducts = [];
 
+
         for(var i=0; i<productAll.length; i++)
         {
             var status = await window.rentingDappInstance.isAvailable(productAll[i][1]);
@@ -43,10 +44,7 @@ class MyListing extends Component {
             }
         }
 
-        console.log(displayProducts);
 
-        this.setState({ ...this.state, allProduct: displayProducts });
-        
         console.log(this.state.allProduct)
 
         return displayProducts;

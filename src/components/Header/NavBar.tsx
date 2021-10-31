@@ -177,7 +177,6 @@ class NavBar extends Component {
                     href="https://eraswap.life/"
                     target="_blank"
                   >
-                    {" "}
                     CONNECT TO WALLET{" "}
                   </a>
               )}

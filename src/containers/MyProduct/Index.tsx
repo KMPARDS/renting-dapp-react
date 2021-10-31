@@ -158,6 +158,7 @@ export default function MyProduct()
                         <h6 className="desc-para">Rent: {state.maxRent} ES</h6>
                         <h6 className="desc-para">Security Fee: {state.security} ES</h6>
                         <h6 className="desc-para">Cancellation Fee: {state.cancellation} ES</h6>
+                        <h6 className="desc-para">Available Discounts : Loading...</h6>
                         <h6 className="desc-para">Promotional Incentive Offered : <strong>{state.incentive} %</strong> </h6>
 
                         <h4 className="mt-4 product-title">Pick Up Address</h4>

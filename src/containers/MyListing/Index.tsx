@@ -101,6 +101,12 @@ class MyListing extends Component {
                                         <div className='desc-para'>Security Fee: {ethers.utils.formatEther(ele[6])} ES</div>
                                         {/* @ts-ignore */}
                                         <div className='desc-para'>Cancellation Fee: {ethers.utils.formatEther(ele[7])} ES</div><br/>
+                                        {/* @ts-ignore */}
+                                        <div className='desc-para'>Promotional Incentive Offered : loading...</div><br/>
+                                        {/* @ts-ignore */}
+                                        <div className='desc-para'>Available Discounts : loading...</div><br/>
+
+
                                         <h5 className='desc-head'>Description</h5>
                                         <p className='desc-para'>{ele[3]}</p>
                                         <h5 className='desc-head'>Address</h5>

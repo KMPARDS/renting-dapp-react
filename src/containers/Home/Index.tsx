@@ -3,7 +3,8 @@ import { Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CarouselPage from '../../components/Carousel/Index';
 import Footer from '../../components/Footer/Index';
-import Header from '../../components/Header/Index';
+// import Header from '../../components/Header/Index';
+import Navbar from '../../components/Header/NavBar';
 // import Responsive from '../../Responsive/Responsive.css';
 import HomeCategory from '../../components/HomeCategory/Index';
 import Images from '../../containers/Images/Image';
@@ -112,7 +113,7 @@ class Home extends Component {
             <div>
                 <div className='rental-hero-bgd'>
                     <div className='wrapper-container'>
-                        <Header />
+                        <Navbar />
                         <div className='buy-main-container'>
                             <h4 className='hero-txt-style'>Rent &amp; Lease anything Peer to Peer </h4>
                             <br/>

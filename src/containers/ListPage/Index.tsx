@@ -87,6 +87,8 @@ class ListPage extends Component {
                                     <p> <strong> Rent: </strong> {ethers.utils.formatEther(ele[5])} ES</p>
                                     <p> <strong> Security Fee: </strong> {ethers.utils.formatEther(ele[6])} ES</p>
                                     <p> <strong> Cancellation Fee: </strong> {ethers.utils.formatEther(ele[7])} ES</p>
+                                    <p> <strong> Promotional Incentive Offered : </strong> loading... </p>
+                                    <p> <strong> Available Discounts : </strong> loading... </p>
                                     <p style={{marginBottom: '2rem'}}> <strong> Listed on: </strong> {((new Date(Number(ele[9]))).toString()).split("GMT+0530 (India Standard Time)")}</p>
                                 
                                     <i 

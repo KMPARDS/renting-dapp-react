@@ -152,7 +152,7 @@ class NavBar extends Component {
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link btn btn-outline-warning conn-wallet-btn"
+                className="nav-link mt-0 btn btn-outline-warning conn-wallet-btn"
                 to="/RentPage"
               >
                 {" "}
@@ -162,7 +162,7 @@ class NavBar extends Component {
             <li className="nav-item">
               {window.wallet ? (
                   <Link
-                  className="nav-link btn btn-outline-warning conn-wallet-btn"
+                  className="nav-link  mt-0 btn btn-outline-warning conn-wallet-btn"
                   to="/#"
                   onClick={() => {
                     delete window.wallet;
@@ -173,7 +173,7 @@ class NavBar extends Component {
                 </Link>
                 ) : (
                   <a
-                    className="nav-link btn btn-outline-warning conn-wallet-btn"
+                    className="nav-link  mt-0 btn btn-outline-warning conn-wallet-btn"
                     href="https://eraswap.life/"
                     target="_blank"
                   >

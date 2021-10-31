@@ -14,7 +14,7 @@ import './Product.scss';
 
 export default function Product() 
 {
-    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: '',images:''})
+    const [state, setstate] = useState({title: 'Loading...', location: 'Loading...', description: 'Loading...', maxRent: '', security: '', cancellation: '',images:'',incentive:''})
     const [timestate, settimestate] = useState({startTime: '', endTime: ''})
     const [modalstate, setmodalstate] = useState({showModal: false}); 
     const [dateState, setDateState] = useState([['','']]);
@@ -38,11 +38,12 @@ export default function Product()
         const maxRent = ethers.utils.formatEther(await productInstance.maxRent());
         const security = ethers.utils.formatEther(await productInstance.security());
         const cancellation = ethers.utils.formatEther(await productInstance.cancellationFee());
+        const incentive = ethers.utils.formatEther(await productInstance.incentive()).split('0').slice(-1)[0] 
 
         const imgArray = images?.replace(/\[|\]/g, "").split(',')
         const parseImages = [imgArray[0]?.replace(/['"]+/g, ''),imgArray[1]?.replace(/['"]+/g, ''),imgArray[2]?.replace(/['"]+/g, ''),imgArray[3]?.replace(/['"]+/g, '')]
 
-        setstate({title, location, description, maxRent, security, cancellation,images:parseImages});
+        setstate({title, location, description, maxRent, security, cancellation,images:parseImages,incentive});
 
         if(window.wallet===undefined)
         {
@@ -237,7 +238,8 @@ export default function Product()
                         <h6 className="desc-para">Rent: {state.maxRent} ES</h6>
                         <h6 className="desc-para">Security Fee: {state.security} ES</h6>
                         <h6 className="desc-para">Cancellation Fee: {state.cancellation} ES</h6>
-                        <h6 className="desc-para">Available Discounts: Loading...</h6>
+                        <h6 className="desc-para">Available Discounts : Loading...</h6>
+                        <h6 className="desc-para">Promotional Incentive Offered : <strong>{state.incentive} %</strong> </h6>
 
                         <h4 className="mt-4 product-title">Pick Up Address</h4>
                         <h6 className="desc-para">{state.location}</h6>

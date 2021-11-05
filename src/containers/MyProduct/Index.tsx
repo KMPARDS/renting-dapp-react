@@ -306,7 +306,7 @@ export default function MyProduct()
                                    onChange={handlePenalty}
                                    value={terminate.penalty}                                           
                                 />
-                                <button className="listing-rent-big" onClick={async () => {
+                                <button className="listing-rent-big" style={{fontSize:"14px"}} onClick={async () => {
                                     const agreementInstance = RentalAgreementFactory.connect(ele[2],window.wallet ?? window.provider);
                                     if(window.wallet===undefined){
                                         alert("Wallet not loaded");

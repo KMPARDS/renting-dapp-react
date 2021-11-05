@@ -181,7 +181,7 @@ class RentPage extends Component {
                         </div>
                       </div>
                     </div>*/}
-                <div className="main-rent-search">
+                <div className="main-rent-search rent-page">
                   <Form>
                     <Form.Row className="align-items-center">
                       <Col xs="{auto}" className="my-1">

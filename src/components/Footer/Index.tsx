@@ -59,6 +59,10 @@ return (
                <li>
                   <a href="https://eraswap.life/" target="_blank"><i class="fa fa-angle-double-right"></i> About Eraswap Life</a>
                </li>  
+
+               <li>
+                  <a href="https://www.coingecko.com/en/coins/era-swap-token" target="_blank"><i class="fa fa-angle-double-right"></i> CoingGecko </a>
+               </li>  
               
             </ul>
           </div>

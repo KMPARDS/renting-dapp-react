@@ -3,8 +3,8 @@ import { Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CarouselPage from '../../components/Carousel/Index';
 import Footer from '../../components/Footer/Index';
-// import Header from '../../components/Header/Index';
-import Navbar from '../../components/Header/NavBar';
+import Header from '../../components/Header/Index';
+// import Navbar from '../../components/Header/NavBar';
 // import Responsive from '../../Responsive/Responsive.css';
 import HomeCategory from '../../components/HomeCategory/Index';
 import Images from '../../containers/Images/Image';
@@ -109,11 +109,19 @@ class Home extends Component {
 
 
     render() {
+        const category = this.state.currentCategory
+        const realStateImg = '/img/real-state.jpg'
+        const bike = '/img/bike.jpg'
+        const vehicle = '/img/vehicle.jpg'
+        const electronic = '/img/electronic.jpg'
+        const mobile = '/img/mobile.jpg'
+        const furniture = '/img/furniture.jpg'
+
         return (
             <div>
-                <div className='rental-hero-bgd'>
+                <div className='rental-hero-bgd' style={{backgroundImage:`url(${category == 0 && realStateImg || category == 1 && vehicle || category == 2 && electronic || category == 3 && mobile || category == 4 && furniture || category == 5 && bike })`}} >
                     <div className='wrapper-container'>
-                        <Navbar />
+                        <Header />
                         <div className='buy-main-container'>
                             <h4 className='hero-txt-style'>Rent &amp; Lease anything Peer to Peer </h4>
                             <br/>

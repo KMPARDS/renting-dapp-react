@@ -45,7 +45,8 @@ class MyListing extends Component {
         }
 
 
-        console.log(this.state.allProduct)
+        this.setState({ ...this.state, allProduct: displayProducts });
+        console.log(displayProducts)
 
         return displayProducts;
     }

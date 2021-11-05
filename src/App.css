@@ -1,9 +1,5 @@
 body {
   background-color: #ffffff;
-  font-family: "Roboto", sans-serif !important;
-}
-nav ul li {
-  font-family: "Roboto", sans-serif !important;
 }
 .header-listItem a:hover {
   color: #ff5d22 !important;
@@ -11,8 +7,6 @@ nav ul li {
 .header-con {
   color: #ff5d22;
 }
-
-
 .social-menu {
   margin: 0;
   padding: 0;

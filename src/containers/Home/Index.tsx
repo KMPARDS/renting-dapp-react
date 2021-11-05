@@ -172,7 +172,7 @@ class Home extends Component {
                                                     })}`}
                                                     className="search-rent-btn stretched-link"
                                                 >
-                                                    Search Now
+                                                    Search Now <i className="fa fa-search ml-2" aria-hidden="true"></i>
                                                 </Link>
                                             </button>
                                         </Col>
@@ -189,16 +189,12 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='recommn-bgd'>
-                    <div className='wrapper-container'>
-                        <div className='recommn-txt-style container'>
-                            Recommendations For You.
-                        </div>
-                    </div>
-                </div>
-                <section className='homeCateg-bgd '>
+
+                <section className='homeCateg-bgd pt-5'>
                     <Container>
-                        <p className='homeCateg-subtitle mt-3' >Scroll towards right to view latest listing</p>
+                        <h3 className='better-txt-style text-center'>Recommendations For You.</h3>
+                        <p className='homeCateg-subtitle text-center' >Scroll towards right to view latest listing</p>
+                        
                         <Row>
                             <Col lg={12}> <CarouselPage /></Col>
                         </Row>
@@ -273,7 +269,14 @@ class Home extends Component {
                     </Container>
                 </section>
 
+                <section id="video" className="main-section center-align pt-5">
+                    <div className="container mt60 mb60 m-auto">
+                        <h3 className="reflection-text reflection-text-white ">Watch Video</h3>
+                        <p className="p-t-1 "> Watch this video to know more about <b>RentingDapp</b> </p>
 
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/AUYopnXW6xM?start=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+                    </div>
+                </section>
               
                 <div className='footer-bgd'>
                     <div className='wrapper-container'>
